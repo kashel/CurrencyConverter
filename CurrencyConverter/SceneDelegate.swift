@@ -1,8 +1,5 @@
 //
-//  SceneDelegate.swift
-//  CurrencyConverter
-//
-//  Created by Ireneusz Sołek on 15/01/2021.
+//  Created by Ireneusz Sołek
 //
 
 import UIKit
