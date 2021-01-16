@@ -19,6 +19,7 @@
 		9753B5B525B239AC00F0CB8A /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5B425B239AC00F0CB8A /* DashboardViewController.swift */; };
 		9753B5BE25B241D000F0CB8A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */; };
 		9753B5C325B2426B00F0CB8A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5C225B2426B00F0CB8A /* Coordinator.swift */; };
+		9753B5C825B31A8500F0CB8A /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5C725B31A8500F0CB8A /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		9753B5B425B239AC00F0CB8A /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9753B5C225B2426B00F0CB8A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9753B5C725B31A8500F0CB8A /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		9753B5AA25B2397A00F0CB8A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9753B5C725B31A8500F0CB8A /* DashboardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				9719411B25B22A770030341D /* AppDelegate.swift in Sources */,
 				9719411D25B22A770030341D /* SceneDelegate.swift in Sources */,
 				9753B5C325B2426B00F0CB8A /* Coordinator.swift in Sources */,
+				9753B5C825B31A8500F0CB8A /* DashboardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

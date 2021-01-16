@@ -14,8 +14,13 @@ class DashboardCoordinator: Coordinator {
   }
   
   func start() -> UIViewController {
-    let dashboardViewConroller = DashboardViewConroller()
+    let dashboardViewModel = DashboardViewModel(coordinator: self)
+    let dashboardViewConroller = DashboardViewConroller(viewModel: dashboardViewModel)
     rootViewController = UINavigationController(rootViewController: dashboardViewConroller)
     return rootViewController
+  }
+  
+  func continueToCurrencySelection() {
+    print("pass controll to the next coordinator")
   }
 }
