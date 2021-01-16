@@ -21,6 +21,10 @@ class DashboardCoordinator: Coordinator {
   }
   
   func continueToCurrencySelection() {
+    let currencySelectionCoordinator = CurrencySelectionCoordinator(rootViewController: rootViewController)
+    let currencySelectionViewController = currencySelectionCoordinator.start()
+    currencySelectionViewController.modalPresentationStyle = .fullScreen
+    rootViewController.present(currencySelectionViewController, animated: true, completion: nil)
     print("pass controll to the next coordinator")
   }
 }
