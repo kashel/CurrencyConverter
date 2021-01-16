@@ -22,12 +22,15 @@ class DashboardCoordinator: Coordinator {
     let currencySelectionCoordinator = CurrencySelectionCoordinator()
     currencySelectionCoordinator.lifecycle = { [weak self] coordinatorLifecycleEvent -> Void in
       switch coordinatorLifecycleEvent {
-      //TODO: split this two cases
-      case .canceled(let childCoordinator), .finished(let childCoordinator):
-        self?.rootViewController.dismiss(animated: true) {
-          //TODO: programm presenting to currency converter screen
-        }
+      case .canceled(let childCoordinator):
         self?.remove(childCoordinator: childCoordinator)
+        self?.rootViewController.dismiss(animated: true)
+      case .finished(let childCoordinator):
+        self?.remove(childCoordinator: childCoordinator)
+        self?.rootViewController.dismiss(animated: true) {
+          guard let self = self else { return }
+          self.lifecycle?(.finished(self))
+        }
       }
     }
     let currencySelectionViewController = currencySelectionCoordinator.start()

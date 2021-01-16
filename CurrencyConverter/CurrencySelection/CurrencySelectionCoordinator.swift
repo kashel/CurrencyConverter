@@ -15,7 +15,6 @@ class CurrencySelectionCoordinator: Coordinator {
   }
   
   func start() -> UIViewController {
-    
     let model = [CurrencySelection(isActive: true, currency: Currency(name: "Brithis Pound")),
                  CurrencySelection(isActive: false, currency: Currency(name: "Euro"))] + (1...100).map{ CurrencySelection(isActive: true, currency: Currency(name: "Currency: \($0)")) }
     let viewModel = CurrencySelectionViewModel(model: model, ctaAction: .goToReceiveCurrencySelection, currencySelectionCellModelMapper: currencySelectionCellModelMapper, previouslySelected: nil, coordinator: self)
