@@ -20,6 +20,7 @@ class DashboardCoordinator: Coordinator {
   
   func continueToCurrencySelection() {
     let currencySelectionCoordinator = CurrencySelectionCoordinator()
+    add(childCoordinator: currencySelectionCoordinator)
     currencySelectionCoordinator.lifecycle = { [weak self] coordinatorLifecycleEvent -> Void in
       switch coordinatorLifecycleEvent {
       case .canceled(let childCoordinator):
@@ -27,15 +28,14 @@ class DashboardCoordinator: Coordinator {
         self?.rootViewController.dismiss(animated: true)
       case .finished(let childCoordinator):
         self?.remove(childCoordinator: childCoordinator)
-        self?.rootViewController.dismiss(animated: true) {
-          guard let self = self else { return }
-          self.lifecycle?(.finished(self))
+        self?.rootViewController.dismiss(animated: true) { [weak self] in
+          guard let unownedSelf = self else { return }
+          unownedSelf.lifecycle?(.finished(unownedSelf))
         }
       }
     }
     let currencySelectionViewController = currencySelectionCoordinator.start()
     currencySelectionViewController.modalPresentationStyle = .fullScreen
     rootViewController.present(currencySelectionViewController, animated: true, completion: nil)
-    print("pass controll to the next coordinator")
   }
 }

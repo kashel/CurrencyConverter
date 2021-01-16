@@ -17,7 +17,7 @@ struct CurrencySelectionViewModel {
   
   private let ctaAction: CTAAction
   private let currencySelectionCellModelMapper: CurrencySelectionCellModelMapperProtocol
-  private let coordinator: CurrencySelectionCoordinator
+  private weak var coordinator: CurrencySelectionCoordinator?
   private let previouslySelected: CurrencySelection?
   
   init(model: [CurrencySelection], ctaAction: CTAAction, currencySelectionCellModelMapper: CurrencySelectionCellModelMapperProtocol, previouslySelected: CurrencySelection?, coordinator: CurrencySelectionCoordinator) {
@@ -32,11 +32,9 @@ struct CurrencySelectionViewModel {
     switch ctaAction {
       case .currencyPairSelected:
       //TODO: save in persistent storage
-      coordinator.currencyPairSelected(sendCurrency: previouslySelected!.currency, receiveCurrency: selectedCurrency.currency)
-      print("currencyPairSelected")
+      coordinator?.currencyPairSelected(sendCurrency: previouslySelected!.currency, receiveCurrency: selectedCurrency.currency)
     case .goToReceiveCurrencySelection:
-      coordinator.selectReceiveCurrency(model: model, previouslySelected: selectedCurrency)
-      print("currencyPairSelected")
+      coordinator?.selectReceiveCurrency(model: model, previouslySelected: selectedCurrency)
     }
   }
 }

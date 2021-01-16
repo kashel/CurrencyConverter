@@ -34,13 +34,16 @@ final class AppCoordinator : Coordinator {
       let dashboardCoordinator = DashboardCoordinator()
       add(childCoordinator: dashboardCoordinator)
       let dashboardViewController = dashboardCoordinator.start()
-      dashboardCoordinator.lifecycle = {[weak self] childCoordinatorEvent in
+      dashboardCoordinator.lifecycle = {[weak self, weak dashboardCoordinator] childCoordinatorEvent in
         switch childCoordinatorEvent {
         case .canceled:
           assertionFailure("Dashboard coordinator can not be canceled")
         case .finished(let childCoordinator) where childCoordinator is DashboardCoordinator:
-          dashboardViewController.removeFromParent()
           dashboardViewController.view.removeFromSuperview()
+          dashboardViewController.removeFromParent()
+          if let unownedDashboardCoordinator = dashboardCoordinator {
+            self?.remove(childCoordinator: unownedDashboardCoordinator)            
+          }
           self?.startConverter()
         case .finished:
           assertionFailure("childCoordinator has to be DashboardCoordinator")

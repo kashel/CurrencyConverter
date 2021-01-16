@@ -59,7 +59,6 @@ extension CurrencySelectionViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("tapped on: \(indexPath.row)")
     viewModel.continueAction(selectedCurrency: viewModel.model[indexPath.row])
   }
 }
