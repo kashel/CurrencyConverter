@@ -5,23 +5,31 @@
 import UIKit
 
 class DashboardCoordinator: Coordinator {
-  weak var rootViewController: UINavigationController!
-  
   var childCoordinators: [Coordinator] = []
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
+  var rootViewController: DashboardViewConroller!
   
   init() {
   }
   
   func start() -> UIViewController {
     let dashboardViewModel = DashboardViewModel(coordinator: self)
-    let dashboardViewConroller = DashboardViewConroller(viewModel: dashboardViewModel)
-    rootViewController = UINavigationController(rootViewController: dashboardViewConroller)
+    rootViewController = DashboardViewConroller(viewModel: dashboardViewModel)
     return rootViewController
   }
   
   func continueToCurrencySelection() {
-    let currencySelectionCoordinator = CurrencySelectionCoordinator(rootViewController: rootViewController)
+    let currencySelectionCoordinator = CurrencySelectionCoordinator()
+    currencySelectionCoordinator.lifecycle = { [weak self] coordinatorLifecycleEvent -> Void in
+      switch coordinatorLifecycleEvent {
+      //TODO: split this two cases
+      case .canceled(let childCoordinator), .finished(let childCoordinator):
+        self?.rootViewController.dismiss(animated: true) {
+          //TODO: programm presenting to currency converter screen
+        }
+        self?.remove(childCoordinator: childCoordinator)
+      }
+    }
     let currencySelectionViewController = currencySelectionCoordinator.start()
     currencySelectionViewController.modalPresentationStyle = .fullScreen
     rootViewController.present(currencySelectionViewController, animated: true, completion: nil)

@@ -30,6 +30,7 @@ class CurrencySelectionViewController: UIViewController {
   
   private func setup() {
     tableView.dataSource = self
+    tableView.delegate = self
     tableView.register(CurrencySelectionCell.self, forCellReuseIdentifier: "selectCurrency")
   }
   
@@ -49,5 +50,16 @@ extension CurrencySelectionViewController: UITableViewDataSource {
     }
     cell.configure(with: viewModel.cellsData[indexPath.row])
     return cell
+  }
+}
+
+extension CurrencySelectionViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    return viewModel.cellsData[indexPath.row].isSelectable ? indexPath : nil
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print("tapped on: \(indexPath.row)")
+    viewModel.continueAction(selectedCurrency: viewModel.model[indexPath.row])
   }
 }

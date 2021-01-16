@@ -6,6 +6,7 @@ import UIKit
 
 struct CurrencySelectionCellModel {
   let currencyName: String
+  let isSelectable: Bool
 }
 
 class CurrencySelectionCell: UITableViewCell {
@@ -31,6 +32,7 @@ class CurrencySelectionCell: UITableViewCell {
   
   func configure(with model: CurrencySelectionCellModel) {
     currencyName.text = model.currencyName
+    selectionStyle = model.isSelectable ? .default : .none
   }
   
   private func setupView() {
