@@ -31,6 +31,15 @@
 		9753B60225B371A500F0CB8A /* ConverterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B60125B371A500F0CB8A /* ConverterCoordinator.swift */; };
 		9753B60A25B371F600F0CB8A /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B60925B371F600F0CB8A /* ConverterViewController.swift */; };
 		9753B60F25B3721900F0CB8A /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B60E25B3721900F0CB8A /* ConverterViewModel.swift */; };
+		9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B61325B42ABE00F0CB8A /* AddCurrencyPairView.swift */; };
+		9753B61925B42B2600F0CB8A /* ExchangeRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B61825B42B2600F0CB8A /* ExchangeRateCell.swift */; };
+		9753B61E25B42C6C00F0CB8A /* ExchangeRateCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B61D25B42C6C00F0CB8A /* ExchangeRateCellModel.swift */; };
+		9753B62425B4307E00F0CB8A /* UIStackView+Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62325B4307E00F0CB8A /* UIStackView+Spacer.swift */; };
+		9753B62925B4353500F0CB8A /* ExchangeRateCellRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */; };
+		9753B62E25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */; };
+		9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */; };
+		9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */; };
+		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +90,15 @@
 		9753B60125B371A500F0CB8A /* ConverterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCoordinator.swift; sourceTree = "<group>"; };
 		9753B60925B371F600F0CB8A /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		9753B60E25B3721900F0CB8A /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
+		9753B61325B42ABE00F0CB8A /* AddCurrencyPairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyPairView.swift; sourceTree = "<group>"; };
+		9753B61825B42B2600F0CB8A /* ExchangeRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCell.swift; sourceTree = "<group>"; };
+		9753B61D25B42C6C00F0CB8A /* ExchangeRateCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModel.swift; sourceTree = "<group>"; };
+		9753B62325B4307E00F0CB8A /* UIStackView+Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Spacer.swift"; sourceTree = "<group>"; };
+		9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellRow.swift; sourceTree = "<group>"; };
+		9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellRowModel.swift; sourceTree = "<group>"; };
+		9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
+		9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesService.swift; sourceTree = "<group>"; };
+		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +149,7 @@
 		9719411925B22A770030341D /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				9753B62225B4306500F0CB8A /* Helper */,
 				9753B5E625B321EB00F0CB8A /* Model */,
 				9753B5A825B235C700F0CB8A /* Dashboard */,
 				9753B5A725B235BA00F0CB8A /* Converter */,
@@ -180,6 +199,7 @@
 		9753B5A725B235BA00F0CB8A /* Converter */ = {
 			isa = PBXGroup;
 			children = (
+				9753B64325B442A100F0CB8A /* Services */,
 				9753B60025B3718E00F0CB8A /* Model */,
 				9753B5FF25B3718400F0CB8A /* View */,
 				9753B5FE25B3717D00F0CB8A /* ViewModel */,
@@ -261,6 +281,9 @@
 			isa = PBXGroup;
 			children = (
 				9753B60925B371F600F0CB8A /* ConverterViewController.swift */,
+				9753B61325B42ABE00F0CB8A /* AddCurrencyPairView.swift */,
+				9753B61825B42B2600F0CB8A /* ExchangeRateCell.swift */,
+				9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,8 +291,28 @@
 		9753B60025B3718E00F0CB8A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9753B61D25B42C6C00F0CB8A /* ExchangeRateCellModel.swift */,
+				9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */,
+				9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */,
+				97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9753B62225B4306500F0CB8A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9753B62325B4307E00F0CB8A /* UIStackView+Spacer.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		9753B64325B442A100F0CB8A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,10 +448,16 @@
 				9753B5E225B321AC00F0CB8A /* Currency.swift in Sources */,
 				9753B5DD25B3206400F0CB8A /* CurrencySelectionCoordinator.swift in Sources */,
 				9753B5BE25B241D000F0CB8A /* AppCoordinator.swift in Sources */,
+				9753B62925B4353500F0CB8A /* ExchangeRateCellRow.swift in Sources */,
+				9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */,
 				9753B5F025B3290C00F0CB8A /* CurrencySelectionCell.swift in Sources */,
+				9753B61E25B42C6C00F0CB8A /* ExchangeRateCellModel.swift in Sources */,
 				9753B5FA25B369C700F0CB8A /* CurrencyPair.swift in Sources */,
 				9753B5F525B32FDB00F0CB8A /* CurrencySelectionCellModelMapper.swift in Sources */,
+				9753B62425B4307E00F0CB8A /* UIStackView+Spacer.swift in Sources */,
+				9753B62E25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift in Sources */,
 				9753B60F25B3721900F0CB8A /* ConverterViewModel.swift in Sources */,
+				9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */,
 				9719411F25B22A770030341D /* ViewController.swift in Sources */,
 				9753B5D025B3204800F0CB8A /* CurrencySelectionViewController.swift in Sources */,
 				9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */,
@@ -416,11 +465,14 @@
 				9753B5E825B321FE00F0CB8A /* CurrencySelection.swift in Sources */,
 				9753B60225B371A500F0CB8A /* ConverterCoordinator.swift in Sources */,
 				9719411B25B22A770030341D /* AppDelegate.swift in Sources */,
+				9753B61925B42B2600F0CB8A /* ExchangeRateCell.swift in Sources */,
+				9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */,
 				9753B5D825B3205600F0CB8A /* CurrencySelectionViewModel.swift in Sources */,
 				9719411D25B22A770030341D /* SceneDelegate.swift in Sources */,
 				9753B5C325B2426B00F0CB8A /* Coordinator.swift in Sources */,
 				9753B5C825B31A8500F0CB8A /* DashboardViewModel.swift in Sources */,
 				9753B60A25B371F600F0CB8A /* ConverterViewController.swift in Sources */,
+				97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,7 +578,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -581,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
