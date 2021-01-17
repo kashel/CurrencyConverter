@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9719411B25B22A770030341D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719411A25B22A770030341D /* AppDelegate.swift */; };
-		9719411D25B22A770030341D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719411C25B22A770030341D /* SceneDelegate.swift */; };
 		9719411F25B22A770030341D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719411E25B22A770030341D /* ViewController.swift */; };
 		9719412225B22A770030341D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9719412025B22A770030341D /* Main.storyboard */; };
 		9719412425B22A780030341D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9719412325B22A780030341D /* Assets.xcassets */; };
@@ -63,7 +62,6 @@
 /* Begin PBXFileReference section */
 		9719411725B22A770030341D /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9719411A25B22A770030341D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9719411C25B22A770030341D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9719411E25B22A770030341D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9719412125B22A770030341D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9719412325B22A780030341D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				9753B5A725B235BA00F0CB8A /* Converter */,
 				9753B5A625B2358E00F0CB8A /* CurrencySelection */,
 				9719411A25B22A770030341D /* AppDelegate.swift */,
-				9719411C25B22A770030341D /* SceneDelegate.swift */,
 				9719411E25B22A770030341D /* ViewController.swift */,
 				9719412025B22A770030341D /* Main.storyboard */,
 				9719412325B22A780030341D /* Assets.xcassets */,
@@ -472,7 +469,6 @@
 				9753B61925B42B2600F0CB8A /* ExchangeRateCell.swift in Sources */,
 				9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */,
 				9753B5D825B3205600F0CB8A /* CurrencySelectionViewModel.swift in Sources */,
-				9719411D25B22A770030341D /* SceneDelegate.swift in Sources */,
 				9753B5C325B2426B00F0CB8A /* Coordinator.swift in Sources */,
 				9753B5C825B31A8500F0CB8A /* DashboardViewModel.swift in Sources */,
 				9753B60A25B371F600F0CB8A /* ConverterViewController.swift in Sources */,
@@ -582,7 +578,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -637,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
