@@ -15,16 +15,26 @@ class CurrencySelectionCoordinator: Coordinator {
   }
   
   func start() -> UIViewController {
-    let model = [CurrencySelection(isActive: true, currency: Currency(name: "Brithis Pound")),
-                 CurrencySelection(isActive: false, currency: Currency(name: "Euro"))] + (1...100).map{ CurrencySelection(isActive: true, currency: Currency(name: "Currency: \($0)")) }
-    let viewModel = CurrencySelectionViewModel(model: model, ctaAction: .goToReceiveCurrencySelection, currencySelectionCellModelMapper: currencySelectionCellModelMapper, previouslySelected: nil, coordinator: self)
+    let currencyPairService = CurrencyPairService()
+    let currencyService = CurrencySerive()
+    let viewModel = CurrencySelectionViewModel(ctaAction: .goToReceiveCurrencySelection,
+                                               currencySelectionCellModelMapper: currencySelectionCellModelMapper,
+                                               currencyPairService: currencyPairService,
+                                               currencyService: currencyService,
+                                               coordinator: self)
     let currencySelectionViewController = CurrencySelectionViewController(viewModel: viewModel)
     rootViewController.pushViewController(currencySelectionViewController, animated: false)
     return rootViewController
   }
   
-  func selectReceiveCurrency(model: [CurrencySelection], previouslySelected: CurrencySelection) {
-    let viewModel = CurrencySelectionViewModel(model: model, ctaAction: .currencyPairSelected, currencySelectionCellModelMapper: currencySelectionCellModelMapper, previouslySelected: previouslySelected, coordinator: self)
+  func selectReceiveCurrency(previouslySelected: Currency) {
+    let currencyPairService = CurrencyPairService()
+    let currencyService = CurrencySerive()
+    let viewModel = CurrencySelectionViewModel(ctaAction: .currencyPairSelected(sendCurrency: previouslySelected),
+                                               currencySelectionCellModelMapper: currencySelectionCellModelMapper,
+                                               currencyPairService: currencyPairService,
+                                               currencyService: currencyService,
+                                               coordinator: self)
     let currencySelectionViewController = CurrencySelectionViewController(viewModel: viewModel)
     rootViewController.pushViewController(currencySelectionViewController, animated: true)
   }

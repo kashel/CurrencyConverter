@@ -40,6 +40,8 @@
 		9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */; };
 		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
 		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
+		97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */; };
+		97F08F5325B4D07400380F41 /* CurrencyPairService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F5225B4D07400380F41 /* CurrencyPairService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesService.swift; sourceTree = "<group>"; };
 		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
 		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		97F08F5225B4D07400380F41 /* CurrencyPairService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,8 @@
 			children = (
 				9753B5E125B321AC00F0CB8A /* Currency.swift */,
 				9753B5F925B369C700F0CB8A /* CurrencyPair.swift */,
+				97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */,
+				97F08F5225B4D07400380F41 /* CurrencyPairService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -464,12 +470,14 @@
 				9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */,
 				9753B5B525B239AC00F0CB8A /* DashboardViewController.swift in Sources */,
 				9753B5E825B321FE00F0CB8A /* CurrencySelection.swift in Sources */,
+				97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */,
 				9753B60225B371A500F0CB8A /* ConverterCoordinator.swift in Sources */,
 				9719411B25B22A770030341D /* AppDelegate.swift in Sources */,
 				9753B61925B42B2600F0CB8A /* ExchangeRateCell.swift in Sources */,
 				9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */,
 				9753B5D825B3205600F0CB8A /* CurrencySelectionViewModel.swift in Sources */,
 				9753B5C325B2426B00F0CB8A /* Coordinator.swift in Sources */,
+				97F08F5325B4D07400380F41 /* CurrencyPairService.swift in Sources */,
 				9753B5C825B31A8500F0CB8A /* DashboardViewModel.swift in Sources */,
 				9753B60A25B371F600F0CB8A /* ConverterViewController.swift in Sources */,
 				97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */,

@@ -5,7 +5,7 @@
 import UIKit
 
 class CurrencySelectionViewController: UIViewController {
-  let viewModel: CurrencySelectionViewModel
+  var viewModel: CurrencySelectionViewModel
   let tableView = UITableView()
   
   init(viewModel: CurrencySelectionViewModel) {
@@ -56,6 +56,6 @@ extension CurrencySelectionViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    viewModel.continueAction(selectedCurrency: viewModel.model[indexPath.row])
+    viewModel.continueAction(selectedCurrency: viewModel.model[indexPath.row].currency)
   }
 }

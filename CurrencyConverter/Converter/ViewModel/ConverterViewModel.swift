@@ -9,12 +9,20 @@ struct ConverterViewModel {
     case dataLoaded([ExchangeRateModel])
   }
   
-  let initialPairs: [CurrencyPair]
+  let currencyPairService: CurrencyPairServiceProtocol
   let exchangeRateService: ExchangeRatesServiceProtocol
+  var currentlySelectedPairs: [CurrencyPair]
+  
+  init(currencyPairService: CurrencyPairServiceProtocol, exchangeRateService: ExchangeRatesServiceProtocol) {
+    self.currencyPairService = currencyPairService
+    self.exchangeRateService = exchangeRateService
+    currentlySelectedPairs = currencyPairService.savedCurrencyPairs
+  }
+  
   var actions: ((Action) -> Void)?
   
   func startLoading() {
-    exchangeRateService.exchangeRates(currencyPairs: initialPairs) { (result) in
+    exchangeRateService.exchangeRates(currencyPairs: currentlySelectedPairs) { (result) in
       switch result {
       case .success(let exchangeRates):
         actions?(.dataLoaded(exchangeRates))
