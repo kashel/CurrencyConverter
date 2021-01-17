@@ -27,6 +27,7 @@ class CurrencySelectionViewController: UIViewController {
     tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
     tableView.pinToSafeArea(of: view)
+    navigationItem.title = viewModel.title
   }
   
   private func setup() {
