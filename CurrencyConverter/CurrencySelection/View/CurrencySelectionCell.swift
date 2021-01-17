@@ -6,6 +6,8 @@ import UIKit
 
 struct CurrencySelectionCellModel {
   let currencyName: String
+  let currencyCode: String
+  let icon: UIImage
   let isSelectable: Bool
 }
 
@@ -15,9 +17,23 @@ class CurrencySelectionCell: UITableViewCell {
     return label
   }()
   
-  let verticalStack: UIStackView = {
+  let currencyCode: UILabel = {
+    let label = UILabel()
+    return label
+  }()
+  
+  let icon: UIImageView = {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    return imageView
+  }()
+  
+  let horizontalStack: UIStackView = {
     let stackView = UIStackView()
-    stackView.alignment = .leading
+    stackView.axis = .horizontal
+    stackView.spacing = 16
     return stackView
   }()
   
@@ -32,13 +48,34 @@ class CurrencySelectionCell: UITableViewCell {
   
   func configure(with model: CurrencySelectionCellModel) {
     currencyName.text = model.currencyName
-    selectionStyle = model.isSelectable ? .default : .none
+    currencyCode.text = model.currencyCode
+    icon.image = model.icon
+    model.isSelectable ? enable() : disable()
+  }
+  
+  private func enable() {
+    setItemsAlpha(newAlpha: 1.0)
+    selectionStyle = .default
+  }
+  
+  private func disable() {
+    setItemsAlpha(newAlpha: 0.5)
+    selectionStyle = .none
+  }
+  
+  private func setItemsAlpha(newAlpha: CGFloat) {
+    icon.alpha = newAlpha
+    currencyCode.alpha = newAlpha
+    currencyName.alpha = newAlpha
   }
   
   private func setupView() {
-    verticalStack.translatesAutoresizingMaskIntoConstraints = false
-    verticalStack.addArrangedSubview(currencyName)
-    addSubview(verticalStack)
-    verticalStack.pinEdges(to: self)
+    horizontalStack.translatesAutoresizingMaskIntoConstraints = false
+    horizontalStack.addArrangedSubview(icon)
+    horizontalStack.addArrangedSubview(currencyCode)
+    horizontalStack.addArrangedSubview(currencyName)
+    horizontalStack.addArrangedSubview(.horizontalSpacer)
+    addSubview(horizontalStack)
+    horizontalStack.pinEdges(to: self, offsets: UIEdgeInsets(top: 16, left: 16, bottom: -16, right: -16))
   }
 }

@@ -6,7 +6,11 @@ import UIKit
 
 class CurrencySelectionViewController: UIViewController {
   var viewModel: CurrencySelectionViewModel
-  let tableView = UITableView()
+  let tableView: UITableView = {
+    let table = UITableView()
+    table.separatorStyle = .none
+    return table
+  }()
   
   init(viewModel: CurrencySelectionViewModel) {
     self.viewModel = viewModel
