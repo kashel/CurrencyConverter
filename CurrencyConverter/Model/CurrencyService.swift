@@ -6,6 +6,7 @@ import Foundation
 
 protocol CurrencyServiceProtocol {
   var availableCurrencies: [Currency] { get }
+  var supportedCurrenciesCount: Int { get }
 }
 
 class CurrencySerive: CurrencyServiceProtocol {
@@ -48,6 +49,8 @@ class CurrencySerive: CurrencyServiceProtocol {
       "ZAR"
     ]
   }()
+  
+  lazy var supportedCurrenciesCount: Int = supportedCurrencyCodes.count
   
   var availableCurrencies: [Currency] {
     supportedCurrencyCodes.compactMap{

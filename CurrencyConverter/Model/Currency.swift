@@ -18,3 +18,6 @@ extension Currency {
     return UIImage(named: countryCode) ?? UIImage()
   }
 }
+
+extension Currency: Equatable {}
+extension Currency: Hashable {}
