@@ -65,9 +65,6 @@ final class AppCoordinator : Coordinator {
   private func startChildViewController(_ viewController: UIViewController) {
     rootViewController.addChild(viewController)
     rootViewController.view.addSubview(viewController.view)
-    viewController.view.leadingAnchor.constraint(equalTo: rootViewController.view.leadingAnchor).isActive = true
-    viewController.view.trailingAnchor.constraint(equalTo: rootViewController.view.trailingAnchor).isActive = true
-    viewController.view.topAnchor.constraint(equalTo: rootViewController.view.topAnchor).isActive = true
-    viewController.view.bottomAnchor.constraint(equalTo: rootViewController.view.bottomAnchor).isActive = true
+    viewController.view.pinEdges(to: rootViewController.view)
   }
 }

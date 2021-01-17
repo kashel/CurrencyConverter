@@ -27,12 +27,7 @@ class ExchangeRateCellRow: UIView {
   
   private func setupView() {
     addSubview(horizontalStack)
-    horizontalStack.translatesAutoresizingMaskIntoConstraints = false
-    horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    horizontalStack.topAnchor.constraint(equalTo: topAnchor).isActive = true
-    horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    
+    horizontalStack.pinEdges(to: self)
     horizontalStack.addArrangedSubview(lhsLabel)
     horizontalStack.addArrangedSubview(.horizontalSpacer)
     horizontalStack.addArrangedSubview(rhsLabel)

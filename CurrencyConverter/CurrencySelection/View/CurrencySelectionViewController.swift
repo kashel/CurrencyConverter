@@ -22,10 +22,7 @@ class CurrencySelectionViewController: UIViewController {
   private func setupView() {
     tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
-    tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-    tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-    tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-    tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    tableView.pinToSafeArea(of: view)
   }
   
   private func setup() {

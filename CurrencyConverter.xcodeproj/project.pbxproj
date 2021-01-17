@@ -40,6 +40,7 @@
 		9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */; };
 		9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */; };
 		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
+		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 		9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesService.swift; sourceTree = "<group>"; };
 		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
+		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				9753B62325B4307E00F0CB8A /* UIView+Spacer.swift */,
+				97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9753B5E225B321AC00F0CB8A /* Currency.swift in Sources */,
+				97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */,
 				9753B5DD25B3206400F0CB8A /* CurrencySelectionCoordinator.swift in Sources */,
 				9753B5BE25B241D000F0CB8A /* AppCoordinator.swift in Sources */,
 				9753B62925B4353500F0CB8A /* ExchangeRateCellRow.swift in Sources */,

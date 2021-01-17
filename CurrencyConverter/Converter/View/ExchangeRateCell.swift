@@ -20,10 +20,7 @@ class ExchangeRateCell: UITableViewCell {
   private func setupView() {
     addSubview(verticalStack)
     verticalStack.translatesAutoresizingMaskIntoConstraints = false
-    verticalStack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    verticalStack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    verticalStack.topAnchor.constraint(equalTo: topAnchor).isActive = true
-    verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    verticalStack.pinEdges(to: self)
     verticalStack.addArrangedSubview(titleRow)
     verticalStack.addArrangedSubview(descriptionRow)
   }
