@@ -12,6 +12,11 @@ class CurrencySelectionViewController: UIViewController {
     return table
   }()
   
+  lazy var cancelButton: UIBarButtonItem = {
+    let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancellButtonTapped))
+    return button
+  }()
+  
   init(viewModel: CurrencySelectionViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
@@ -28,6 +33,7 @@ class CurrencySelectionViewController: UIViewController {
     view.addSubview(tableView)
     tableView.pinToSafeArea(of: view)
     navigationItem.title = viewModel.title
+    navigationItem.rightBarButtonItem = cancelButton
   }
   
   private func setup() {
@@ -62,5 +68,11 @@ extension CurrencySelectionViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     viewModel.continueAction(selectedCurrency: viewModel.model[indexPath.row].currency)
+  }
+}
+
+extension CurrencySelectionViewController {
+  @objc func cancellButtonTapped() {
+    viewModel.cancelAction()
   }
 }

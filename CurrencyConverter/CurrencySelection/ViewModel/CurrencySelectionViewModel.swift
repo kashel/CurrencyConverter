@@ -45,7 +45,7 @@ struct CurrencySelectionViewModel {
     self.coordinator = coordinator
   }
   
-  func produceCellData(for ctaAction: CTAAction) -> [CurrencySelection] {
+  private func produceCellData(for ctaAction: CTAAction) -> [CurrencySelection] {
     let model: [CurrencySelection]
     switch ctaAction {
     case .goToReceiveCurrencySelection:
@@ -69,5 +69,9 @@ struct CurrencySelectionViewModel {
       //TODO: save in persistent storage
       coordinator?.currencyPairSelected(sendCurrency: sendCurrency, receiveCurrency: selectedCurrency)
     }
+  }
+  
+  func cancelAction() {
+    coordinator?.selectionCanceled()
   }
 }

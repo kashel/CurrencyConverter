@@ -43,4 +43,8 @@ class CurrencySelectionCoordinator: Coordinator {
     print("selected currency pair: \(sendCurrency) \(receiveCurrency)")
     lifecycle?(.finished(self))
   }
+  
+  func selectionCanceled() {
+    lifecycle?(.canceled(self))
+  }
 }
