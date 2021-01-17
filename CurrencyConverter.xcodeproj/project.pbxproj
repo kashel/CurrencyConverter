@@ -34,7 +34,7 @@
 		9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B61325B42ABE00F0CB8A /* AddCurrencyPairView.swift */; };
 		9753B61925B42B2600F0CB8A /* ExchangeRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B61825B42B2600F0CB8A /* ExchangeRateCell.swift */; };
 		9753B61E25B42C6C00F0CB8A /* ExchangeRateCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B61D25B42C6C00F0CB8A /* ExchangeRateCellModel.swift */; };
-		9753B62425B4307E00F0CB8A /* UIStackView+Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62325B4307E00F0CB8A /* UIStackView+Spacer.swift */; };
+		9753B62425B4307E00F0CB8A /* UIView+Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62325B4307E00F0CB8A /* UIView+Spacer.swift */; };
 		9753B62925B4353500F0CB8A /* ExchangeRateCellRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */; };
 		9753B62E25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */; };
 		9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */; };
@@ -93,7 +93,7 @@
 		9753B61325B42ABE00F0CB8A /* AddCurrencyPairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyPairView.swift; sourceTree = "<group>"; };
 		9753B61825B42B2600F0CB8A /* ExchangeRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCell.swift; sourceTree = "<group>"; };
 		9753B61D25B42C6C00F0CB8A /* ExchangeRateCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModel.swift; sourceTree = "<group>"; };
-		9753B62325B4307E00F0CB8A /* UIStackView+Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Spacer.swift"; sourceTree = "<group>"; };
+		9753B62325B4307E00F0CB8A /* UIView+Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Spacer.swift"; sourceTree = "<group>"; };
 		9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellRow.swift; sourceTree = "<group>"; };
 		9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellRowModel.swift; sourceTree = "<group>"; };
 		9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 		9753B62225B4306500F0CB8A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				9753B62325B4307E00F0CB8A /* UIStackView+Spacer.swift */,
+				9753B62325B4307E00F0CB8A /* UIView+Spacer.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 				9753B61E25B42C6C00F0CB8A /* ExchangeRateCellModel.swift in Sources */,
 				9753B5FA25B369C700F0CB8A /* CurrencyPair.swift in Sources */,
 				9753B5F525B32FDB00F0CB8A /* CurrencySelectionCellModelMapper.swift in Sources */,
-				9753B62425B4307E00F0CB8A /* UIStackView+Spacer.swift in Sources */,
+				9753B62425B4307E00F0CB8A /* UIView+Spacer.swift in Sources */,
 				9753B62E25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift in Sources */,
 				9753B60F25B3721900F0CB8A /* ConverterViewModel.swift in Sources */,
 				9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */,
