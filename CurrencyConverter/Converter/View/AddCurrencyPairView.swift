@@ -16,8 +16,7 @@ class AddCurrencyPairView: UIView {
   }
   
   private func setupView() {
-    addCurrencyPairButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    addCurrencyPairButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    addCurrencyPairButton.center(with: self)
     addSubview(addCurrencyPairButton)
   }
 }

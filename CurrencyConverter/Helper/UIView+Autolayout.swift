@@ -4,6 +4,11 @@
 
 import UIKit
 
+enum Axis {
+  case horizontal
+  case vertical
+}
+
 extension UIView {
   func pinEdges(to other: UIView, offsets: UIEdgeInsets = .zero, edges: UIRectEdge = .all) {
     self.translatesAutoresizingMaskIntoConstraints = false
@@ -51,5 +56,18 @@ extension UIView {
       constraint.constant = offsets.bottom
       constraint.isActive = true
     }
+  }
+  
+  func center(with other: UIView, axis: Axis? = nil) {
+    if let axis = axis, axis == .horizontal {
+      centerXAnchor.constraint(equalTo: other.centerXAnchor).isActive = true
+      return
+    }
+    if let axis = axis, axis == .vertical {
+      centerYAnchor.constraint(equalTo: other.centerYAnchor).isActive = true
+      return
+    }
+    centerXAnchor.constraint(equalTo: other.centerXAnchor).isActive = true
+    centerYAnchor.constraint(equalTo: other.centerYAnchor).isActive = true
   }
 }

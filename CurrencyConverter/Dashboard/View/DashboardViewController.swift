@@ -34,6 +34,7 @@ class DashboardViewConroller: UIViewController {
     view.backgroundColor = .white
     button.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(button)
+    button.center(with: view)
     button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
   }
