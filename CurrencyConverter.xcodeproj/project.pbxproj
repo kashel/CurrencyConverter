@@ -103,6 +103,7 @@
 		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		97F08F5225B4D07400380F41 /* CurrencyPairService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairService.swift; sourceTree = "<group>"; };
+		97F08F5825B60BFD00380F41 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +154,7 @@
 		9719411925B22A770030341D /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				97F08F5725B60BDD00380F41 /* Resources */,
 				9753B62225B4306500F0CB8A /* Helper */,
 				9753B5E625B321EB00F0CB8A /* Model */,
 				9753B5A825B235C700F0CB8A /* Dashboard */,
@@ -161,7 +163,6 @@
 				9719411A25B22A770030341D /* AppDelegate.swift */,
 				9719411E25B22A770030341D /* ViewController.swift */,
 				9719412025B22A770030341D /* Main.storyboard */,
-				9719412325B22A780030341D /* Assets.xcassets */,
 				9719412525B22A780030341D /* LaunchScreen.storyboard */,
 				9719412825B22A780030341D /* Info.plist */,
 				9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */,
@@ -319,6 +320,15 @@
 				9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		97F08F5725B60BDD00380F41 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97F08F5825B60BFD00380F41 /* Roboto-Regular.ttf */,
+				9719412325B22A780030341D /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
