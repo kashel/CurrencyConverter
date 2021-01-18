@@ -8,11 +8,16 @@ class DashboardViewConroller: UIViewController {
   let viewModel: DashboardViewModel
   let fontProvider = FontProvider()
   let colorProvider = ColorProvider()
+  struct Constants {
+    static let mainButtonSize: CGFloat = 20
+    static let margin: CGFloat = 16
+    static let iconSize: CGFloat = 60
+  }
   
   lazy var button: UIButton = {
     let newButton = UIButton(type: .custom)
     newButton.titleLabel?.font = fontProvider.title
-    newButton.titleLabel?.font = newButton.titleLabel?.font.withSize(20)
+    newButton.titleLabel?.font = newButton.titleLabel?.font.withSize(Constants.mainButtonSize)
     newButton.setTitle(viewModel.ctaButtonTitle, for: .normal)
     newButton.setTitleColor(colorProvider.link, for: .normal)
     newButton.setTitleColor(colorProvider.description, for: .highlighted)
@@ -30,8 +35,8 @@ class DashboardViewConroller: UIViewController {
   lazy var icon: UIImageView = {
     let image = #imageLiteral(resourceName: "Plus")
     let imageView = UIImageView(image: image)
-    imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-    imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    imageView.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
     return imageView
   }()
   
@@ -58,8 +63,10 @@ class DashboardViewConroller: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  private func setupView() {
+}
+
+private extension DashboardViewConroller {
+  func setupView() {
     view.backgroundColor = .white
     verticalStackView.addArrangedSubview(icon)
     verticalStackView.addArrangedSubview(button)
@@ -67,15 +74,15 @@ class DashboardViewConroller: UIViewController {
     verticalStackView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(verticalStackView)
     NSLayoutConstraint.activate([
-      verticalStackView.leadingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-      verticalStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-      verticalStackView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-      verticalStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+      verticalStackView.leadingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.margin),
+      verticalStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.margin),
+      verticalStackView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.margin),
+      verticalStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.margin),
     ])
     button.center(with: view)
   }
   
-  private func setup() {
+  func setup() {
     button.addTarget(self, action: #selector(ctaButtonTapped), for: .touchUpInside)
   }
   
