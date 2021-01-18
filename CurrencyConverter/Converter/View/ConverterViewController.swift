@@ -5,11 +5,26 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
+  struct Constants {
+    static let margin: CGFloat = 16
+  }
   private let colorProvider = ColorProvider()
-  private let tableView = UITableView()
+  private let tableView: UITableView = {
+    let table = UITableView()
+    table.separatorStyle = .none
+    return table
+  }()
+  private let addCurrencyView = AddCurrencyPairView()
   private var viewModel: ConverterViewModel
   private let cellModelMapper: ExchangeRateCellModelMapper
   private var cellsDataCache: [ExchangeRateCellModel] = []
+  
+  lazy var verticalStackView: UIStackView = {
+    let stack = UIStackView()
+    stack.axis = .vertical
+    stack.spacing = Constants.margin
+    return stack
+  }()
   
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
     self.viewModel = viewModel
@@ -30,9 +45,10 @@ class ConverterViewController: UIViewController {
   }
   
   private func setupView() {
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(tableView)
-    tableView.pinToSafeArea(of: view)
+    verticalStackView.addArrangedSubview(addCurrencyView)
+    verticalStackView.addArrangedSubview(tableView)
+    view.addSubview(verticalStackView)
+    verticalStackView.pinToSafeArea(of: view)
   }
   
   private func setup() {
