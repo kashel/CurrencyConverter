@@ -12,6 +12,10 @@ struct CurrencySelectionCellModel {
 }
 
 class CurrencySelectionCell: UITableViewCell {
+  struct Constants {
+    static let iconSize: CGFloat = 24
+    static let margin: CGFloat = 16
+  }
   let fontProvider = FontProvider()
   let colorProvider = ColorProvider()
   
@@ -32,9 +36,9 @@ class CurrencySelectionCell: UITableViewCell {
   let icon: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-    imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-    imageView.layer.cornerRadius = 12
+    imageView.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+    imageView.layer.cornerRadius = Constants.iconSize / 2
     imageView.layer.masksToBounds = true
     imageView.contentMode = .scaleAspectFill
     return imageView
@@ -86,6 +90,6 @@ class CurrencySelectionCell: UITableViewCell {
     horizontalStack.addArrangedSubview(currencyName)
     horizontalStack.addArrangedSubview(.horizontalSpacer)
     addSubview(horizontalStack)
-    horizontalStack.pinEdges(to: self, offsets: UIEdgeInsets(top: 16, left: 16, bottom: -16, right: -16))
+    horizontalStack.pinEdges(to: self, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
   }
 }
