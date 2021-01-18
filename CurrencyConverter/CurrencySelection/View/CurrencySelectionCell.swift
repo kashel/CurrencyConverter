@@ -66,24 +66,26 @@ class CurrencySelectionCell: UITableViewCell {
     icon.image = model.icon
     model.isSelectable ? enable() : disable()
   }
-  
-  private func enable() {
+}
+
+private extension CurrencySelectionCell {
+  func enable() {
     setItemsAlpha(newAlpha: 1.0)
     selectionStyle = .default
   }
   
-  private func disable() {
+  func disable() {
     setItemsAlpha(newAlpha: 0.5)
     selectionStyle = .none
   }
   
-  private func setItemsAlpha(newAlpha: CGFloat) {
+  func setItemsAlpha(newAlpha: CGFloat) {
     icon.alpha = newAlpha
     currencyCode.alpha = newAlpha
     currencyName.alpha = newAlpha
   }
   
-  private func setupView() {
+  func setupView() {
     horizontalStack.translatesAutoresizingMaskIntoConstraints = false
     horizontalStack.addArrangedSubview(icon)
     horizontalStack.addArrangedSubview(currencyCode)
