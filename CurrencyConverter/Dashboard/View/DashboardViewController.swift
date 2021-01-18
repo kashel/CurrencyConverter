@@ -68,7 +68,7 @@ class DashboardViewConroller: UIViewController {
 
 private extension DashboardViewConroller {
   func setupView() {
-    view.backgroundColor = .white
+    view.backgroundColor = colorProvider.background
     verticalStackView.addArrangedSubview(icon)
     verticalStackView.addArrangedSubview(button)
     verticalStackView.addArrangedSubview(subtitle)

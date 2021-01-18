@@ -6,6 +6,9 @@ import UIKit
 
 class CurrencySelectionViewController: UIViewController {
   var viewModel: CurrencySelectionViewModel
+  
+  private let colorProvider = ColorProvider()
+  
   let tableView: UITableView = {
     let table = UITableView()
     table.separatorStyle = .none
@@ -29,6 +32,7 @@ class CurrencySelectionViewController: UIViewController {
   }
   
   private func setupView() {
+    view.backgroundColor = colorProvider.background
     tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
     tableView.pinToSafeArea(of: view)

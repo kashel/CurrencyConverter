@@ -36,6 +36,7 @@ class CurrencySelectionCell: UITableViewCell {
     imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
     imageView.layer.cornerRadius = 12
     imageView.layer.masksToBounds = true
+    imageView.contentMode = .scaleAspectFill
     return imageView
   }()
   

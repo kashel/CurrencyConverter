@@ -16,4 +16,8 @@ struct ColorProvider {
   var link: UIColor {
     UIColor(named: "link") ?? .orange
   }
+  
+  var background: UIColor {
+    UIColor(named: "background") ?? .orange
+  }
 }
