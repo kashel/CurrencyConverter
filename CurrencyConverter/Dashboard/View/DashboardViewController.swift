@@ -5,14 +5,15 @@
 import UIKit
 
 class DashboardViewConroller: UIViewController {
-  let viewModel: DashboardViewModel
-  let fontProvider = FontProvider()
-  let colorProvider = ColorProvider()
   struct Constants {
     static let mainButtonSize: CGFloat = 20
     static let margin: CGFloat = 16
     static let iconSize: CGFloat = 60
   }
+  
+  let viewModel: DashboardViewModel
+  let fontProvider = FontProvider()
+  let colorProvider = ColorProvider()
   
   lazy var button: UIButton = {
     let newButton = UIButton(type: .custom)
