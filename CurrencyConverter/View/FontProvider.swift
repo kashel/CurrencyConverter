@@ -17,6 +17,10 @@ struct FontProvider {
     basicFont(with: 20)
   }
   
+  var subtitle: UIFont {
+    basicFont(with: 14)
+  }
+  
   var cellTitle: UIFont {
     basicFont(with: 20)
   }

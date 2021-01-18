@@ -5,16 +5,18 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
-  let tableView = UITableView()
-  var viewModel: ConverterViewModel
-  let cellModelMapper: ExchangeRateCellModelMapper
-  var cellsDataCache: [ExchangeRateCellModel] = []
+  private let colorProvider = ColorProvider()
+  private let tableView = UITableView()
+  private var viewModel: ConverterViewModel
+  private let cellModelMapper: ExchangeRateCellModelMapper
+  private var cellsDataCache: [ExchangeRateCellModel] = []
   
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
     self.viewModel = viewModel
     self.cellModelMapper = cellModelMapper
     super.init(nibName: nil, bundle: nil)
-    self.view.backgroundColor = .red
+    self.view.backgroundColor = colorProvider.background
+    self.title = "Rates & converter"
     setup()
   }
   

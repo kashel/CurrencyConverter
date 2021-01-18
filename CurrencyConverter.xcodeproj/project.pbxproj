@@ -14,6 +14,7 @@
 		9719412725B22A780030341D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9719412525B22A780030341D /* LaunchScreen.storyboard */; };
 		9719413225B22A790030341D /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719413125B22A790030341D /* CurrencyConverterTests.swift */; };
 		9719413D25B22A790030341D /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719413C25B22A790030341D /* CurrencyConverterUITests.swift */; };
+		9745B5AE25B636F50050DAFC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97F08F5825B60BFD00380F41 /* Roboto-Regular.ttf */; };
 		9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5AC25B2399A00F0CB8A /* DashboardCoordinator.swift */; };
 		9753B5B525B239AC00F0CB8A /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5B425B239AC00F0CB8A /* DashboardViewController.swift */; };
 		9753B5BE25B241D000F0CB8A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */; };
@@ -450,6 +451,7 @@
 			files = (
 				9719412725B22A780030341D /* LaunchScreen.storyboard in Resources */,
 				9719412425B22A780030341D /* Assets.xcassets in Resources */,
+				9745B5AE25B636F50050DAFC /* Roboto-Regular.ttf in Resources */,
 				9719412225B22A770030341D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

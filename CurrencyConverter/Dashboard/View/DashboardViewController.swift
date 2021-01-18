@@ -6,7 +6,6 @@ import UIKit
 
 class DashboardViewConroller: UIViewController {
   struct Constants {
-    static let mainButtonSize: CGFloat = 20
     static let margin: CGFloat = 16
     static let iconSize: CGFloat = 60
   }
@@ -18,7 +17,6 @@ class DashboardViewConroller: UIViewController {
   lazy var button: UIButton = {
     let newButton = UIButton(type: .custom)
     newButton.titleLabel?.font = fontProvider.title
-    newButton.titleLabel?.font = newButton.titleLabel?.font.withSize(Constants.mainButtonSize)
     newButton.setTitle(viewModel.ctaButtonTitle, for: .normal)
     newButton.setTitleColor(colorProvider.link, for: .normal)
     newButton.setTitleColor(colorProvider.description, for: .highlighted)
@@ -28,7 +26,7 @@ class DashboardViewConroller: UIViewController {
   lazy var verticalStackView: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical
-    stack.spacing = 16
+    stack.spacing = Constants.margin
     stack.alignment = .center
     return stack
   }()
@@ -44,7 +42,7 @@ class DashboardViewConroller: UIViewController {
   lazy var subtitle: UILabel = {
     let label = UILabel()
     label.text = "Choose a currency pair to compare their live rates"
-    label.font = fontProvider.title
+    label.font = fontProvider.subtitle
     label.textColor = colorProvider.description
     label.numberOfLines = 0
     return label
