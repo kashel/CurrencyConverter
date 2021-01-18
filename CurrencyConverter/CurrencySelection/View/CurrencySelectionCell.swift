@@ -12,13 +12,20 @@ struct CurrencySelectionCellModel {
 }
 
 class CurrencySelectionCell: UITableViewCell {
-  let currencyName: UILabel = {
+  let fontProvider = FontProvider()
+  let colorProvider = ColorProvider()
+  
+  lazy var currencyName: UILabel = {
     let label = UILabel()
+    label.font = fontProvider.currencyName
+    label.textColor = colorProvider.label
     return label
   }()
   
-  let currencyCode: UILabel = {
+  lazy var currencyCode: UILabel = {
     let label = UILabel()
+    label.font = fontProvider.currencySymbol
+    label.textColor = colorProvider.description
     return label
   }()
   
@@ -27,6 +34,8 @@ class CurrencySelectionCell: UITableViewCell {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
     imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    imageView.layer.cornerRadius = 12
+    imageView.layer.masksToBounds = true
     return imageView
   }()
   

@@ -42,6 +42,8 @@
 		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
 		97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */; };
 		97F08F5325B4D07400380F41 /* CurrencyPairService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F5225B4D07400380F41 /* CurrencyPairService.swift */; };
+		97F08F5E25B60EC400380F41 /* FontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F5D25B60EC400380F41 /* FontProvider.swift */; };
+		97F08F6625B6125500380F41 /* ColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F6525B6125500380F41 /* ColorProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		97F08F5225B4D07400380F41 /* CurrencyPairService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairService.swift; sourceTree = "<group>"; };
 		97F08F5825B60BFD00380F41 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		97F08F5D25B60EC400380F41 /* FontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontProvider.swift; sourceTree = "<group>"; };
+		97F08F6525B6125500380F41 /* ColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 		9719411925B22A770030341D /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				97F08F5C25B60EA000380F41 /* View */,
 				97F08F5725B60BDD00380F41 /* Resources */,
 				9753B62225B4306500F0CB8A /* Helper */,
 				9753B5E625B321EB00F0CB8A /* Model */,
@@ -331,6 +336,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		97F08F5C25B60EA000380F41 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97F08F5D25B60EC400380F41 /* FontProvider.swift */,
+				97F08F6525B6125500380F41 /* ColorProvider.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -483,7 +497,9 @@
 				97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */,
 				9753B60225B371A500F0CB8A /* ConverterCoordinator.swift in Sources */,
 				9719411B25B22A770030341D /* AppDelegate.swift in Sources */,
+				97F08F5E25B60EC400380F41 /* FontProvider.swift in Sources */,
 				9753B61925B42B2600F0CB8A /* ExchangeRateCell.swift in Sources */,
+				97F08F6625B6125500380F41 /* ColorProvider.swift in Sources */,
 				9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */,
 				9753B5D825B3205600F0CB8A /* CurrencySelectionViewModel.swift in Sources */,
 				9753B5C325B2426B00F0CB8A /* Coordinator.swift in Sources */,
