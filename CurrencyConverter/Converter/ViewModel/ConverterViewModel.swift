@@ -47,7 +47,6 @@ class ConverterViewModel {
   }
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
-    print("jestem tutaj z taką parą: \(currencyPair)")
     currentlySelectedPairs.insert(currencyPair, at: 0)
     startLoading()
   }

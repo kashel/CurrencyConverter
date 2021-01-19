@@ -12,6 +12,7 @@ class ConverterViewController: UIViewController {
   private let tableView: UITableView = {
     let table = UITableView()
     table.separatorStyle = .none
+    table.allowsSelection = false
     return table
   }()
   private let addCurrencyView = AddCurrencyPairView()
