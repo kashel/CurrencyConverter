@@ -6,12 +6,17 @@ import Foundation
 
 class ConverterViewModel {
   enum Action {
-    case dataLoaded([ExchangeRateModel])
+    case dataLoaded(allRates: [ExchangeRateModel], isNewRateAdded: Bool)
   }
   weak var coordinator: ConverterCoordinator?
   let currencyPairService: CurrencyPairServiceProtocol
   let exchangeRateService: ExchangeRatesServiceProtocol
-  var currentlySelectedPairs: [CurrencyPair]
+  var previouslySelectedPairs: [CurrencyPair] = []
+  var currentlySelectedPairs: [CurrencyPair] {
+    didSet {
+      previouslySelectedPairs = oldValue
+    }
+  }
   
   init(currencyPairService: CurrencyPairServiceProtocol, exchangeRateService: ExchangeRatesServiceProtocol) {
     self.currencyPairService = currencyPairService
@@ -25,7 +30,12 @@ class ConverterViewModel {
     exchangeRateService.exchangeRates(currencyPairs: currentlySelectedPairs) { (result) in
       switch result {
       case .success(let exchangeRates):
-        actions?(.dataLoaded(exchangeRates))
+        var isNewRateAdded = false
+        if previouslySelectedPairs.count != currentlySelectedPairs.count {
+          previouslySelectedPairs = currentlySelectedPairs
+          isNewRateAdded = true
+        }
+        actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))
       case .failure(let error):
         print(error)
       }
@@ -38,5 +48,7 @@ class ConverterViewModel {
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
     print("jestem tutaj z taką parą: \(currencyPair)")
+    currentlySelectedPairs.insert(currencyPair, at: 0)
+    startLoading()
   }
 }

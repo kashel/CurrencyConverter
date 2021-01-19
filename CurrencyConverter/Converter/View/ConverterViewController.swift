@@ -62,12 +62,16 @@ class ConverterViewController: UIViewController {
   private func bindViewModel() {
     viewModel.actions = { [weak self] viewModelAction in
       switch viewModelAction {
-      case .dataLoaded(let rates):
-        self?.cellsDataCache = rates.compactMap{ [weak self] exchangeRate in
+      case .dataLoaded(let allRates, let isNewRateAdded):
+        self?.cellsDataCache = allRates.compactMap{ [weak self] exchangeRate in
           guard let self = self else { return nil }
           return self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
-        self?.tableView.reloadData()
+        if isNewRateAdded {
+          self?.tableView.beginUpdates()
+          self?.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+          self?.tableView.endUpdates()
+        }
       }
     }
   }

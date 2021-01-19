@@ -24,13 +24,16 @@ class ConverterCoordinator: Coordinator {
     add(childCoordinator: currencySelectionCoordinator)
     let currencySelectionViewController = currencySelectionCoordinator.start()
     currencySelectionCoordinator.lifecycle = { [weak self, weak currencySelectionCoordinator] coordinatorLifecycleEvent -> Void in
+      guard case .canceled = coordinatorLifecycleEvent else { return }
       if let currencySelectionCoordinator = currencySelectionCoordinator {
         self?.remove(childCoordinator: currencySelectionCoordinator)
       }
       self?.rootViewController.dismiss(animated: true)
     }
     currencySelectionCoordinator.didSelectCurrencyPair = {[weak self] currencyPair in
-      self?.rootViewModel.currencyPairAdded(currencyPair)
+      self?.rootViewController.dismiss(animated: true) {
+        self?.rootViewModel.currencyPairAdded(currencyPair)
+      }
     }
     
     currencySelectionViewController.modalPresentationStyle = .formSheet
