@@ -8,7 +8,7 @@ struct ConverterViewModel {
   enum Action {
     case dataLoaded([ExchangeRateModel])
   }
-  
+  weak var coordinator: ConverterCoordinator?
   let currencyPairService: CurrencyPairServiceProtocol
   let exchangeRateService: ExchangeRatesServiceProtocol
   var currentlySelectedPairs: [CurrencyPair]
@@ -30,5 +30,9 @@ struct ConverterViewModel {
         print(error)
       }
     }
+  }
+  
+  func addCurrencyPair() {
+    coordinator?.addCurrencyPair()
   }
 }

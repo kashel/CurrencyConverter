@@ -54,6 +54,7 @@ class ConverterViewController: UIViewController {
   private func setup() {
     tableView.dataSource = self
     tableView.register(ExchangeRateCell.self, forCellReuseIdentifier: "exchangeRate")
+    addCurrencyView.addCurrencyPairButton.addTarget(self, action: #selector(addCurrencyPairButtonTapped), for: .touchUpInside)
     bindViewModel()
     viewModel.startLoading()
   }
@@ -69,6 +70,10 @@ class ConverterViewController: UIViewController {
         self?.tableView.reloadData()
       }
     }
+  }
+  
+  @objc func addCurrencyPairButtonTapped() {
+    viewModel.addCurrencyPair()
   }
 }
 

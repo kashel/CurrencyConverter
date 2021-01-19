@@ -18,6 +18,7 @@ class AddCurrencyPairView: UIView {
     button.setTitle("Add currency pair", for: .normal)
     button.titleLabel?.font = fontProvider.title
     button.setTitleColor(colorProvider.link, for: .normal)
+    button.setTitleColor(colorProvider.description, for: .highlighted)
     return button
   }()
   
