@@ -8,6 +8,7 @@ class CurrencySelectionCoordinator: Coordinator {
   let rootViewController: UINavigationController
   var childCoordinators: [Coordinator] = []
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
+  var didSelectCurrencyPair: ((CurrencyPair) -> Void)?
   let currencySelectionCellModelMapper = CurrencySelectionCellModelMapper()
   
   init() {
@@ -39,8 +40,8 @@ class CurrencySelectionCoordinator: Coordinator {
     rootViewController.pushViewController(currencySelectionViewController, animated: true)
   }
   
-  func currencyPairSelected(sendCurrency: Currency, receiveCurrency: Currency) {
-    print("selected currency pair: \(sendCurrency) \(receiveCurrency)")
+  func currencyPairSelected(_ currencyPair: CurrencyPair) {
+    didSelectCurrencyPair?(currencyPair)
     lifecycle?(.finished(self))
   }
   

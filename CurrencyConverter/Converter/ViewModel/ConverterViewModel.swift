@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct ConverterViewModel {
+class ConverterViewModel {
   enum Action {
     case dataLoaded([ExchangeRateModel])
   }
@@ -34,5 +34,9 @@ struct ConverterViewModel {
   
   func addCurrencyPair() {
     coordinator?.addCurrencyPair()
+  }
+  
+  func currencyPairAdded(_ currencyPair: CurrencyPair) {
+    print("jestem tutaj z taką parą: \(currencyPair)")
   }
 }
