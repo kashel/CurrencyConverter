@@ -62,6 +62,10 @@ class CurrencySerive: CurrencyServiceProtocol {
     }
   }
   
+  func findAvailableCurrency(by currencyCode: String) -> Currency? {
+    return availableCurrencies.first(where: { $0.code == currencyCode })
+  }
+  
   private lazy var supportedCurrencyCodesSet: Set<String> = {
     Set(supportedCurrencyCodes)
   }()

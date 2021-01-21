@@ -27,15 +27,18 @@ class ConverterViewModel {
   var actions: ((Action) -> Void)?
   
   func startLoading() {
-    exchangeRateService.exchangeRates(currencyPairs: currentlySelectedPairs) { (result) in
+    exchangeRateService.exchangeRates(currencyPairs: currentlySelectedPairs) { [weak self](result) in
+      guard let self = self else { return }
       switch result {
       case .success(let exchangeRates):
         var isNewRateAdded = false
-        if previouslySelectedPairs.count != currentlySelectedPairs.count {
-          previouslySelectedPairs = currentlySelectedPairs
+        if self.previouslySelectedPairs.count != self.currentlySelectedPairs.count {
+          self.previouslySelectedPairs = self.currentlySelectedPairs
           isNewRateAdded = true
         }
-        actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))
+        DispatchQueue.main.async {
+          self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))          
+        }
       case .failure(let error):
         print(error)
       }

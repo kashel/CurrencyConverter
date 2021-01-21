@@ -11,7 +11,7 @@ class ConverterCoordinator: Coordinator {
   var rootViewModel: ConverterViewModel!
   
   func start() -> UIViewController {
-    let exchangeRateService = MockExchangeRatesService()
+    let exchangeRateService = ExchangeRateService()
     let currencyPairService = CurrencyPairService()
     rootViewModel = ConverterViewModel(currencyPairService: currencyPairService, exchangeRateService: exchangeRateService)
     rootViewModel.coordinator = self
