@@ -70,12 +70,14 @@ class ConverterViewController: UIViewController {
         self.cellsDataCache = allRates.map{ exchangeRate in
           return self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
+        self.tableView.beginUpdates()
         if isNewRateAdded {
-          self.tableView.beginUpdates()
           self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-          self.tableView.endUpdates()
         }
-        self.tableView.reloadData()
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows?.dropFirst() {
+          self.tableView.reloadRows(at: Array(indexPathsForVisibleRows), with: .none)
+        }
+        self.tableView.endUpdates()
       }
     }
   }
