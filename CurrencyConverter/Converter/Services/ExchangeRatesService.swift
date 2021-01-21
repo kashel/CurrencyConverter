@@ -88,7 +88,9 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
           let grouppedExchangeRates = Dictionary(grouping: models, by: {
             $0.sourceCurrency
           })
-          let exchangeRatesWithOrder = currencyPairs.compactMap{ grouppedExchangeRates[$0.send]?.first }
+          let exchangeRatesWithOrder = currencyPairs.compactMap{ currencyPair in
+            grouppedExchangeRates[currencyPair.send]?.first(where: { $0.receiveCurrency == currencyPair.receive })
+          }
           completed(.success(exchangeRatesWithOrder))
       case .failure(let error):
         print(error)

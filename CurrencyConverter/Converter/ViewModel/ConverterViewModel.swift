@@ -17,6 +17,7 @@ class ConverterViewModel {
       previouslySelectedPairs = oldValue
     }
   }
+  var pendingDispatchWork: DispatchWorkItem?
   
   init(currencyPairService: CurrencyPairServiceProtocol, exchangeRateService: ExchangeRatesServiceProtocol) {
     self.currencyPairService = currencyPairService
@@ -27,22 +28,32 @@ class ConverterViewModel {
   var actions: ((Action) -> Void)?
   
   func startLoading() {
-    exchangeRateService.exchangeRates(currencyPairs: currentlySelectedPairs) { [weak self](result) in
+    let startedTime = DispatchTime.now()
+    print("start loading: ", startedTime)
+    pendingDispatchWork?.cancel()
+    let newDispatchWork = DispatchWorkItem { [weak self] in
+      print(DispatchTime.now())
       guard let self = self else { return }
-      switch result {
-      case .success(let exchangeRates):
-        var isNewRateAdded = false
-        if self.previouslySelectedPairs.count != self.currentlySelectedPairs.count {
-          self.previouslySelectedPairs = self.currentlySelectedPairs
-          isNewRateAdded = true
+      self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
+        guard let self = self else { return }
+        switch result {
+        case .success(let exchangeRates):
+          var isNewRateAdded = false
+          if self.previouslySelectedPairs.count != self.currentlySelectedPairs.count {
+            self.previouslySelectedPairs = self.currentlySelectedPairs
+            isNewRateAdded = true
+          }
+          DispatchQueue.main.sync {
+            self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))
+          }
+        case .failure(let error):
+          print(error)
         }
-        DispatchQueue.main.async {
-          self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))          
-        }
-      case .failure(let error):
-        print(error)
+        self.startLoading()
       }
     }
+    pendingDispatchWork = newDispatchWork
+    DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1), execute: newDispatchWork)
   }
   
   func addCurrencyPair() {
