@@ -30,7 +30,10 @@ class ConverterCoordinator: Coordinator {
       }
       self?.rootViewController.dismiss(animated: true)
     }
-    currencySelectionCoordinator.didSelectCurrencyPair = {[weak self] currencyPair in
+    currencySelectionCoordinator.didSelectCurrencyPair = {[weak self, weak currencySelectionCoordinator] currencyPair in
+      if let currencySelectionCoordinator = currencySelectionCoordinator {
+        self?.remove(childCoordinator: currencySelectionCoordinator)
+      }
       self?.rootViewController.dismiss(animated: true) {
         self?.rootViewModel.currencyPairAdded(currencyPair)
       }
