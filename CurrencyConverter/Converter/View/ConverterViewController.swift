@@ -74,8 +74,9 @@ class ConverterViewController: UIViewController {
         if isNewRateAdded {
           self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
-        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows?.dropFirst() {
-          self.tableView.reloadRows(at: Array(indexPathsForVisibleRows), with: .none)
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
+          let indexPaths = isNewRateAdded ? Array(indexPathsForVisibleRows.dropFirst()) : indexPathsForVisibleRows
+          self.tableView.reloadRows(at: indexPaths, with: .none)
         }
         self.tableView.endUpdates()
       }
