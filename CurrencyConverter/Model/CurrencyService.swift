@@ -78,7 +78,8 @@ class CurrencySerive: CurrencyServiceProtocol {
       let locale = Locale(identifier: $0)
       let currencyCode = locale.currencyCode ?? ""
       if supportedCurrencyCodesSet.contains(currencyCode) {
-        currencyToCountryCodeMap[currencyCode] = locale.regionCode
+        let regionCode = (currencyCode == "EUR") ? "EU" : locale.regionCode
+        currencyToCountryCodeMap[currencyCode] = regionCode
       }
     }
     return currencyToCountryCodeMap
