@@ -19,6 +19,7 @@
 		9745B5B825BA2C330050DAFC /* MockExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9745B5B725BA2C330050DAFC /* MockExchangeRatesService.swift */; };
 		9745B5BE25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9745B5BD25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift */; };
 		9745B5C325BA2CC10050DAFC /* ExchangeRatesDTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9745B5C225BA2CC10050DAFC /* ExchangeRatesDTOMapper.swift */; };
+		9745B5C825BAB8220050DAFC /* OSLog+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9745B5C725BAB8220050DAFC /* OSLog+Category.swift */; };
 		9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5AC25B2399A00F0CB8A /* DashboardCoordinator.swift */; };
 		9753B5B525B239AC00F0CB8A /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5B425B239AC00F0CB8A /* DashboardViewController.swift */; };
 		9753B5BE25B241D000F0CB8A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */; };
@@ -86,6 +87,7 @@
 		9745B5B725BA2C330050DAFC /* MockExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExchangeRatesService.swift; sourceTree = "<group>"; };
 		9745B5BD25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDecodableNetworkService.swift; sourceTree = "<group>"; };
 		9745B5C225BA2CC10050DAFC /* ExchangeRatesDTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesDTOMapper.swift; sourceTree = "<group>"; };
+		9745B5C725BAB8220050DAFC /* OSLog+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Category.swift"; sourceTree = "<group>"; };
 		9753B5AC25B2399A00F0CB8A /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		9753B5B425B239AC00F0CB8A /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			children = (
 				9753B62325B4307E00F0CB8A /* UIView+Spacer.swift */,
 				97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */,
+				9745B5C725BAB8220050DAFC /* OSLog+Category.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				9745B5B825BA2C330050DAFC /* MockExchangeRatesService.swift in Sources */,
 				9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */,
 				9719411F25B22A770030341D /* ViewController.swift in Sources */,
+				9745B5C825BAB8220050DAFC /* OSLog+Category.swift in Sources */,
 				9753B5D025B3204800F0CB8A /* CurrencySelectionViewController.swift in Sources */,
 				9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */,
 				9753B5B525B239AC00F0CB8A /* DashboardViewController.swift in Sources */,

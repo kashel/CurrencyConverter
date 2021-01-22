@@ -3,6 +3,7 @@
 //  
 
 import Foundation
+import os.log
 
 class ConverterViewModel {
   enum Action {
@@ -28,11 +29,10 @@ class ConverterViewModel {
   var actions: ((Action) -> Void)?
   
   func startLoading() {
-    let startedTime = DispatchTime.now()
-    print("start loading: ", startedTime)
+    os_log("irek start loading started", log: OSLog.debug, type: .error)
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
-      print(DispatchTime.now())
+      os_log("irek dispatch work item started", log: OSLog.debug, type: .error)
       guard let self = self else { return }
       self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
         guard let self = self else { return }
@@ -47,7 +47,13 @@ class ConverterViewModel {
             self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))
           }
         case .failure(let error):
-          print(error)
+          switch error {
+          case .network(let networkError):
+            os_log("Failed fetching the data from remote", log: OSLog.data, type: .error, networkError.localizedDescription)
+          case .parsing:
+            os_log("Unable to parse exchage rates network response, check the contract", log: OSLog.data, type: .error)
+            assertionFailure("ExchangeRatesDTO parsing failed, check the network contract")
+          }
         }
         self.startLoading()
       }
