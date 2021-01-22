@@ -12,17 +12,14 @@ final class AppCoordinator : Coordinator {
   
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var childCoordinators: [Coordinator] = []
-  var startScreen: StartScreen {
-    return childCoordinators.count > 0 ? .converter : .dashboard
-  }
+  let startScreen: StartScreen
   
   private var window : UIWindow?
-  private let currentCurrencyPairs: [CurrencyPair]
   private let rootViewController: UIViewController = UIViewController()
   
-  init(window : UIWindow?, currentCurrencyPairs: [CurrencyPair]) {
+  init(window : UIWindow?, startScreen: StartScreen) {
     self.window = window
-    self.currentCurrencyPairs = currentCurrencyPairs
+    self.startScreen = startScreen
   }
   
   @discardableResult func start() -> UIViewController {
