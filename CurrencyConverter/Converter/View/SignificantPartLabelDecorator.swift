@@ -12,19 +12,22 @@ struct SignificantPartLabelDecorator: LabelDecorator {
   }
   let style: Style
   let significantPartAttributes: [NSAttributedString.Key: Any]
+  let minorPartLength: Int
   
-  init(style: Style) {
+  init(style: Style, minorPartLength: Int) {
     self.style = style
     self.significantPartAttributes = [.foregroundColor: style.color, .font: style.significantPartFont]
+    self.minorPartLength = minorPartLength
   }
   
   func decorate(label: UILabel) -> UILabel {
     guard let text = label.text else {
       return label
     }
-    
     let attributedText = NSMutableAttributedString(string: text, attributes: significantPartAttributes)
-    attributedText.addAttribute(.font, value: style.minorPartFont, range: NSRange(location: text.count - 2, length: 2))
+    if text.count > minorPartLength {
+      attributedText.addAttribute(.font, value: style.minorPartFont, range: NSRange(location: text.count - minorPartLength, length: minorPartLength))
+    }
     label.attributedText = attributedText
     return label
   }

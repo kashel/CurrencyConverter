@@ -14,7 +14,7 @@ class ExchangeRateCell: UITableViewCell {
   
   lazy var titleDecorator = StandardLabelDecorator(style: StandardLabelDecorator.Style(font: fontProvider.cellTitle, color: colorProvider.label))
   lazy var descriptionDecorator = StandardLabelDecorator(style: StandardLabelDecorator.Style(font: fontProvider.cellDescription, color: colorProvider.description))
-  lazy var significantPartDecorator = SignificantPartLabelDecorator(style: SignificantPartLabelDecorator.Style(significantPartFont: fontProvider.cellTitle, minorPartFont: fontProvider.cellTitleMinor, color: colorProvider.label))
+  lazy var significantPartDecorator = SignificantPartLabelDecorator(style: SignificantPartLabelDecorator.Style(significantPartFont: fontProvider.cellTitle, minorPartFont: fontProvider.cellTitleMinor, color: colorProvider.label), minorPartLength: 2)
 
   lazy var titleRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: titleDecorator, rhsDecorator: significantPartDecorator)
   lazy var descriptionRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: descriptionDecorator, rhsDecorator: descriptionDecorator)
