@@ -209,6 +209,8 @@
 		9745B5BC25BA2C540050DAFC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */,
+				97F08F5225B4D07400380F41 /* CurrencyPairService.swift */,
 				9745B5BD25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift */,
 			);
 			path = Services;
@@ -294,8 +296,6 @@
 			children = (
 				9753B5E125B321AC00F0CB8A /* Currency.swift */,
 				9753B5F925B369C700F0CB8A /* CurrencyPair.swift */,
-				97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */,
-				97F08F5225B4D07400380F41 /* CurrencyPairService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

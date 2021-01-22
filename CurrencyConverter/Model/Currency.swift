@@ -4,7 +4,7 @@
 
 import UIKit
 
-struct Currency {
+struct Currency: Codable, Equatable, Hashable {
   let code: String
   let countryCode: String
 }
@@ -18,6 +18,3 @@ extension Currency {
     return UIImage(named: countryCode) ?? UIImage()
   }
 }
-
-extension Currency: Equatable {}
-extension Currency: Hashable {}

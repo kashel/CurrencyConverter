@@ -66,8 +66,9 @@ struct CurrencySelectionViewModel {
     case .goToReceiveCurrencySelection:
       coordinator?.selectReceiveCurrency(previouslySelected: selectedCurrency)
     case .currencyPairSelected(let sendCurrency):
-      //TODO: save in persistent storage
-      coordinator?.currencyPairSelected(CurrencyPair(send: sendCurrency, receive: selectedCurrency))
+      let currencyPairSelected = CurrencyPair(send: sendCurrency, receive: selectedCurrency)
+      currencyPairService.save(currencyPair: currencyPairSelected)
+      coordinator?.currencyPairSelected(currencyPairSelected)
     }
   }
   

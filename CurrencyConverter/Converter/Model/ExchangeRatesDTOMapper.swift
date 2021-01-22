@@ -5,7 +5,7 @@
 import Foundation
 
 struct ExchangeRatesDTOMapper {
-  let currencyService = CurrencySerive()
+  let currencyService = CurrencyService()
   func map(dto: ExchangeRateDTO) -> ExchangeRateModel {
     let sendCurrencyCode = String(dto.currencySymbolsPair.prefix(3)).uppercased()
     let receiveCurrencyCode = String(dto.currencySymbolsPair.suffix(3)).uppercased()

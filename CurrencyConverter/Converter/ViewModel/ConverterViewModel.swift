@@ -7,6 +7,7 @@ import os.log
 
 class ConverterViewModel {
   enum Action {
+    case initialDataLoaded(rates: [ExchangeRateModel])
     case dataLoaded(allRates: [ExchangeRateModel], isNewRateAdded: Bool)
   }
   weak var coordinator: ConverterCoordinator?
@@ -38,22 +39,11 @@ class ConverterViewModel {
         guard let self = self else { return }
         switch result {
         case .success(let exchangeRates):
-          var isNewRateAdded = false
-          if self.previouslySelectedPairs.count != self.currentlySelectedPairs.count {
-            self.previouslySelectedPairs = self.currentlySelectedPairs
-            isNewRateAdded = true
-          }
           DispatchQueue.main.sync {
-            self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: isNewRateAdded))
+            self.notifyExchangeRatesChange(with: exchangeRates)
           }
         case .failure(let error):
-          switch error {
-          case .network(let networkError):
-            os_log("Failed fetching the data from remote", log: OSLog.data, type: .error, networkError.localizedDescription)
-          case .parsing:
-            os_log("Unable to parse exchage rates network response, check the contract", log: OSLog.data, type: .error)
-            assertionFailure("ExchangeRatesDTO parsing failed, check the network contract")
-          }
+          self.logLoadingError(error)
         }
         self.startLoading()
       }
@@ -69,5 +59,30 @@ class ConverterViewModel {
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
     currentlySelectedPairs.insert(currencyPair, at: 0)
     startLoading()
+  }
+  
+  private func logLoadingError(_ error: ExchangeRateServiceError) {
+    switch error {
+    case .network(let networkError):
+      os_log("Failed fetching the data from remote", log: OSLog.data, type: .error, networkError.localizedDescription)
+    case .parsing:
+      os_log("Unable to parse exchage rates network response, check the contract", log: OSLog.data, type: .error)
+      assertionFailure("ExchangeRatesDTO parsing failed, check the network contract")
+    }
+  }
+  
+  private func notifyExchangeRatesChange(with exchangeRates: [ExchangeRateModel]) {
+    guard exchangeRates.count == currentlySelectedPairs.count else {
+      assertionFailure("count of exchange rates does not match the count of selected currency pairs")
+      return
+    }
+    if previouslySelectedPairs.count == 0 {
+      self.actions?(.initialDataLoaded(rates: exchangeRates))
+      previouslySelectedPairs = currentlySelectedPairs
+      return
+    }
+    let newRateAdded = (currentlySelectedPairs.count - previouslySelectedPairs.count) == 1
+    previouslySelectedPairs = currentlySelectedPairs
+    self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: newRateAdded))
   }
 }

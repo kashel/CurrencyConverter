@@ -66,10 +66,15 @@ class ConverterViewController: UIViewController {
         return
       }
       switch viewModelAction {
+      case .initialDataLoaded(let exchangeRates):
+        self.cellsDataCache = exchangeRates.map{ exchangeRate in
+          self.cellModelMapper.map(exchangeRate: exchangeRate)
+        }
+        self.tableView.reloadData()
       case .dataLoaded(let allRates, let isNewRateAdded):
         self.tableView.beginUpdates()
         self.cellsDataCache = allRates.map{ exchangeRate in
-          return self.cellModelMapper.map(exchangeRate: exchangeRate)
+          self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
         if isNewRateAdded {
           self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)

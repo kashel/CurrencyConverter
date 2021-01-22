@@ -9,7 +9,7 @@ protocol CurrencyServiceProtocol {
   var supportedCurrenciesCount: Int { get }
 }
 
-class CurrencySerive: CurrencyServiceProtocol {
+class CurrencyService: CurrencyServiceProtocol {
   typealias CurrencyCode = String
   typealias RegionCode = String
   
