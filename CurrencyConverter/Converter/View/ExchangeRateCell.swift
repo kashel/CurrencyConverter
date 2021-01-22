@@ -12,11 +12,12 @@ class ExchangeRateCell: UITableViewCell {
   let colorProvider = ColorProvider()
   let fontProvider = FontProvider()
   
-  lazy var titleLeft = ExchangeRateCellRow.Style.Label(textColor: colorProvider.label, font: fontProvider.cellTitle)
-  lazy var titleRight = ExchangeRateCellRow.Style.Label(textColor: colorProvider.label, font: fontProvider.cellTitle)
-  lazy var descriptionStyle = ExchangeRateCellRow.Style.Label(textColor: colorProvider.description, font: fontProvider.cellDescription)
-  lazy var titleRow: ExchangeRateCellRow = ExchangeRateCellRow(style: ExchangeRateCellRow.Style(lhsLabel: titleLeft, rhsLabel: titleRight))
-  lazy var descriptionRow: ExchangeRateCellRow = ExchangeRateCellRow(style: ExchangeRateCellRow.Style(lhsLabel: descriptionStyle, rhsLabel: descriptionStyle))
+  lazy var titleDecorator = StandardLabelDecorator(style: StandardLabelDecorator.Style(font: fontProvider.cellTitle, color: colorProvider.label))
+  lazy var descriptionDecorator = StandardLabelDecorator(style: StandardLabelDecorator.Style(font: fontProvider.cellDescription, color: colorProvider.description))
+  lazy var significantPartDecorator = SignificantPartLabelDecorator(style: SignificantPartLabelDecorator.Style(significantPartFont: fontProvider.cellTitle, minorPartFont: fontProvider.cellTitleMinor, color: colorProvider.label))
+
+  lazy var titleRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: titleDecorator, rhsDecorator: significantPartDecorator)
+  lazy var descriptionRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: descriptionDecorator, rhsDecorator: descriptionDecorator)
   let verticalStack: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .vertical

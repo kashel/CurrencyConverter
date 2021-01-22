@@ -6,5 +6,5 @@ import Foundation
 
 struct ExchangeRateCellRowModel {
   let lhsTile: String
-  let rhsTitle: NSAttributedString
+  let rhsTitle: String
 }

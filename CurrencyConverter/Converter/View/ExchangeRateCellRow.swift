@@ -5,15 +5,6 @@
 import UIKit
 
 class ExchangeRateCellRow: UIView {
-  struct Style {
-    struct Label {
-      let textColor: UIColor
-      let font: UIFont
-    }
-    let lhsLabel: Label
-    let rhsLabel: Label
-  }
-  
   let horizontalStack: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .horizontal
@@ -30,10 +21,12 @@ class ExchangeRateCellRow: UIView {
     return label
   }()
   
-  let style: Style
+  let lhsDecorator: LabelDecorator
+  let rhsDecorator: LabelDecorator
   
-  init(style: Style) {
-    self.style = style
+  init(lhsDecorator: LabelDecorator, rhsDecorator: LabelDecorator) {
+    self.lhsDecorator = lhsDecorator
+    self.rhsDecorator = rhsDecorator
     super.init(frame: .zero)
   }
   
@@ -46,19 +39,16 @@ class ExchangeRateCellRow: UIView {
   }
   
   private func setupView() {
-    lhsLabel.textColor = style.lhsLabel.textColor
-    lhsLabel.font = style.lhsLabel.font
-    rhsLabel.textColor = style.rhsLabel.textColor
-    rhsLabel.font = style.rhsLabel.font
     addSubview(horizontalStack)
     horizontalStack.pinEdges(to: self)
-    horizontalStack.addArrangedSubview(lhsLabel)
+    horizontalStack.addArrangedSubview(lhsDecorator.decorate(label: lhsLabel))
     horizontalStack.addArrangedSubview(.horizontalSpacer)
     horizontalStack.addArrangedSubview(rhsLabel)
   }
   
   func configure(with model: ExchangeRateCellRowModel) {
     lhsLabel.text = model.lhsTile
-    rhsLabel.attributedText = model.rhsTitle
+    rhsLabel.text = model.rhsTitle
+    rhsDecorator.decorate(label: rhsLabel)
   }
 }
