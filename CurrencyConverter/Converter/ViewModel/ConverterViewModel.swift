@@ -57,7 +57,10 @@ class ConverterViewModel {
   }
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
-    currentlySelectedPairs.insert(currencyPair, at: 0)
+    pendingDispatchWork?.cancel()
+    DispatchQueue.main.async {
+      self.currentlySelectedPairs.insert(currencyPair, at: 0)
+    }
     startLoading()
   }
   
