@@ -36,6 +36,13 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
           }
           completed(.success(exchangeRatesWithOrder))
       case .failure(let error):
+        switch error {
+        case .emptyResponse, .networkError:
+          completed(.failure(.network))
+        case .unableToDecodeJSON:
+          assertionFailure("ExchangeRatesDTO parsing failed, check the network contract")
+          completed(.failure(.parsing))
+        }
         print(error)
       }
     }
