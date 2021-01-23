@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct CurrencyPair: Codable {
+struct CurrencyPair: Codable, Equatable {
   let send: Currency
   let receive: Currency
 }

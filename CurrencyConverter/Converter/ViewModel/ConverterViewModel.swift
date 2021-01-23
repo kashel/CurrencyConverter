@@ -70,6 +70,7 @@ class ConverterViewModel {
   }
   
   func viewDidDeleteCurrencyPairAt(index: Int) {
+    currencyPairService.delete(currencyPair: currentlySelectedPairs[index])
     currentlySelectedPairs.remove(at: index)
   }
   

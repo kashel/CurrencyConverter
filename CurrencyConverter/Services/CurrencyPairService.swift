@@ -6,7 +6,8 @@ import Foundation
 
 protocol CurrencyPairServiceProtocol {
   var savedCurrencyPairs: [CurrencyPair] { get }
-  func save(currencyPair: CurrencyPair)
+  func insert(currencyPair: CurrencyPair)
+  func delete(currencyPair: CurrencyPair)
 }
 
 class CurrencyPairService: CurrencyPairServiceProtocol {
@@ -32,11 +33,20 @@ class CurrencyPairService: CurrencyPairServiceProtocol {
     return currencyPairs
   }
   
-  func save(currencyPair: CurrencyPair) {
-    var currenciesCurrentlySaved = savedCurrencyPairs
-    currenciesCurrentlySaved.insert(currencyPair, at: 0)
-    guard let encoded = try? encoder.encode(currenciesCurrentlySaved) else {
-      assertionFailure("Unable to encode curriencies collection: \(currenciesCurrentlySaved)")
+  func insert(currencyPair: CurrencyPair) {
+    var mutableCurrencyCollection = savedCurrencyPairs
+    mutableCurrencyCollection.insert(currencyPair, at: 0)
+    save(currencyPairs: mutableCurrencyCollection)
+  }
+  
+  func delete(currencyPair: CurrencyPair) {
+    let newCurrencyPairsCollection = savedCurrencyPairs.filter{ $0 != currencyPair }
+    save(currencyPairs: newCurrencyPairsCollection)
+  }
+  
+  private func save(currencyPairs: [CurrencyPair]) {
+    guard let encoded = try? encoder.encode(currencyPairs) else {
+      assertionFailure("Unable to encode curriencies collection: \(currencyPairs)")
       return
     }
     userDefaults.set(encoded, forKey: userDefaultsKey)
