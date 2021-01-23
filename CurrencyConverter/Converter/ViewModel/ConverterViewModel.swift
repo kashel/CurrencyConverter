@@ -44,7 +44,7 @@ class ConverterViewModel {
     }
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
-      guard let self = self else { return }
+      guard let self = self, self.currentlySelectedPairs.count > 0 else { return }
       self.cancelExchangeRangeFetching = self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
         guard let self = self else { return }
         switch result {
