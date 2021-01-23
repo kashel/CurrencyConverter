@@ -19,7 +19,7 @@ class DashboardViewConroller: UIViewController {
     newButton.titleLabel?.font = fontProvider.title
     newButton.setTitle(viewModel.ctaButtonTitle, for: .normal)
     newButton.setTitleColor(colorProvider.link, for: .normal)
-    newButton.setTitleColor(colorProvider.description, for: .highlighted)
+    newButton.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
     return newButton
   }()
   

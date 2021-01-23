@@ -67,11 +67,15 @@ class ConverterViewController: UIViewController {
     let button = UIButton()
     button.setTitle(editState.buttonTitle, for: .normal)
     button.setTitleColor(colorProvider.link, for: .normal)
-    button.setTitleColor(colorProvider.description, for: .highlighted)
+    button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
     return button
   }()
   
-  var editState: EditState = .viewing
+  var editState: EditState = .viewing {
+    didSet {
+      addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
+    }
+  }
   
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
     self.viewModel = viewModel

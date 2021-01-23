@@ -10,14 +10,18 @@ struct ColorProvider {
   }
   
   var description: UIColor {
-    UIColor(named: "description") ?? .red
+    UIColor(named: "description") ?? .darkGray
   }
   
   var link: UIColor {
-    UIColor(named: "link") ?? .orange
+    UIColor(named: "link") ?? .blue
+  }
+  
+  var inactiveLink: UIColor {
+    UIColor(named: "description") ?? .lightGray
   }
   
   var background: UIColor {
-    UIColor(named: "background") ?? .orange
+    UIColor(named: "background") ?? .clear
   }
 }

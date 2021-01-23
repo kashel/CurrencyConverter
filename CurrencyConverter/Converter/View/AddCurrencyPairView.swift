@@ -5,6 +5,10 @@
 import UIKit
 
 class AddCurrencyPairView: UIView {
+  enum State {
+    case enabled
+    case disabled
+  }
   struct Constants {
     static let iconSize: CGFloat = 40
     static let topMargin: CGFloat = 32
@@ -12,13 +16,19 @@ class AddCurrencyPairView: UIView {
   }
   let fontProvider = FontProvider()
   let colorProvider = ColorProvider()
+  var state: State? {
+    didSet {
+      addCurrencyPairButton.isEnabled = state == .enabled
+    }
+  }
   
   lazy var addCurrencyPairButton: UIButton = {
     let button = UIButton()
     button.setTitle("Add currency pair", for: .normal)
     button.titleLabel?.font = fontProvider.title
     button.setTitleColor(colorProvider.link, for: .normal)
-    button.setTitleColor(colorProvider.description, for: .highlighted)
+    button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
+    button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
     return button
   }()
   
