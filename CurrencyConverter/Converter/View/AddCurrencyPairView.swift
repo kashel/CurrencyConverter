@@ -47,6 +47,6 @@ class AddCurrencyPairView: UIView {
     horizontalStackView.addArrangedSubview(addCurrencyPairButton)
     horizontalStackView.addArrangedSubview(.horizontalSpacer)
     addSubview(horizontalStackView)
-    horizontalStackView.pinEdges(to: self, offsets: UIEdgeInsets(top: Constants.topMargin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
+    horizontalStackView.pinEdges(to: self)
   }
 }

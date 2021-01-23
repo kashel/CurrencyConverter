@@ -5,6 +5,29 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
+  enum EditState {
+    case editing
+    case viewing
+    
+    func toggle() -> Self {
+      switch self {
+      case .editing:
+        return .viewing
+      case .viewing:
+        return .editing
+      }
+    }
+    
+    var buttonTitle: String {
+      switch self {
+      case .editing:
+        return "Done"
+      case .viewing:
+        return "Edit"
+      }
+    }
+  }
+  
   struct Constants {
     static let margin: CGFloat = 16
   }
@@ -27,12 +50,26 @@ class ConverterViewController: UIViewController {
     return stack
   }()
   
+  lazy var horizontalStackView: UIStackView = {
+    let stack = UIStackView()
+    stack.axis = .horizontal
+    return stack
+  }()
+  
   lazy var activityIndicator: UIActivityIndicatorView = {
     let style: UIActivityIndicatorView.Style = traitCollection.userInterfaceStyle == .dark ? .white : .gray
     let activityIndicator = UIActivityIndicatorView(style: style)
     activityIndicator.hidesWhenStopped = true
     return activityIndicator
   }()
+  
+  lazy var editButton: UIButton = {
+    let button = UIButton()
+    button.setTitle(editState.buttonTitle, for: .normal)
+    return button
+  }()
+  
+  var editState: EditState = .viewing
   
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
     self.viewModel = viewModel
@@ -53,7 +90,13 @@ class ConverterViewController: UIViewController {
   }
   
   private func setupView() {
-    verticalStackView.addArrangedSubview(addCurrencyView)
+    horizontalStackView.addArrangedSubview(addCurrencyView)
+    horizontalStackView.addArrangedSubview(.horizontalSpacer)
+    horizontalStackView.addArrangedSubview(editButton)
+    let wrapper = UIView()
+    wrapper.addSubview(horizontalStackView)
+    horizontalStackView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
+    verticalStackView.addArrangedSubview(wrapper)
     verticalStackView.addArrangedSubview(tableView)
     view.addSubview(verticalStackView)
     verticalStackView.pinToSafeArea(of: view)
@@ -61,8 +104,10 @@ class ConverterViewController: UIViewController {
   
   private func setup() {
     tableView.dataSource = self
+    tableView.delegate = self
     tableView.register(ExchangeRateCell.self, forCellReuseIdentifier: "exchangeRate")
     addCurrencyView.addCurrencyPairButton.addTarget(self, action: #selector(addCurrencyPairButtonTapped), for: .touchUpInside)
+    editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     bindViewModel()
     viewModel.startLoading()
   }
@@ -103,6 +148,12 @@ class ConverterViewController: UIViewController {
     viewModel.addCurrencyPair()
   }
   
+  @objc func editButtonTapped() {
+    editState = editState.toggle()
+    editButton.setTitle(editState.buttonTitle, for: .normal)
+    tableView.setEditing(editState == .editing, animated: true)
+  }
+  
   private func showActivityIndicator() {
     self.view.addSubview(self.activityIndicator)
     self.activityIndicator.center = self.view.center
@@ -128,3 +179,16 @@ extension ConverterViewController: UITableViewDataSource {
   }
 }
 
+
+extension ConverterViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return editState == .editing
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+          cellsDataCache.remove(at: indexPath.row)
+          tableView.deleteRows(at: [indexPath], with: .fade)
+      }
+  }
+}

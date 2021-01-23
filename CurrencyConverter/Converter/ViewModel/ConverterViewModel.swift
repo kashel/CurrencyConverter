@@ -79,9 +79,7 @@ class ConverterViewModel {
   }
   
   private func notifyExchangeRatesChange(with exchangeRates: [ExchangeRateModel]) {
-    guard exchangeRates.count == currentlySelectedPairs.count else {
-      return
-    }
+    guard exchangeRates.count == currentlySelectedPairs.count else { return }
     if previouslySelectedPairs.count == 0 {
       self.actions?(.initialDataLoaded(rates: exchangeRates))
       previouslySelectedPairs = currentlySelectedPairs
