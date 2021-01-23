@@ -44,6 +44,8 @@
 		9753B62E25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */; };
 		9753B63F25B4404A00F0CB8A /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */; };
 		9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */; };
+		978D6BAF25BB882E00B87CAF /* LabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BAE25BB882E00B87CAF /* LabelDecorator.swift */; };
+		978D6BB425BB887B00B87CAF /* SignificantPartLabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BB325BB887B00B87CAF /* SignificantPartLabelDecorator.swift */; };
 		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
 		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
 		97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */; };
@@ -112,6 +114,8 @@
 		9753B62D25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellRowModel.swift; sourceTree = "<group>"; };
 		9753B63E25B4404A00F0CB8A /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 		9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesService.swift; sourceTree = "<group>"; };
+		978D6BAE25BB882E00B87CAF /* LabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecorator.swift; sourceTree = "<group>"; };
+		978D6BB325BB887B00B87CAF /* SignificantPartLabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignificantPartLabelDecorator.swift; sourceTree = "<group>"; };
 		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
 		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				9753B61325B42ABE00F0CB8A /* AddCurrencyPairView.swift */,
 				9753B61825B42B2600F0CB8A /* ExchangeRateCell.swift */,
 				9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */,
+				978D6BAE25BB882E00B87CAF /* LabelDecorator.swift */,
+				978D6BB325BB887B00B87CAF /* SignificantPartLabelDecorator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -502,6 +508,7 @@
 			files = (
 				9753B5E225B321AC00F0CB8A /* Currency.swift in Sources */,
 				97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */,
+				978D6BB425BB887B00B87CAF /* SignificantPartLabelDecorator.swift in Sources */,
 				9753B5DD25B3206400F0CB8A /* CurrencySelectionCoordinator.swift in Sources */,
 				9753B5BE25B241D000F0CB8A /* AppCoordinator.swift in Sources */,
 				9753B62925B4353500F0CB8A /* ExchangeRateCellRow.swift in Sources */,
@@ -522,6 +529,7 @@
 				9745B5C825BAB8220050DAFC /* OSLog+Category.swift in Sources */,
 				9753B5D025B3204800F0CB8A /* CurrencySelectionViewController.swift in Sources */,
 				9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */,
+				978D6BAF25BB882E00B87CAF /* LabelDecorator.swift in Sources */,
 				9753B5B525B239AC00F0CB8A /* DashboardViewController.swift in Sources */,
 				9753B5E825B321FE00F0CB8A /* CurrencySelection.swift in Sources */,
 				97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */,

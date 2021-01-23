@@ -27,6 +27,13 @@ class ConverterViewController: UIViewController {
     return stack
   }()
   
+  lazy var activityIndicator: UIActivityIndicatorView = {
+    let style: UIActivityIndicatorView.Style = traitCollection.userInterfaceStyle == .dark ? .white : .gray
+    let activityIndicator = UIActivityIndicatorView(style: style)
+    activityIndicator.hidesWhenStopped = true
+    return activityIndicator
+  }()
+  
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
     self.viewModel = viewModel
     self.cellModelMapper = cellModelMapper
@@ -67,11 +74,13 @@ class ConverterViewController: UIViewController {
       }
       switch viewModelAction {
       case .initialDataLoaded(let exchangeRates):
+        self.hideAcivityIndicator()
         self.cellsDataCache = exchangeRates.map{ exchangeRate in
           self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
         self.tableView.reloadData()
       case .dataLoaded(let allRates, let isNewRateAdded):
+        self.hideAcivityIndicator()
         self.tableView.beginUpdates()
         self.cellsDataCache = allRates.map{ exchangeRate in
           self.cellModelMapper.map(exchangeRate: exchangeRate)
@@ -84,12 +93,24 @@ class ConverterViewController: UIViewController {
           self.tableView.reloadRows(at: indexPaths, with: .none)
         }
         self.tableView.endUpdates()
+      case .loading:
+        self.showActivityIndicator()
       }
     }
   }
   
   @objc func addCurrencyPairButtonTapped() {
     viewModel.addCurrencyPair()
+  }
+  
+  private func showActivityIndicator() {
+    self.view.addSubview(self.activityIndicator)
+    self.activityIndicator.center = self.view.center
+    self.activityIndicator.startAnimating()
+  }
+  
+  private func hideAcivityIndicator() {
+    self.activityIndicator.stopAnimating()
   }
 }
 

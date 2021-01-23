@@ -7,6 +7,7 @@ import os.log
 
 class ConverterViewModel {
   enum Action {
+    case loading
     case initialDataLoaded(rates: [ExchangeRateModel])
     case dataLoaded(allRates: [ExchangeRateModel], isNewRateAdded: Bool)
   }
@@ -30,6 +31,12 @@ class ConverterViewModel {
   var actions: ((Action) -> Void)?
   
   func startLoading() {
+    DispatchQueue.main.async {
+      if self.previouslySelectedPairs.count == 0 {
+        self.actions?(.loading)
+      }
+    }
+
     os_log("irek start loading started", log: OSLog.debug, type: .error)
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
