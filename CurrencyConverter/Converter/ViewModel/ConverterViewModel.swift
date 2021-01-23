@@ -5,7 +5,7 @@
 import Foundation
 import os.log
 
-class ConverterViewModel {
+class ConverterViewModel {  
   enum Action {
     case loading
     case initialDataLoaded(rates: [ExchangeRateModel])
@@ -66,6 +66,14 @@ class ConverterViewModel {
       self.currentlySelectedPairs.insert(currencyPair, at: 0)
     }
     startLoading()
+  }
+  
+  func viewDidChangeDataProcessingCapability(canProcessData: Bool) {
+    if canProcessData == false {
+      pendingDispatchWork?.cancel()
+    } else {
+      startLoading()
+    }
   }
   
   private func logLoadingError(_ error: ExchangeRateServiceError) {

@@ -66,6 +66,8 @@ class ConverterViewController: UIViewController {
   lazy var editButton: UIButton = {
     let button = UIButton()
     button.setTitle(editState.buttonTitle, for: .normal)
+    button.setTitleColor(colorProvider.link, for: .normal)
+    button.setTitleColor(colorProvider.description, for: .highlighted)
     return button
   }()
   
@@ -150,6 +152,7 @@ class ConverterViewController: UIViewController {
   
   @objc func editButtonTapped() {
     editState = editState.toggle()
+    viewModel.viewDidChangeDataProcessingCapability(canProcessData: editState != .editing)
     editButton.setTitle(editState.buttonTitle, for: .normal)
     tableView.setEditing(editState == .editing, animated: true)
   }
