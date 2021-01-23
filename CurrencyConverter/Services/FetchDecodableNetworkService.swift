@@ -11,15 +11,17 @@ public enum NetworkError: Error {
 }
 
 public protocol FetchDecodableNetworkServiceProtocol {
-  func get<T: Decodable>(url: URL, result: @escaping (Result<T, NetworkError>) -> ())
+  typealias CancelClosure = () -> Void
+  func get<T: Decodable>(url: URL, result: @escaping (Result<T, NetworkError>) -> ()) -> CancelClosure
 }
 
 public final class FetchDecodableNetworkService: FetchDecodableNetworkServiceProtocol {
   public init() {}
+  private var ongoingTask: URLSessionTask!
   
-  public func get<T: Decodable>(url: URL, result: @escaping (Result<T, NetworkError>) -> ()) {
+  public func get<T: Decodable>(url: URL, result: @escaping (Result<T, NetworkError>) -> ()) -> FetchDecodableNetworkServiceProtocol.CancelClosure {
     let session = URLSession.shared
-    let task = session.dataTask(with: url) { (data, _, error) in
+    ongoingTask = session.dataTask(with: url) { (data, _, error) in
       if let error = error {
         result(.failure(.networkError(error)))
         return
@@ -34,6 +36,9 @@ public final class FetchDecodableNetworkService: FetchDecodableNetworkServicePro
       }
       result(.success(decoded))
     }
-    task.resume()
+    ongoingTask.resume()
+    return {
+      self.ongoingTask.cancel()
+    }
   }
 }

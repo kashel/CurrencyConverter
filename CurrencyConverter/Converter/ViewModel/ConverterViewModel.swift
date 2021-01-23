@@ -5,7 +5,7 @@
 import Foundation
 import os.log
 
-class ConverterViewModel {  
+class ConverterViewModel {
   enum Action {
     case loading
     case initialDataLoaded(rates: [ExchangeRateModel])
@@ -21,6 +21,7 @@ class ConverterViewModel {
     }
   }
   var pendingDispatchWork: DispatchWorkItem?
+  var cancelExchangeRangeFetching: ExchangeRatesServiceProtocol.CancelClosure?
   
   init(currencyPairService: CurrencyPairServiceProtocol, exchangeRateService: ExchangeRatesServiceProtocol) {
     self.currencyPairService = currencyPairService
@@ -39,7 +40,7 @@ class ConverterViewModel {
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
       guard let self = self else { return }
-      self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
+      self.cancelExchangeRangeFetching = self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
         guard let self = self else { return }
         switch result {
         case .success(let exchangeRates):
@@ -61,19 +62,28 @@ class ConverterViewModel {
   }
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
-    pendingDispatchWork?.cancel()
+    cancelLoading()
     DispatchQueue.main.async {
       self.currentlySelectedPairs.insert(currencyPair, at: 0)
     }
     startLoading()
   }
   
+  func viewDidDeleteCurrencyPairAt(index: Int) {
+    currentlySelectedPairs.remove(at: index)
+  }
+  
   func viewDidChangeDataProcessingCapability(canProcessData: Bool) {
     if canProcessData == false {
-      pendingDispatchWork?.cancel()
+      cancelLoading()
     } else {
       startLoading()
     }
+  }
+  
+  private func cancelLoading() {
+    pendingDispatchWork?.cancel()
+    cancelExchangeRangeFetching?()
   }
   
   private func logLoadingError(_ error: ExchangeRateServiceError) {
@@ -87,7 +97,10 @@ class ConverterViewModel {
   }
   
   private func notifyExchangeRatesChange(with exchangeRates: [ExchangeRateModel]) {
-    guard exchangeRates.count == currentlySelectedPairs.count else { return }
+    guard exchangeRates.count == currentlySelectedPairs.count else {
+      assertionFailure("race condition detected in currentlySelectedPairs property")
+      return
+    }
     if previouslySelectedPairs.count == 0 {
       self.actions?(.initialDataLoaded(rates: exchangeRates))
       previouslySelectedPairs = currentlySelectedPairs

@@ -6,7 +6,7 @@ import Foundation
 
 struct MockExchangeRatesService: ExchangeRatesServiceProtocol {
   var currencyPairs: [CurrencyPair] = []
-  func exchangeRates(currencyPairs: [CurrencyPair], completed: ExchangeRatesServiceProtocol.LoadingCompleted) {
+  func exchangeRates(currencyPairs: [CurrencyPair], completed: ExchangeRatesServiceProtocol.LoadingCompleted) -> ExchangeRatesServiceProtocol.CancelClosure {
     let exchangeRates = currencyPairs.map { currencyPair in
       ExchangeRateModel(sourceCurrency: currencyPair.send,
                         sourceAmount: 1,
@@ -14,5 +14,6 @@ struct MockExchangeRatesService: ExchangeRatesServiceProtocol {
     }
     
     completed(.success(exchangeRates))
+    return {}
   }
 }

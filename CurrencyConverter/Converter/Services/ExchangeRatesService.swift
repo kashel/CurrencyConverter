@@ -10,8 +10,9 @@ enum ExchangeRateServiceError: Error {
 }
 
 protocol ExchangeRatesServiceProtocol {
+  typealias CancelClosure = () -> Void
   typealias LoadingCompleted =  (Result<[ExchangeRateModel], ExchangeRateServiceError>) -> Void
-  func exchangeRates(currencyPairs: [CurrencyPair], completed: @escaping LoadingCompleted)
+  func exchangeRates(currencyPairs: [CurrencyPair], completed: @escaping LoadingCompleted) -> CancelClosure
 }
 
 struct ExchangeRateService: ExchangeRatesServiceProtocol {
@@ -23,8 +24,8 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
     self.fetchDecodableNetworkService = fetchDecodableNetworkService
   }
   
-  func exchangeRates(currencyPairs: [CurrencyPair], completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
-    fetchDecodableNetworkService.get(url: constructURL(with: currencyPairs)) { (result: Result<ExchangeRatesDTO, NetworkError>) in
+  func exchangeRates(currencyPairs: [CurrencyPair], completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) -> ExchangeRatesServiceProtocol.CancelClosure {
+    return fetchDecodableNetworkService.get(url: constructURL(with: currencyPairs)) { (result: Result<ExchangeRatesDTO, NetworkError>) in
       switch result {
         case .success(let exchangeRatesDTO):
           let models = exchangeRatesDTO.array.map(mapper.map)
