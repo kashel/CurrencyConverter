@@ -36,11 +36,8 @@ class ConverterViewModel {
         self.actions?(.loading)
       }
     }
-
-    os_log("irek start loading started", log: OSLog.debug, type: .error)
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
-      os_log("irek dispatch work item started", log: OSLog.debug, type: .error)
       guard let self = self else { return }
       self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
         guard let self = self else { return }
@@ -83,7 +80,6 @@ class ConverterViewModel {
   
   private func notifyExchangeRatesChange(with exchangeRates: [ExchangeRateModel]) {
     guard exchangeRates.count == currentlySelectedPairs.count else {
-      assertionFailure("count of exchange rates does not match the count of selected currency pairs")
       return
     }
     if previouslySelectedPairs.count == 0 {
