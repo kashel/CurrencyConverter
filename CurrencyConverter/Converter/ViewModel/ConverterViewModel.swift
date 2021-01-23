@@ -31,11 +31,16 @@ class ConverterViewModel {
   
   var actions: ((Action) -> Void)?
   
-  func startLoading() {
+  lazy var notifyInitialDataLoading: (() -> Void)? = {
     DispatchQueue.main.async {
-      if self.previouslySelectedPairs.count == 0 {
-        self.actions?(.loading)
-      }
+      self.actions?(.loading)
+    }
+  }
+  
+  func startLoading() {
+    if previouslySelectedPairs.count == 0 {
+      notifyInitialDataLoading?()
+      notifyInitialDataLoading = nil
     }
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
