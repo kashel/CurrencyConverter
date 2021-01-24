@@ -10,7 +10,7 @@ extension ConverterViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "exchangeRate") as? ExchangeRateCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier) as? ExchangeRateCell else {
       return UITableViewCell()
     }
     cell.configure(with: cellsDataCache[indexPath.row])

@@ -5,8 +5,10 @@
 import UIKit
 
 class CurrencySelectionViewController: UIViewController {
+  struct Constants {
+    static let cellReuseIdentifier = "selectCurrency"
+  }
   var viewModel: CurrencySelectionViewModel
-  
   private let colorProvider = ColorProvider()
   
   let tableView: UITableView = {
@@ -50,7 +52,7 @@ private extension CurrencySelectionViewController {
   private func setup() {
     tableView.dataSource = self
     tableView.delegate = self
-    tableView.register(CurrencySelectionCell.self, forCellReuseIdentifier: "selectCurrency")
+    tableView.register(CurrencySelectionCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
   }
 }
 

@@ -12,6 +12,7 @@ class ConverterViewController: UIViewController {
   
   struct Constants {
     static let margin: CGFloat = 16
+    static let cellReuseIdentifier = "exchangeRate"
   }
 
   var viewModel: ConverterViewModel
@@ -67,7 +68,7 @@ private extension ConverterViewController {
   func setup() {
     tableView.dataSource = self
     tableView.delegate = self
-    tableView.register(ExchangeRateCell.self, forCellReuseIdentifier: "exchangeRate")
+    tableView.register(ExchangeRateCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
     addCurrencyView.addCurrencyPairButton.addTarget(self, action: #selector(addCurrencyPairButtonTapped), for: .touchUpInside)
     editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     bindViewModel()
