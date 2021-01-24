@@ -7,6 +7,6 @@ import Foundation
 
 extension CurrencyPair {
   static var mock: CurrencyPair {
-    return CurrencyPair(send: Currency(code: "USD", countryCode: "US"), receive: Currency(code: "PLN", countryCode: "PL"))
+    return CurrencyPair(send: Currency.usDolar, receive: Currency(code: "PLN", countryCode: "PL"))
   }
 }
