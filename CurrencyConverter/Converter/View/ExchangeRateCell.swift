@@ -32,7 +32,7 @@ class ExchangeRateCell: UITableViewCell {
   private func setupView() {
     contentView.addSubview(verticalStack)
     verticalStack.translatesAutoresizingMaskIntoConstraints = false
-    verticalStack.pinEdges(to: contentView, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
+    verticalStack.pinEdges(to: contentView, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin), priority: .defaultLow)
     verticalStack.addArrangedSubview(titleRow)
     verticalStack.addArrangedSubview(descriptionRow)
   }

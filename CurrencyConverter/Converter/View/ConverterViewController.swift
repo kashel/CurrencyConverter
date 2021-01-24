@@ -38,8 +38,6 @@ class ConverterViewController: UIViewController {
     self.viewModel = viewModel
     self.cellModelMapper = cellModelMapper
     super.init(nibName: nil, bundle: nil)
-    self.view.backgroundColor = colorProvider.background
-    self.title = "Rates & converter"
     setup()
   }
   
@@ -56,6 +54,8 @@ class ConverterViewController: UIViewController {
 //MARK: setup
 private extension ConverterViewController {
   func setupView() {
+    self.view.backgroundColor = colorProvider.background
+    self.title = "Rates & converter"
     let contentView = viewComponentsFactory.makeMainView(with: addCurrencyView)
     view.addSubview(contentView)
     contentView.pinToSafeArea(of: view)
