@@ -4,13 +4,7 @@
 
 import UIKit
 
-extension UIView {
-  static var verticalSpacer: UIView {
-    let view = UIView()
-    view.setContentHuggingPriority(.defaultLow, for: .vertical)
-    return view
-  }
-  
+extension UIView {  
   static var horizontalSpacer: UIView {
     let view = UIView()
     view.setContentHuggingPriority(.defaultLow, for: .horizontal)

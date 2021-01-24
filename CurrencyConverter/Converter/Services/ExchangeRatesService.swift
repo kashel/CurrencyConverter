@@ -18,7 +18,7 @@ protocol ExchangeRatesServiceProtocol {
 struct ExchangeRateService: ExchangeRatesServiceProtocol {
   let fetchDecodableNetworkService: FetchDecodableNetworkServiceProtocol
   let baseURL: String = "https://europe-west1-revolut-230009.cloudfunctions.net/revolut-ios"
-  let mapper = ExchangeRatesDTOMapper()
+  let mapper = ExchangeRatesDTOMapper(currencyService: CurrencyService())
   
   init(fetchDecodableNetworkService: FetchDecodableNetworkServiceProtocol = FetchDecodableNetworkService()) {
     self.fetchDecodableNetworkService = fetchDecodableNetworkService

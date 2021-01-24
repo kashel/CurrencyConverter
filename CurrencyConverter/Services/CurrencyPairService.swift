@@ -43,8 +43,10 @@ class CurrencyPairService: CurrencyPairServiceProtocol {
     let newCurrencyPairsCollection = savedCurrencyPairs.filter{ $0 != currencyPair }
     save(currencyPairs: newCurrencyPairsCollection)
   }
-  
-  private func save(currencyPairs: [CurrencyPair]) {
+}
+
+private extension CurrencyPairService {
+  func save(currencyPairs: [CurrencyPair]) {
     guard let encoded = try? encoder.encode(currencyPairs) else {
       assertionFailure("Unable to encode curriencies collection: \(currencyPairs)")
       return

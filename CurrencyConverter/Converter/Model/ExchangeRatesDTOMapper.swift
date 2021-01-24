@@ -4,8 +4,12 @@
 
 import Foundation
 
-struct ExchangeRatesDTOMapper {
-  let currencyService = CurrencyService()
+protocol ExchangeRatesDTOMapperProtocol {
+  func map(dto: ExchangeRateDTO) -> ExchangeRateModel
+}
+
+struct ExchangeRatesDTOMapper: ExchangeRatesDTOMapperProtocol {
+  let currencyService: CurrencyServiceProtocol
   func map(dto: ExchangeRateDTO) -> ExchangeRateModel {
     let sendCurrencyCode = String(dto.currencySymbolsPair.prefix(3)).uppercased()
     let receiveCurrencyCode = String(dto.currencySymbolsPair.suffix(3)).uppercased()

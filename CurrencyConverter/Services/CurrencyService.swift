@@ -7,13 +7,14 @@ import Foundation
 protocol CurrencyServiceProtocol {
   var availableCurrencies: [Currency] { get }
   var supportedCurrenciesCount: Int { get }
+  func findAvailableCurrency(by currencyCode: String) -> Currency?
 }
 
 class CurrencyService: CurrencyServiceProtocol {
   typealias CurrencyCode = String
   typealias RegionCode = String
-  
-  lazy var supportedCurrencyCodes: [String] = {
+
+  private lazy var supportedCurrencyCodes: [String] = {
     [
       "GBP",
       "EUR",
@@ -50,22 +51,6 @@ class CurrencyService: CurrencyServiceProtocol {
     ]
   }()
   
-  lazy var supportedCurrenciesCount: Int = supportedCurrencyCodes.count
-  
-  var availableCurrencies: [Currency] {
-    supportedCurrencyCodes.compactMap{
-      guard let countryCode = countryCode(for: $0) else {
-        assertionFailure("Unable to map currency: \($0) to country code")
-        return nil
-      }
-      return Currency(code: $0, countryCode: countryCode)
-    }
-  }
-  
-  func findAvailableCurrency(by currencyCode: String) -> Currency? {
-    return availableCurrencies.first(where: { $0.code == currencyCode })
-  }
-  
   private lazy var supportedCurrencyCodesSet: Set<String> = {
     Set(supportedCurrencyCodes)
   }()
@@ -85,7 +70,25 @@ class CurrencyService: CurrencyServiceProtocol {
     return currencyToCountryCodeMap
   }()
   
-  private func countryCode(for currencyCode: CurrencyCode) -> RegionCode? {
+  lazy var supportedCurrenciesCount: Int = supportedCurrencyCodes.count
+  
+  var availableCurrencies: [Currency] {
+    supportedCurrencyCodes.compactMap{
+      guard let countryCode = countryCode(for: $0) else {
+        assertionFailure("Unable to map currency: \($0) to country code")
+        return nil
+      }
+      return Currency(code: $0, countryCode: countryCode)
+    }
+  }
+  
+  func findAvailableCurrency(by currencyCode: String) -> Currency? {
+    return availableCurrencies.first(where: { $0.code == currencyCode })
+  }
+}
+
+private extension CurrencyService {
+  func countryCode(for currencyCode: CurrencyCode) -> RegionCode? {
     return supportedCurrenciesToRegionMap.first { (key, _) -> Bool in
       key == currencyCode
     }?.value
