@@ -13,51 +13,22 @@ class ConverterViewController: UIViewController {
   struct Constants {
     static let margin: CGFloat = 16
   }
-  private let colorProvider = ColorProvider()
-  private let tableView: UITableView = {
-    let table = UITableView()
-    table.separatorStyle = .none
-    table.allowsSelection = false
-    return table
-  }()
-  private let addCurrencyView = AddCurrencyPairView()
+
   var viewModel: ConverterViewModel
-  private let cellModelMapper: ExchangeRateCellModelMapper
   var cellsDataCache: [ExchangeRateCellModel] = []
-  
-  lazy var verticalStackView: UIStackView = {
-    let stack = UIStackView()
-    stack.axis = .vertical
-    stack.spacing = Constants.margin
-    return stack
-  }()
-  
-  lazy var horizontalStackView: UIStackView = {
-    let stack = UIStackView()
-    stack.axis = .horizontal
-    return stack
-  }()
-  
-  lazy var activityIndicator: UIActivityIndicatorView = {
-    let style: UIActivityIndicatorView.Style = traitCollection.userInterfaceStyle == .dark ? .white : .gray
-    let activityIndicator = UIActivityIndicatorView(style: style)
-    activityIndicator.hidesWhenStopped = true
-    return activityIndicator
-  }()
-  
-  lazy var editButton: UIButton = {
-    let button = UIButton()
-    button.setTitle(editState.buttonTitle, for: .normal)
-    button.setTitleColor(colorProvider.link, for: .normal)
-    button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
-    return button
-  }()
   
   var editState: EditState = .viewing {
     didSet {
       addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
     }
   }
+  private let cellModelMapper: ExchangeRateCellModelMapper
+  private let addCurrencyView = AddCurrencyPairView()
+  private let colorProvider = ColorProvider()
+  lazy var tableView = viewComponentsFactory.tableView
+  private lazy var viewComponentsFactory: ViewComponentsFactory = ViewComponentsFactory(userInterfaceStyle: traitCollection.userInterfaceStyle)
+  private lazy var editButton = viewComponentsFactory.editButton
+  
   
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
     self.viewModel = viewModel
@@ -81,16 +52,16 @@ class ConverterViewController: UIViewController {
 //MARK: setup
 private extension ConverterViewController {
   func setupView() {
-    horizontalStackView.addArrangedSubview(addCurrencyView)
-    horizontalStackView.addArrangedSubview(.horizontalSpacer)
-    horizontalStackView.addArrangedSubview(editButton)
+    viewComponentsFactory.horizontalStackView.addArrangedSubview(addCurrencyView)
+    viewComponentsFactory.horizontalStackView.addArrangedSubview(.horizontalSpacer)
+    viewComponentsFactory.horizontalStackView.addArrangedSubview(viewComponentsFactory.editButton)
     let wrapper = UIView()
-    wrapper.addSubview(horizontalStackView)
-    horizontalStackView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
-    verticalStackView.addArrangedSubview(wrapper)
-    verticalStackView.addArrangedSubview(tableView)
-    view.addSubview(verticalStackView)
-    verticalStackView.pinToSafeArea(of: view)
+    wrapper.addSubview(viewComponentsFactory.horizontalStackView)
+    viewComponentsFactory.horizontalStackView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
+    viewComponentsFactory.verticalStackView.addArrangedSubview(wrapper)
+    viewComponentsFactory.verticalStackView.addArrangedSubview(tableView)
+    view.addSubview(viewComponentsFactory.verticalStackView)
+    viewComponentsFactory.verticalStackView.pinToSafeArea(of: view)
   }
   
   func setup() {
@@ -153,12 +124,12 @@ extension ConverterViewController {
 //MARK: activity indicator
 extension ConverterViewController {
   private func showActivityIndicator() {
-    self.view.addSubview(self.activityIndicator)
-    self.activityIndicator.center = self.view.center
-    self.activityIndicator.startAnimating()
+    self.view.addSubview(viewComponentsFactory.activityIndicator)
+    viewComponentsFactory.activityIndicator.center = self.view.center
+    viewComponentsFactory.activityIndicator.startAnimating()
   }
   
   private func hideAcivityIndicator() {
-    self.activityIndicator.stopAnimating()
+    viewComponentsFactory.activityIndicator.stopAnimating()
   }
 }

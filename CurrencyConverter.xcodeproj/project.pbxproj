@@ -49,6 +49,7 @@
 		978D6BB925BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BB825BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift */; };
 		978D6BBE25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BBD25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift */; };
 		978D6BC325BD92C600B87CAF /* ConverterViewController+EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BC225BD92C600B87CAF /* ConverterViewController+EditState.swift */; };
+		978D6BC825BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BC725BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift */; };
 		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
 		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
 		97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */; };
@@ -122,6 +123,7 @@
 		978D6BB825BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		978D6BBD25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		978D6BC225BD92C600B87CAF /* ConverterViewController+EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+EditState.swift"; sourceTree = "<group>"; };
+		978D6BC725BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+ViewComponentsFactory.swift"; sourceTree = "<group>"; };
 		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
 		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				978D6BB825BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift */,
 				978D6BBD25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift */,
 				978D6BC225BD92C600B87CAF /* ConverterViewController+EditState.swift */,
+				978D6BC725BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				9745B5B825BA2C330050DAFC /* MockExchangeRatesService.swift in Sources */,
 				9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */,
 				9719411F25B22A770030341D /* ViewController.swift in Sources */,
+				978D6BC825BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift in Sources */,
 				9745B5C825BAB8220050DAFC /* OSLog+Category.swift in Sources */,
 				9753B5D025B3204800F0CB8A /* CurrencySelectionViewController.swift in Sources */,
 				9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */,
