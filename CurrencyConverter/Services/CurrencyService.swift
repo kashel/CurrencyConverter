@@ -14,6 +14,8 @@ class CurrencyService: CurrencyServiceProtocol {
   typealias CurrencyCode = String
   typealias RegionCode = String
 
+  public init() {}
+  
   private lazy var supportedCurrencyCodes: [String] = {
     [
       "GBP",
