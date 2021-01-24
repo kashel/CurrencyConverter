@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var applicationCoordinator: AppCoordinator!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    window = UIWindow(frame: UIScreen.main.bounds)
     let currencyPairService = CurrencyPairService(currencyService: CurrencyService())
     let startScreen: AppCoordinator.StartScreen = currencyPairService.savedCurrencyPairs.count > 0 ? .converter : .dashboard
     applicationCoordinator = AppCoordinator(window: window, startScreen: startScreen)

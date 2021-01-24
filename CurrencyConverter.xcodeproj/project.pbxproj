@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9719411B25B22A770030341D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719411A25B22A770030341D /* AppDelegate.swift */; };
-		9719411F25B22A770030341D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719411E25B22A770030341D /* ViewController.swift */; };
-		9719412225B22A770030341D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9719412025B22A770030341D /* Main.storyboard */; };
 		9719412425B22A780030341D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9719412325B22A780030341D /* Assets.xcassets */; };
 		9719412725B22A780030341D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9719412525B22A780030341D /* LaunchScreen.storyboard */; };
 		9719413225B22A790030341D /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719413125B22A790030341D /* CurrencyConverterTests.swift */; };
@@ -79,8 +77,6 @@
 /* Begin PBXFileReference section */
 		9719411725B22A770030341D /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9719411A25B22A770030341D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9719411E25B22A770030341D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9719412125B22A770030341D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9719412325B22A780030341D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9719412625B22A780030341D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9719412825B22A780030341D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,8 +188,6 @@
 				9753B5A725B235BA00F0CB8A /* Converter */,
 				9753B5A625B2358E00F0CB8A /* CurrencySelection */,
 				9719411A25B22A770030341D /* AppDelegate.swift */,
-				9719411E25B22A770030341D /* ViewController.swift */,
-				9719412025B22A770030341D /* Main.storyboard */,
 				9719412525B22A780030341D /* LaunchScreen.storyboard */,
 				9719412825B22A780030341D /* Info.plist */,
 				9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */,
@@ -496,7 +490,6 @@
 				9719412725B22A780030341D /* LaunchScreen.storyboard in Resources */,
 				9719412425B22A780030341D /* Assets.xcassets in Resources */,
 				9745B5AE25B636F50050DAFC /* Roboto-Regular.ttf in Resources */,
-				9719412225B22A770030341D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +537,6 @@
 				9745B5B825BA2C330050DAFC /* MockExchangeRatesService.swift in Sources */,
 				978D6BCD25BDB0BB00B87CAF /* DashboardViewController+ViewComponentsFactory.swift in Sources */,
 				9753B61425B42ABE00F0CB8A /* AddCurrencyPairView.swift in Sources */,
-				9719411F25B22A770030341D /* ViewController.swift in Sources */,
 				978D6BC825BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift in Sources */,
 				9745B5C825BAB8220050DAFC /* OSLog+Category.swift in Sources */,
 				9753B5D025B3204800F0CB8A /* CurrencySelectionViewController.swift in Sources */,
@@ -600,14 +592,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9719412025B22A770030341D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9719412125B22A770030341D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9719412525B22A780030341D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
