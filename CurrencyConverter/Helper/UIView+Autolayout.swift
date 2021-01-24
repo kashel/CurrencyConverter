@@ -58,6 +58,26 @@ extension UIView {
     }
   }
   
+  func pinMaximalToSafeArea(of other: UIView, offsets: UIEdgeInsets = .zero, edges: UIRectEdge = .all) {
+    self.translatesAutoresizingMaskIntoConstraints = false
+    if edges.contains(.left) || edges.contains(.all) {
+      let constraint = leadingAnchor.constraint(lessThanOrEqualTo:  other.safeAreaLayoutGuide.leadingAnchor, constant: offsets.left)
+      constraint.isActive = true
+    }
+    if edges.contains(.right) || edges.contains(.all) {
+      let constraint = trailingAnchor.constraint(greaterThanOrEqualTo: other.safeAreaLayoutGuide.trailingAnchor, constant: offsets.right)
+      constraint.isActive = true
+    }
+    if edges.contains(.top) || edges.contains(.all) {
+      let constraint = topAnchor.constraint(greaterThanOrEqualTo: other.safeAreaLayoutGuide.topAnchor, constant: offsets.top)
+      constraint.isActive = true
+    }
+    if edges.contains(.bottom) || edges.contains(.all) {
+      let constraint = bottomAnchor.constraint(lessThanOrEqualTo: other.safeAreaLayoutGuide.bottomAnchor, constant: offsets.bottom)
+      constraint.isActive = true
+    }
+  }
+  
   func center(with other: UIView, axis: Axis? = nil) {
     if let axis = axis, axis == .horizontal {
       centerXAnchor.constraint(equalTo: other.centerXAnchor).isActive = true
