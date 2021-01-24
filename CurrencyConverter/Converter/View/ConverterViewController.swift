@@ -48,10 +48,13 @@ class ConverterViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
+    let notificationCenter = NotificationCenter.default
+    notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
   }
 }
 
-//MARK: setup
+//MARK: - setup
 private extension ConverterViewController {
   func setupView() {
     self.view.backgroundColor = colorProvider.background
@@ -104,8 +107,8 @@ private extension ConverterViewController {
   }
 }
 
-//MARK: buttons actions
-extension ConverterViewController {
+//MARK: - buttons actions
+private extension ConverterViewController {
   @objc func addCurrencyPairButtonTapped() {
     viewModel.addCurrencyPair()
   }
@@ -118,8 +121,8 @@ extension ConverterViewController {
   }
 }
 
-//MARK: activity indicator
-extension ConverterViewController {
+//MARK: - activity indicator
+private extension ConverterViewController {
   private func showActivityIndicator() {
     self.view.addSubview(viewComponentsFactory.activityIndicator)
     viewComponentsFactory.activityIndicator.center = self.view.center
@@ -128,5 +131,15 @@ extension ConverterViewController {
   
   private func hideAcivityIndicator() {
     viewComponentsFactory.activityIndicator.stopAnimating()
+  }
+}
+
+//MARK: - application lifecycle events
+private extension ConverterViewController {
+  @objc func appMovedToBackground() {
+    viewModel.viewDidChangeDataProcessingCapability(canProcessData: false)
+  }
+  @objc func appMovedToForeground() {
+    viewModel.viewDidChangeDataProcessingCapability(canProcessData: true)
   }
 }
