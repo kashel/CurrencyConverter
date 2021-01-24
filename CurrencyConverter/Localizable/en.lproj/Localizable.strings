@@ -1,0 +1,11 @@
+//
+//  Created by Ireneusz Sołek
+//
+
+
+"addCurrencyPair" = "Add currency pair";
+"edit" = "Edit";
+"done" = "Done";
+"sendCurrency" = "Send currency";
+"receiveCurrency" = "Receive currency";
+"chooseCurrencyPair" = "Choose a currency pair to compare their live rates";

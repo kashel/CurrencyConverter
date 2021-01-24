@@ -35,7 +35,7 @@ extension DashboardViewConroller {
     
     private lazy var subtitle: UILabel = {
       let label = UILabel()
-      label.text = "Choose a currency pair to compare their live rates"
+      label.text = L10n.chooseCurrencyPair
       label.font = fontProvider.subtitle
       label.textColor = colorProvider.description
       label.numberOfLines = 0

@@ -17,9 +17,9 @@ extension ConverterViewController.EditState {
   var buttonTitle: String {
     switch self {
     case .editing:
-      return "Done"
+      return L10n.done
     case .viewing:
-      return "Edit"
+      return L10n.edit
     }
   }
 }

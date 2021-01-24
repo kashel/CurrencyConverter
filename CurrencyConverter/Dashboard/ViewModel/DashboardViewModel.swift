@@ -8,7 +8,7 @@ struct DashboardViewModel {
   weak var coordinator: DashboardCoordinator?
   
   var ctaButtonTitle: String {
-    return "Add currency pair"
+    return L10n.addCurrencyPair
   }
   
   func continueAction() {

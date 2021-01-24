@@ -21,9 +21,9 @@ struct CurrencySelectionViewModel {
   lazy var title: String = {
     switch ctaAction {
     case .currencyPairSelected:
-      return "Receive currency"
+      return L10n.receiveCurrency
     case.goToReceiveCurrencySelection:
-      return "Send currency"
+      return L10n.sendCurrency
     }
   }()
   
