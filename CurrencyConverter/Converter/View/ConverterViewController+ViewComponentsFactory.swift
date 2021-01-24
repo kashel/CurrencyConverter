@@ -5,7 +5,7 @@
 import UIKit
 
 extension ConverterViewController {
-  struct ViewComponentsFactory {
+  class ViewComponentsFactory {
     let userInterfaceStyle: UIUserInterfaceStyle
     
     init(userInterfaceStyle: UIUserInterfaceStyle) {
@@ -46,5 +46,22 @@ extension ConverterViewController {
       button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
       return button
     }()
+    
+    func makeMainView(with addCurrencyView: UIView) -> UIView {
+      horizontalStackView.addArrangedSubview(addCurrencyView)
+      horizontalStackView.addArrangedSubview(.horizontalSpacer)
+      horizontalStackView.addArrangedSubview(editButton)
+      let header = addDefaultMargins(to: horizontalStackView)
+      verticalStackView.addArrangedSubview(header)
+      verticalStackView.addArrangedSubview(tableView)
+      return verticalStackView
+    }
+    
+    private func addDefaultMargins(to contentView: UIView) -> UIView {
+      let wrapper = UIView()
+      wrapper.addSubview(contentView)
+      contentView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
+      return wrapper
+    }
   }
 }

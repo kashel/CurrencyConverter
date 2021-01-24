@@ -27,7 +27,11 @@ class ConverterViewController: UIViewController {
   private let colorProvider = ColorProvider()
   lazy var tableView = viewComponentsFactory.tableView
   private lazy var viewComponentsFactory: ViewComponentsFactory = ViewComponentsFactory(userInterfaceStyle: traitCollection.userInterfaceStyle)
-  private lazy var editButton = viewComponentsFactory.editButton
+  private lazy var editButton: UIButton = {
+    let button = viewComponentsFactory.editButton
+    button.setTitle(editState.buttonTitle, for: .normal)
+    return button
+  }()
   
   
   init(viewModel: ConverterViewModel, cellModelMapper: ExchangeRateCellModelMapper) {
@@ -52,16 +56,9 @@ class ConverterViewController: UIViewController {
 //MARK: setup
 private extension ConverterViewController {
   func setupView() {
-    viewComponentsFactory.horizontalStackView.addArrangedSubview(addCurrencyView)
-    viewComponentsFactory.horizontalStackView.addArrangedSubview(.horizontalSpacer)
-    viewComponentsFactory.horizontalStackView.addArrangedSubview(viewComponentsFactory.editButton)
-    let wrapper = UIView()
-    wrapper.addSubview(viewComponentsFactory.horizontalStackView)
-    viewComponentsFactory.horizontalStackView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
-    viewComponentsFactory.verticalStackView.addArrangedSubview(wrapper)
-    viewComponentsFactory.verticalStackView.addArrangedSubview(tableView)
-    view.addSubview(viewComponentsFactory.verticalStackView)
-    viewComponentsFactory.verticalStackView.pinToSafeArea(of: view)
+    let contentView = viewComponentsFactory.makeMainView(with: addCurrencyView)
+    view.addSubview(contentView)
+    contentView.pinToSafeArea(of: view)
   }
   
   func setup() {
