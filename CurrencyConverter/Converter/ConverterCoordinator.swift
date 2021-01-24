@@ -12,7 +12,8 @@ class ConverterCoordinator: Coordinator {
   
   func start() -> UIViewController {
     let currencyService = CurrencyService()
-    let exchangeRateService = ExchangeRateService()
+    let exchangeRatesDTOMapper = ExchangeRatesDTOMapper(currencyService: currencyService)
+    let exchangeRateService = ExchangeRateService(exchangeRatesDTOMapper: exchangeRatesDTOMapper)
     let currencyPairService = CurrencyPairService(currencyService: currencyService)
     rootViewModel = ConverterViewModel(currencyPairService: currencyPairService, exchangeRateService: exchangeRateService)
     rootViewModel.coordinator = self

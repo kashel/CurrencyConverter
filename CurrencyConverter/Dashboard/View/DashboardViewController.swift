@@ -10,11 +10,11 @@ class DashboardViewConroller: UIViewController {
     static let iconSize: CGFloat = 60
   }
   
-  let viewModel: DashboardViewModel
-  let fontProvider = FontProvider()
-  let colorProvider = ColorProvider()
+  private let viewModel: DashboardViewModel
+  private let fontProvider = FontProvider()
+  private let colorProvider = ColorProvider()
   
-  lazy var button: UIButton = {
+  private lazy var button: UIButton = {
     let newButton = UIButton(type: .custom)
     newButton.titleLabel?.font = fontProvider.title
     newButton.setTitle(viewModel.ctaButtonTitle, for: .normal)
@@ -23,7 +23,7 @@ class DashboardViewConroller: UIViewController {
     return newButton
   }()
   
-  lazy var verticalStackView: UIStackView = {
+  private lazy var verticalStackView: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical
     stack.spacing = Constants.margin
@@ -31,7 +31,7 @@ class DashboardViewConroller: UIViewController {
     return stack
   }()
   
-  lazy var icon: UIImageView = {
+  private lazy var icon: UIImageView = {
     let image = #imageLiteral(resourceName: "Plus")
     let imageView = UIImageView(image: image)
     imageView.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
@@ -39,7 +39,7 @@ class DashboardViewConroller: UIViewController {
     return imageView
   }()
   
-  lazy var subtitle: UILabel = {
+  private lazy var subtitle: UILabel = {
     let label = UILabel()
     label.text = "Choose a currency pair to compare their live rates"
     label.font = fontProvider.subtitle
