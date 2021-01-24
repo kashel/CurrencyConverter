@@ -8,24 +8,6 @@ class ConverterViewController: UIViewController {
   enum EditState {
     case editing
     case viewing
-    
-    func toggle() -> Self {
-      switch self {
-      case .editing:
-        return .viewing
-      case .viewing:
-        return .editing
-      }
-    }
-    
-    var buttonTitle: String {
-      switch self {
-      case .editing:
-        return "Done"
-      case .viewing:
-        return "Edit"
-      }
-    }
   }
   
   struct Constants {
@@ -39,9 +21,9 @@ class ConverterViewController: UIViewController {
     return table
   }()
   private let addCurrencyView = AddCurrencyPairView()
-  private var viewModel: ConverterViewModel
+  var viewModel: ConverterViewModel
   private let cellModelMapper: ExchangeRateCellModelMapper
-  private var cellsDataCache: [ExchangeRateCellModel] = []
+  var cellsDataCache: [ExchangeRateCellModel] = []
   
   lazy var verticalStackView: UIStackView = {
     let stack = UIStackView()
@@ -94,8 +76,11 @@ class ConverterViewController: UIViewController {
     super.viewDidLoad()
     setupView()
   }
-  
-  private func setupView() {
+}
+
+//MARK: setup
+private extension ConverterViewController {
+  func setupView() {
     horizontalStackView.addArrangedSubview(addCurrencyView)
     horizontalStackView.addArrangedSubview(.horizontalSpacer)
     horizontalStackView.addArrangedSubview(editButton)
@@ -108,7 +93,7 @@ class ConverterViewController: UIViewController {
     verticalStackView.pinToSafeArea(of: view)
   }
   
-  private func setup() {
+  func setup() {
     tableView.dataSource = self
     tableView.delegate = self
     tableView.register(ExchangeRateCell.self, forCellReuseIdentifier: "exchangeRate")
@@ -118,7 +103,7 @@ class ConverterViewController: UIViewController {
     viewModel.startLoading()
   }
   
-  private func bindViewModel() {
+  func bindViewModel() {
     viewModel.actions = { [weak self] viewModelAction in
       guard let self = self else {
         return
@@ -149,7 +134,10 @@ class ConverterViewController: UIViewController {
       }
     }
   }
-  
+}
+
+//MARK: buttons actions
+extension ConverterViewController {
   @objc func addCurrencyPairButtonTapped() {
     viewModel.addCurrencyPair()
   }
@@ -160,7 +148,10 @@ class ConverterViewController: UIViewController {
     editButton.setTitle(editState.buttonTitle, for: .normal)
     tableView.setEditing(editState == .editing, animated: true)
   }
-  
+}
+
+//MARK: activity indicator
+extension ConverterViewController {
   private func showActivityIndicator() {
     self.view.addSubview(self.activityIndicator)
     self.activityIndicator.center = self.view.center
@@ -169,34 +160,5 @@ class ConverterViewController: UIViewController {
   
   private func hideAcivityIndicator() {
     self.activityIndicator.stopAnimating()
-  }
-}
-
-extension ConverterViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return cellsDataCache.count
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "exchangeRate") as? ExchangeRateCell else {
-      return UITableViewCell()
-    }
-    cell.configure(with: cellsDataCache[indexPath.row])
-    return cell
-  }
-}
-
-
-extension ConverterViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    return editState == .editing
-  }
-  
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-      viewModel.viewDidDeleteCurrencyPairAt(index: indexPath.row)
-      if editingStyle == .delete {
-          cellsDataCache.remove(at: indexPath.row)
-          tableView.deleteRows(at: [indexPath], with: .fade)
-      }
   }
 }

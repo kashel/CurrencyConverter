@@ -46,6 +46,9 @@
 		9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */; };
 		978D6BAF25BB882E00B87CAF /* LabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BAE25BB882E00B87CAF /* LabelDecorator.swift */; };
 		978D6BB425BB887B00B87CAF /* SignificantPartLabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BB325BB887B00B87CAF /* SignificantPartLabelDecorator.swift */; };
+		978D6BB925BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BB825BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift */; };
+		978D6BBE25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BBD25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift */; };
+		978D6BC325BD92C600B87CAF /* ConverterViewController+EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BC225BD92C600B87CAF /* ConverterViewController+EditState.swift */; };
 		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
 		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
 		97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */; };
@@ -116,6 +119,9 @@
 		9753B64425B442B200F0CB8A /* ExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesService.swift; sourceTree = "<group>"; };
 		978D6BAE25BB882E00B87CAF /* LabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecorator.swift; sourceTree = "<group>"; };
 		978D6BB325BB887B00B87CAF /* SignificantPartLabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignificantPartLabelDecorator.swift; sourceTree = "<group>"; };
+		978D6BB825BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		978D6BBD25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		978D6BC225BD92C600B87CAF /* ConverterViewController+EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+EditState.swift"; sourceTree = "<group>"; };
 		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
 		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -321,6 +327,9 @@
 				9753B62825B4353500F0CB8A /* ExchangeRateCellRow.swift */,
 				978D6BAE25BB882E00B87CAF /* LabelDecorator.swift */,
 				978D6BB325BB887B00B87CAF /* SignificantPartLabelDecorator.swift */,
+				978D6BB825BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift */,
+				978D6BBD25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift */,
+				978D6BC225BD92C600B87CAF /* ConverterViewController+EditState.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -516,9 +525,12 @@
 				9753B64525B442B200F0CB8A /* ExchangeRatesService.swift in Sources */,
 				9753B5F025B3290C00F0CB8A /* CurrencySelectionCell.swift in Sources */,
 				9753B61E25B42C6C00F0CB8A /* ExchangeRateCellModel.swift in Sources */,
+				978D6BBE25BD907800B87CAF /* ConverterViewController+UITableViewDelegate.swift in Sources */,
 				9753B5FA25B369C700F0CB8A /* CurrencyPair.swift in Sources */,
 				9753B5F525B32FDB00F0CB8A /* CurrencySelectionCellModelMapper.swift in Sources */,
+				978D6BB925BD903F00B87CAF /* ConverterViewController+UITableViewDataSource.swift in Sources */,
 				9745B5BE25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift in Sources */,
+				978D6BC325BD92C600B87CAF /* ConverterViewController+EditState.swift in Sources */,
 				9753B62425B4307E00F0CB8A /* UIView+Spacer.swift in Sources */,
 				9753B62E25B4354C00F0CB8A /* ExchangeRateCellRowModel.swift in Sources */,
 				9753B60F25B3721900F0CB8A /* ConverterViewModel.swift in Sources */,
