@@ -11,14 +11,12 @@ protocol CurrencyPairServiceProtocol {
 }
 
 class CurrencyPairService: CurrencyPairServiceProtocol {
-  let currencyService: CurrencyServiceProtocol
   let userDefaults: UserDefaults
   let userDefaultsKey = "savedCurrencies"
   let encoder = JSONEncoder()
   let decoder = JSONDecoder()
   
-  init(currencyService: CurrencyServiceProtocol, userDefaults: UserDefaults = .standard) {
-    self.currencyService = currencyService
+  init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
   }
   

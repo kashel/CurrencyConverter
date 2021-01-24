@@ -5,7 +5,7 @@
 import Foundation
 
 struct DashboardViewModel {
-  weak var coordinator: DashboardCoordinator?
+  weak var coordinator: DashboardCoordinatorProtocol?
   
   var ctaButtonTitle: String {
     return L10n.addCurrencyPair

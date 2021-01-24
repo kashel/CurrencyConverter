@@ -54,6 +54,11 @@
 		978D6BE225BDBB1E00B87CAF /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BE125BDBB1E00B87CAF /* L10n.swift */; };
 		978D6BEF25BDBCB400B87CAF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 978D6BF125BDBCB400B87CAF /* Localizable.strings */; };
 		978D6BF725BDC83000B87CAF /* CurrencyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BF625BDC83000B87CAF /* CurrencyServiceTests.swift */; };
+		978D6BFF25BDD7F400B87CAF /* CurrencyPairServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6BFE25BDD7F400B87CAF /* CurrencyPairServiceTests.swift */; };
+		978D6C0525BDE71D00B87CAF /* CurrencyPairMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6C0425BDE71D00B87CAF /* CurrencyPairMock.swift */; };
+		978D6C0D25BDE7B300B87CAF /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6C0C25BDE7B300B87CAF /* UserDefaultsMock.swift */; };
+		978D6C1325BDF05300B87CAF /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6C1225BDF05300B87CAF /* DashboardViewModelTests.swift */; };
+		978D6C1B25BDF12400B87CAF /* DashboardCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D6C1A25BDF12400B87CAF /* DashboardCoordinatorMock.swift */; };
 		97B89EDF25B44FC600BF540E /* ExchangeRateCellModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */; };
 		97B89EE725B4837E00BF540E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */; };
 		97F08F4025B4B7AB00380F41 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */; };
@@ -132,6 +137,11 @@
 		978D6BE125BDBB1E00B87CAF /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		978D6BF025BDBCB400B87CAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		978D6BF625BDC83000B87CAF /* CurrencyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceTests.swift; sourceTree = "<group>"; };
+		978D6BFE25BDD7F400B87CAF /* CurrencyPairServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairServiceTests.swift; sourceTree = "<group>"; };
+		978D6C0425BDE71D00B87CAF /* CurrencyPairMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairMock.swift; sourceTree = "<group>"; };
+		978D6C0C25BDE7B300B87CAF /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
+		978D6C1225BDF05300B87CAF /* DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTests.swift; sourceTree = "<group>"; };
+		978D6C1A25BDF12400B87CAF /* DashboardCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinatorMock.swift; sourceTree = "<group>"; };
 		97B89EDE25B44FC600BF540E /* ExchangeRateCellModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCellModelMapper.swift; sourceTree = "<group>"; };
 		97B89EE625B4837E00BF540E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		97F08F3F25B4B7AB00380F41 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -210,6 +220,8 @@
 		9719413025B22A790030341D /* CurrencyConverterTests */ = {
 			isa = PBXGroup;
 			children = (
+				978D6C1125BDF04100B87CAF /* Dashboard */,
+				978D6C0325BDE70C00B87CAF /* Mocks */,
 				978D6BF525BDC82000B87CAF /* Services */,
 				9719413125B22A790030341D /* CurrencyConverterTests.swift */,
 				9719413325B22A790030341D /* Info.plist */,
@@ -393,8 +405,27 @@
 			isa = PBXGroup;
 			children = (
 				978D6BF625BDC83000B87CAF /* CurrencyServiceTests.swift */,
+				978D6BFE25BDD7F400B87CAF /* CurrencyPairServiceTests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		978D6C0325BDE70C00B87CAF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				978D6C0425BDE71D00B87CAF /* CurrencyPairMock.swift */,
+				978D6C0C25BDE7B300B87CAF /* UserDefaultsMock.swift */,
+				978D6C1A25BDF12400B87CAF /* DashboardCoordinatorMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		978D6C1125BDF04100B87CAF /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				978D6C1225BDF05300B87CAF /* DashboardViewModelTests.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		97F08F5725B60BDD00380F41 /* Resources */ = {
@@ -599,7 +630,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				978D6C0D25BDE7B300B87CAF /* UserDefaultsMock.swift in Sources */,
+				978D6BFF25BDD7F400B87CAF /* CurrencyPairServiceTests.swift in Sources */,
 				978D6BF725BDC83000B87CAF /* CurrencyServiceTests.swift in Sources */,
+				978D6C1325BDF05300B87CAF /* DashboardViewModelTests.swift in Sources */,
+				978D6C0525BDE71D00B87CAF /* CurrencyPairMock.swift in Sources */,
+				978D6C1B25BDF12400B87CAF /* DashboardCoordinatorMock.swift in Sources */,
 				9719413225B22A790030341D /* CurrencyConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

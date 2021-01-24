@@ -4,7 +4,11 @@
 
 import UIKit
 
-class DashboardCoordinator: Coordinator {
+protocol DashboardCoordinatorProtocol: AnyObject {
+  func continueToCurrencySelection()
+}
+
+class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
   var childCoordinators: [Coordinator] = []
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var rootViewController: DashboardViewConroller!

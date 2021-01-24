@@ -10,14 +10,14 @@ class CurrencySelectionCoordinator: Coordinator {
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var didSelectCurrencyPair: ((CurrencyPair) -> Void)?
   let currencySelectionCellModelMapper = CurrencySelectionCellModelMapper()
+  private let currencyService = CurrencyService()
+  private let currencyPairService = CurrencyPairService()
   
   init() {
     self.rootViewController = UINavigationController()
   }
   
   func start() -> UIViewController {
-    let currencyService = CurrencyService()
-    let currencyPairService = CurrencyPairService(currencyService: currencyService)
     let viewModel = CurrencySelectionViewModel(ctaAction: .goToReceiveCurrencySelection,
                                                currencySelectionCellModelMapper: currencySelectionCellModelMapper,
                                                currencyPairService: currencyPairService,
@@ -29,8 +29,6 @@ class CurrencySelectionCoordinator: Coordinator {
   }
   
   func selectReceiveCurrency(previouslySelected: Currency) {
-    let currencyService = CurrencyService()
-    let currencyPairService = CurrencyPairService(currencyService: currencyService)
     let viewModel = CurrencySelectionViewModel(ctaAction: .currencyPairSelected(sendCurrency: previouslySelected),
                                                currencySelectionCellModelMapper: currencySelectionCellModelMapper,
                                                currencyPairService: currencyPairService,

@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    let currencyPairService = CurrencyPairService(currencyService: CurrencyService())
+    let currencyPairService = CurrencyPairService()
     let startScreen: AppCoordinator.StartScreen = currencyPairService.savedCurrencyPairs.count > 0 ? .converter : .dashboard
     applicationCoordinator = AppCoordinator(window: window, startScreen: startScreen)
     applicationCoordinator.start()

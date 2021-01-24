@@ -14,7 +14,7 @@ class ConverterCoordinator: Coordinator {
     let currencyService = CurrencyService()
     let exchangeRatesDTOMapper = ExchangeRatesDTOMapper(currencyService: currencyService)
     let exchangeRateService = ExchangeRateService(exchangeRatesDTOMapper: exchangeRatesDTOMapper)
-    let currencyPairService = CurrencyPairService(currencyService: currencyService)
+    let currencyPairService = CurrencyPairService()
     rootViewModel = ConverterViewModel(currencyPairService: currencyPairService, exchangeRateService: exchangeRateService)
     rootViewModel.coordinator = self
     rootViewController = ConverterViewController(viewModel: rootViewModel, cellModelMapper: ExchangeRateCellModelMapper())
