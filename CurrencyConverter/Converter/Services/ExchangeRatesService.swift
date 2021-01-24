@@ -29,7 +29,11 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
     return fetchDecodableNetworkService.get(url: constructURL(with: currencyPairs)) { (result: Result<ExchangeRatesDTO, NetworkError>) in
       switch result {
         case .success(let exchangeRatesDTO):
-          let models = exchangeRatesDTO.array.map(exchangeRatesDTOMapper.map)
+          let models = exchangeRatesDTO.array.compactMap(exchangeRatesDTOMapper.map)
+          guard models.count == exchangeRatesDTO.array.count else {
+            completed(.failure(.parsing))
+            return
+          }
           let grouppedExchangeRates = Dictionary(grouping: models, by: {
             $0.sourceCurrency
           })

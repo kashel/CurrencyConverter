@@ -9,8 +9,7 @@ class DashboardCoordinator: Coordinator {
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var rootViewController: DashboardViewConroller!
   
-  init() {
-  }
+  init() {}
   
   func start() -> UIViewController {
     let dashboardViewModel = DashboardViewModel(coordinator: self)
