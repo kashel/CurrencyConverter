@@ -86,13 +86,15 @@ class ConverterViewModel {
       startLoading()
     }
   }
-  
-  private func cancelLoading() {
+}
+
+private extension ConverterViewModel {
+  func cancelLoading() {
     pendingDispatchWork?.cancel()
     cancelExchangeRangeFetching?()
   }
   
-  private func logLoadingError(_ error: ExchangeRateServiceError) {
+  func logLoadingError(_ error: ExchangeRateServiceError) {
     switch error {
     case .network(let networkError):
       os_log("Failed fetching the data from remote", log: OSLog.data, type: .error, networkError.localizedDescription)
@@ -102,7 +104,7 @@ class ConverterViewModel {
     }
   }
   
-  private func notifyExchangeRatesChange(with exchangeRates: [ExchangeRateModel]) {
+  func notifyExchangeRatesChange(with exchangeRates: [ExchangeRateModel]) {
     guard exchangeRates.count == currentlySelectedPairs.count else {
       assertionFailure("race condition detected in currentlySelectedPairs property")
       return
