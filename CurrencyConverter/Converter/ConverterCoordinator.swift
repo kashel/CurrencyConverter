@@ -5,29 +5,26 @@
 import UIKit
 
 class ConverterCoordinator: Coordinator {
-  typealias Dependencies = ExchangeRatesServiceFactory & CurrencyPairServiceFactory
+  typealias Dependencies = ExchangeRatesServiceFactory & CurrencyPairServiceFactory & CurrencySelectionCoordinator.Dependencies
   var childCoordinators: [Coordinator] = []
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var rootViewController: ConverterViewController!
   var rootViewModel: ConverterViewModel!
-  
-  let exchangeRateService: ExchangeRatesServiceProtocol
-  let currencyPairService: CurrencyPairServiceProtocol
+  private let dependencies: Dependencies
   
   init(dependencies: Dependencies) {
-    self.exchangeRateService = dependencies.exchangeRatesService
-    self.currencyPairService = dependencies.currencyPairService
+    self.dependencies = dependencies
   }
   
   func start() -> UIViewController {
-    rootViewModel = ConverterViewModel(currencyPairService: currencyPairService, exchangeRateService: exchangeRateService)
+    rootViewModel = ConverterViewModel(currencyPairService: dependencies.currencyPairService, exchangeRateService: dependencies.exchangeRatesService)
     rootViewModel.coordinator = self
     rootViewController = ConverterViewController(viewModel: rootViewModel, cellModelMapper: ExchangeRateCellModelMapper())
     return rootViewController
   }
   
   func addCurrencyPair() {
-    let currencySelectionCoordinator = CurrencySelectionCoordinator()
+    let currencySelectionCoordinator = CurrencySelectionCoordinator(dependencies: dependencies)
     add(childCoordinator: currencySelectionCoordinator)
     let currencySelectionViewController = currencySelectionCoordinator.start()
     currencySelectionCoordinator.lifecycle = { [weak self, weak currencySelectionCoordinator] coordinatorLifecycleEvent -> Void in

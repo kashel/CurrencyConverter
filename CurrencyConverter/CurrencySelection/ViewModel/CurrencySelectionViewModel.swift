@@ -36,13 +36,12 @@ struct CurrencySelectionViewModel {
   
   init(ctaAction: CTAAction,
        currencySelectionCellModelMapper: CurrencySelectionCellModelMapperProtocol,
-       currencyPairService: CurrencyPairServiceProtocol,
-       currencyService: CurrencyServiceProtocol,
-       coordinator: CurrencySelectionCoordinator) {
+       coordinator: CurrencySelectionCoordinator,
+       dependencies: Dependencies) {
     self.ctaAction = ctaAction
     self.currencySelectionCellModelMapper = currencySelectionCellModelMapper
-    self.currencyPairService = currencyPairService
-    self.currencyService = currencyService
+    self.currencyPairService = dependencies.currencyPairService
+    self.currencyService = dependencies.currencyService
     self.coordinator = coordinator
   }
   

@@ -31,7 +31,7 @@ final class AppCoordinator : Coordinator {
     case .converter:
       startConverter()
     case .dashboard:
-      let dashboardCoordinator = DashboardCoordinator()
+      let dashboardCoordinator = DashboardCoordinator(dependencies: dependencies)
       add(childCoordinator: dashboardCoordinator)
       let dashboardViewController = dashboardCoordinator.start()
       dashboardCoordinator.lifecycle = {[weak self, weak dashboardCoordinator] childCoordinatorEvent in

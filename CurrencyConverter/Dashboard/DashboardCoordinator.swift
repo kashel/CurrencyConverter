@@ -9,11 +9,15 @@ protocol DashboardCoordinatorProtocol: AnyObject {
 }
 
 class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
+  typealias Dependencies = CurrencySelectionCoordinator.Dependencies
   var childCoordinators: [Coordinator] = []
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var rootViewController: DashboardViewConroller!
+  private let dependencies: Dependencies
   
-  init() {}
+  init(dependencies: Dependencies) {
+    self.dependencies = dependencies
+  }
   
   func start() -> UIViewController {
     let dashboardViewModel = DashboardViewModel(coordinator: self)
@@ -22,7 +26,7 @@ class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
   }
   
   func continueToCurrencySelection() {
-    let currencySelectionCoordinator = CurrencySelectionCoordinator()
+    let currencySelectionCoordinator = CurrencySelectionCoordinator(dependencies: dependencies)
     add(childCoordinator: currencySelectionCoordinator)
     currencySelectionCoordinator.lifecycle = { [weak self] coordinatorLifecycleEvent -> Void in
       switch coordinatorLifecycleEvent {

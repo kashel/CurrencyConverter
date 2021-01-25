@@ -27,6 +27,11 @@ extension DependencyContainer: CurrencyPairServiceFactory {
 
 final class MockDependencyContainer {}
 
+extension MockDependencyContainer: CurrencyServiceFactory {
+  var currencyService: CurrencyServiceProtocol {
+    return CurrencyService()
+  }
+}
 
 extension MockDependencyContainer: ExchangeRatesServiceFactory {
   var exchangeRatesService: ExchangeRatesServiceProtocol {
