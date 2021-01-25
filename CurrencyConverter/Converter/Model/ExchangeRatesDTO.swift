@@ -29,6 +29,7 @@ struct ExchangeRatesDTO: Decodable {
     let formatter = NumberFormatter()
     formatter.locale = Locale(identifier: "en_US")
     formatter.numberStyle = .decimal
+    formatter.usesGroupingSeparator = false
     formatter.maximumFractionDigits = 4
     
     for key in container.allKeys {
