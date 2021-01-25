@@ -27,6 +27,7 @@ struct ExchangeRatesDTO: Decodable {
     
     var tempArray = [ExchangeRateDTO]()
     let formatter = NumberFormatter()
+    formatter.locale = Locale(identifier: "en_US")
     formatter.numberStyle = .decimal
     formatter.maximumFractionDigits = 4
     
