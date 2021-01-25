@@ -11,6 +11,8 @@ class AddCurrencyPairView: UIView {
   }
   struct Constants {
     static let iconSize: CGFloat = 40
+    static let iconMarginRight: CGFloat = 10
+    static let iconMarginLeft: CGFloat = 0
     static let topMargin: CGFloat = 32
     static let margin: CGFloat = 16
   }
@@ -29,15 +31,9 @@ class AddCurrencyPairView: UIView {
     button.setTitleColor(colorProvider.link, for: .normal)
     button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
     button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
+    button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
+
     return button
-  }()
-  
-  lazy var icon: UIImageView = {
-    let image = #imageLiteral(resourceName: "Plus")
-    let imageView = UIImageView(image: image)
-    imageView.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
-    imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
-    return imageView
   }()
   
   lazy var horizontalStackView: UIStackView = {
@@ -53,7 +49,14 @@ class AddCurrencyPairView: UIView {
   }
   
   private func setupView() {
-    horizontalStackView.addArrangedSubview(icon)
+    addCurrencyPairButton.imageView?.translatesAutoresizingMaskIntoConstraints = false
+    addCurrencyPairButton.imageView?.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+    addCurrencyPairButton.imageView?.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+    addCurrencyPairButton.translatesAutoresizingMaskIntoConstraints = false
+    addCurrencyPairButton.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+    addCurrencyPairButton.imageEdgeInsets.right = Constants.iconMarginRight
+    addCurrencyPairButton.imageEdgeInsets.left = Constants.iconMarginLeft
+    addCurrencyPairButton.imageView!.contentMode = .scaleAspectFit
     horizontalStackView.addArrangedSubview(addCurrencyPairButton)
     horizontalStackView.addArrangedSubview(.horizontalSpacer)
     addSubview(horizontalStackView)

@@ -33,6 +33,12 @@ extension DashboardViewConroller {
       return imageView
     }()
     
+    lazy var plusButton: UIButton = {
+      let button = UIButton()
+      button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
+      return button
+    }()
+    
     private lazy var subtitle: UILabel = {
       let label = UILabel()
       label.text = L10n.chooseCurrencyPair
@@ -43,7 +49,7 @@ extension DashboardViewConroller {
     }()
     
     func makeMainView() -> UIView {
-      verticalStackView.addArrangedSubview(icon)
+      verticalStackView.addArrangedSubview(plusButton)
       verticalStackView.addArrangedSubview(button)
       verticalStackView.addArrangedSubview(subtitle)
       verticalStackView.translatesAutoresizingMaskIntoConstraints = false

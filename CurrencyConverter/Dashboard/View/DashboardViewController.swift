@@ -46,6 +46,7 @@ private extension DashboardViewConroller {
   
   func setup() {
     ctaButton.addTarget(self, action: #selector(ctaButtonTapped), for: .touchUpInside)
+    viewComponentsFactory.plusButton.addTarget(self, action: #selector(ctaButtonTapped), for: .touchUpInside)
   }
   
   @objc func ctaButtonTapped() {
