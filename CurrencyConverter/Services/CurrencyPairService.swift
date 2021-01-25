@@ -4,6 +4,9 @@
 
 import Foundation
 
+protocol CurrencyPairServiceFactory {
+  var currencyPairService: CurrencyPairServiceProtocol { get }
+}
 protocol CurrencyPairServiceProtocol {
   var savedCurrencyPairs: [CurrencyPair] { get }
   func insert(currencyPair: CurrencyPair)

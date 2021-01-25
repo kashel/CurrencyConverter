@@ -4,6 +4,10 @@
 
 import Foundation
 
+protocol CurrencyServiceFactory {
+  var currencyService: CurrencyServiceProtocol { get }
+}
+
 protocol CurrencyServiceProtocol {
   var availableCurrencies: [Currency] { get }
   var supportedCurrenciesCount: Int { get }

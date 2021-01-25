@@ -5,16 +5,21 @@
 import UIKit
 
 class ConverterCoordinator: Coordinator {
+  typealias Dependencies = ExchangeRatesServiceFactory & CurrencyPairServiceFactory
   var childCoordinators: [Coordinator] = []
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var rootViewController: ConverterViewController!
   var rootViewModel: ConverterViewModel!
   
+  let exchangeRateService: ExchangeRatesServiceProtocol
+  let currencyPairService: CurrencyPairServiceProtocol
+  
+  init(dependencies: Dependencies) {
+    self.exchangeRateService = dependencies.exchangeRatesService
+    self.currencyPairService = dependencies.currencyPairService
+  }
+  
   func start() -> UIViewController {
-    let currencyService = CurrencyService()
-    let exchangeRatesDTOMapper = ExchangeRatesDTOMapper(currencyService: currencyService)
-    let exchangeRateService = ExchangeRateService(exchangeRatesDTOMapper: exchangeRatesDTOMapper)
-    let currencyPairService = CurrencyPairService()
     rootViewModel = ConverterViewModel(currencyPairService: currencyPairService, exchangeRateService: exchangeRateService)
     rootViewModel.coordinator = self
     rootViewController = ConverterViewController(viewModel: rootViewModel, cellModelMapper: ExchangeRateCellModelMapper())

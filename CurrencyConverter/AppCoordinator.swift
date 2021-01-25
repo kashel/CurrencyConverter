@@ -5,6 +5,7 @@
 import UIKit
 
 final class AppCoordinator : Coordinator {
+  typealias Dependencies = ConverterCoordinator.Dependencies
   enum StartScreen {
     case dashboard
     case converter
@@ -13,13 +14,15 @@ final class AppCoordinator : Coordinator {
   var lifecycle: ((CoordinatorLifecycleEvent) -> Void)?
   var childCoordinators: [Coordinator] = []
   let startScreen: StartScreen
+  private let dependencies: Dependencies
   
   private var window : UIWindow?
   private let rootViewController: UIViewController = UIViewController()
   
-  init(window : UIWindow?, startScreen: StartScreen) {
+  init(window : UIWindow?, startScreen: StartScreen, dependencies: Dependencies) {
     self.window = window
     self.startScreen = startScreen
+    self.dependencies = dependencies
   }
   
   @discardableResult func start() -> UIViewController {
@@ -54,7 +57,7 @@ final class AppCoordinator : Coordinator {
   }
   
   private func startConverter() {
-    let converterCoordinator = ConverterCoordinator()
+    let converterCoordinator = ConverterCoordinator(dependencies: dependencies)
     let converterViewController = converterCoordinator.start()
     add(childCoordinator: converterCoordinator)
     startChildViewController(converterViewController)

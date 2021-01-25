@@ -5,6 +5,7 @@
 import Foundation
 
 struct CurrencySelectionViewModel {
+  typealias Dependencies = CurrencyServiceFactory & CurrencyPairServiceFactory
   enum CTAAction {
     case goToReceiveCurrencySelection
     case currencyPairSelected(sendCurrency: Currency)

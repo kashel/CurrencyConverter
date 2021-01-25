@@ -9,6 +9,10 @@ enum ExchangeRateServiceError: Error {
   case parsing
 }
 
+protocol ExchangeRatesServiceFactory {
+  var exchangeRatesService: ExchangeRatesServiceProtocol { get }
+}
+
 protocol ExchangeRatesServiceProtocol {
   typealias CancelClosure = () -> Void
   typealias LoadingCompleted =  (Result<[ExchangeRateModel], ExchangeRateServiceError>) -> Void
