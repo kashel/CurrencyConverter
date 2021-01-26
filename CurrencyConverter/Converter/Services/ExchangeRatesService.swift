@@ -5,7 +5,7 @@
 import Foundation
 
 enum ExchangeRateServiceError: Error {
-  case network(underlyingError: NetworkError)
+  case network(underlyingError: Error)
   case parsing
 }
 
@@ -47,8 +47,10 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
           completed(.success(exchangeRatesWithOrder))
       case .failure(let error):
         switch error {
-        case .emptyResponse, .networkError:
-          completed(.failure(.network(underlyingError: error)))
+        case .emptyResponse:
+          completed(.failure(.parsing))
+        case .networkError(let networkError):
+          completed(.failure(.network(underlyingError: networkError)))
         case .unableToDecodeJSON:
           completed(.failure(.parsing))
         }

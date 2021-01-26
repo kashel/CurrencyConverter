@@ -13,16 +13,17 @@ class ConverterViewModel {
     case allDataRemoved
   }
   weak var coordinator: ConverterCoordinator?
-  let currencyPairService: CurrencyPairServiceProtocol
-  let exchangeRateService: ExchangeRatesServiceProtocol
-  var previouslySelectedPairs: [CurrencyPair] = []
-  var currentlySelectedPairs: [CurrencyPair] {
+  private let loadingQueue = DispatchQueue.init(label: "ConverterViewModel.loading")
+  private let currencyPairService: CurrencyPairServiceProtocol
+  private let exchangeRateService: ExchangeRatesServiceProtocol
+  private var previouslySelectedPairs: [CurrencyPair] = []
+  private var currentlySelectedPairs: [CurrencyPair] {
     didSet {
       previouslySelectedPairs = oldValue
     }
   }
-  var pendingDispatchWork: DispatchWorkItem?
-  var cancelExchangeRangeFetching: ExchangeRatesServiceProtocol.CancelClosure?
+  private var pendingDispatchWork: DispatchWorkItem?
+  private var cancelExchangeRangeFetching: ExchangeRatesServiceProtocol.CancelClosure?
   
   init(currencyPairService: CurrencyPairServiceProtocol, exchangeRateService: ExchangeRatesServiceProtocol) {
     self.currencyPairService = currencyPairService
@@ -53,14 +54,21 @@ class ConverterViewModel {
           DispatchQueue.main.sync {
             self.notifyExchangeRatesChange(with: exchangeRates)
           }
+          self.startLoading()
         case .failure(let error):
           self.logLoadingError(error)
+          if case .network(let networkError) = error {
+            let nsError = networkError as NSError
+            if nsError.code == NSURLErrorCancelled {
+              return
+            }
+          }
+          self.startLoading()
         }
-        self.startLoading()
       }
     }
     pendingDispatchWork = newDispatchWork
-    DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1), execute: newDispatchWork)
+    loadingQueue.asyncAfter(deadline: .now() + .seconds(1), execute: newDispatchWork)
   }
   
   func addCurrencyPair() {
@@ -68,35 +76,41 @@ class ConverterViewModel {
   }
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
-    cancelLoading()
+    loadingQueue.async { [weak self] in
+      self?.cancelLoading()
+    }
     DispatchQueue.main.async {
       self.currentlySelectedPairs.insert(currencyPair, at: 0)
     }
-    startLoading()
+    loadingQueue.async { [weak self] in
+      self?.startLoading()
+    }
   }
   
   func viewDidDeleteCurrencyPairAt(indexes: [Int]) {
     let currencyPairsToDelete = indexes.map{ currentlySelectedPairs[$0] }
     currencyPairService.delete(currencyPairs: Set(currencyPairsToDelete))
     currentlySelectedPairs = currencyPairService.savedCurrencyPairs
-    if currencyPairService.savedCurrencyPairs.count == 0 {
+    if currentlySelectedPairs.count == 0 {
       actions?(.allDataRemoved)
     }
   }
   
   func viewDidChangeDataProcessingCapability(canProcessData: Bool) {
-    if canProcessData == false {
-      cancelLoading()
-    } else {
-      startLoading()
+    loadingQueue.async { [weak self] in
+      if canProcessData == false {
+        self?.cancelLoading()
+      } else {
+        self?.startLoading()
+      }
     }
   }
 }
 
 private extension ConverterViewModel {
   func cancelLoading() {
-    pendingDispatchWork?.cancel()
     cancelExchangeRangeFetching?()
+    pendingDispatchWork?.cancel()
   }
   
   func logLoadingError(_ error: ExchangeRateServiceError) {
