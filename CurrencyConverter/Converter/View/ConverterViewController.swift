@@ -21,6 +21,9 @@ class ConverterViewController: UIViewController {
   var editState: EditState = .viewing {
     didSet {
       addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
+      editButton.isEnabled = (editState == .editing) || cellsDataCache.count > 0
+      editButton.setTitle(editState.buttonTitle, for: .normal)
+      tableView.setEditing(editState == .editing, animated: true)
     }
   }
   private let cellModelMapper: ExchangeRateCellModelMapper
@@ -28,7 +31,7 @@ class ConverterViewController: UIViewController {
   private let colorProvider = ColorProvider()
   lazy var tableView = viewComponentsFactory.tableView
   private lazy var viewComponentsFactory: ViewComponentsFactory = ViewComponentsFactory(userInterfaceStyle: traitCollection.userInterfaceStyle)
-  private lazy var editButton: UIButton = {
+  lazy var editButton: UIButton = {
     let button = viewComponentsFactory.editButton
     button.setTitle(editState.buttonTitle, for: .normal)
     return button
@@ -86,6 +89,7 @@ private extension ConverterViewController {
         self.cellsDataCache = exchangeRates.map{ exchangeRate in
           self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
+        self.editState = .viewing
         self.tableView.reloadData()
       case .dataLoaded(let allRates, let isNewRateAdded):
         self.hideAcivityIndicator()
@@ -101,8 +105,11 @@ private extension ConverterViewController {
           self.tableView.reloadRows(at: indexPaths, with: .none)
         }
         self.tableView.endUpdates()
+        self.editState = self.editState.toggle().toggle()
       case .loading:
         self.showActivityIndicator()
+      case .allDataRemoved:
+        self.editState = .viewing
       }
     }
   }
@@ -117,8 +124,6 @@ private extension ConverterViewController {
   @objc func editButtonTapped() {
     editState = editState.toggle()
     viewModel.viewDidChangeDataProcessingCapability(canProcessData: editState != .editing)
-    editButton.setTitle(editState.buttonTitle, for: .normal)
-    tableView.setEditing(editState == .editing, animated: true)
   }
 }
 

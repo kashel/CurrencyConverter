@@ -10,6 +10,7 @@ class ConverterViewModel {
     case loading
     case initialDataLoaded(rates: [ExchangeRateModel])
     case dataLoaded(allRates: [ExchangeRateModel], isNewRateAdded: Bool)
+    case allDataRemoved
   }
   weak var coordinator: ConverterCoordinator?
   let currencyPairService: CurrencyPairServiceProtocol
@@ -77,6 +78,9 @@ class ConverterViewModel {
   func viewDidDeleteCurrencyPairAt(index: Int) {
     currencyPairService.delete(currencyPair: currentlySelectedPairs[index])
     currentlySelectedPairs.remove(at: index)
+    if currencyPairService.savedCurrencyPairs.count == 0 {
+      actions?(.allDataRemoved)
+    }
   }
   
   func viewDidChangeDataProcessingCapability(canProcessData: Bool) {

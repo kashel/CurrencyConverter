@@ -44,6 +44,7 @@ extension ConverterViewController {
       let button = UIButton()
       button.setTitleColor(colorProvider.link, for: .normal)
       button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
+      button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
       return button
     }()
     

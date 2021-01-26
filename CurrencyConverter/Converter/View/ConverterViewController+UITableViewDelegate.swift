@@ -14,6 +14,7 @@ extension ConverterViewController: UITableViewDelegate {
       if editingStyle == .delete {
           cellsDataCache.remove(at: indexPath.row)
           tableView.deleteRows(at: [indexPath], with: .fade)
+          editState = editState.toggle().toggle()
       }
   }
 }
