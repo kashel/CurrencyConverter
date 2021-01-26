@@ -109,7 +109,6 @@ private extension ConverterViewController {
           self.tableView.reloadRows(at: indexPaths, with: .none)
         }
         self.tableView.endUpdates()
-        self.refreshEditState()
       case .loading:
         self.showActivityIndicator()
       case .allDataRemoved:
