@@ -20,10 +20,7 @@ class ConverterViewController: UIViewController {
   
   var editState: EditState = .viewing {
     didSet {
-      addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
-      editButton.isEnabled = (editState == .editing) || cellsDataCache.count > 0
-      editButton.setTitle(editState.buttonTitle, for: .normal)
-      tableView.setEditing(editState == .editing, animated: true)
+      refreshEditState()
     }
   }
   private let cellModelMapper: ExchangeRateCellModelMapper
@@ -105,13 +102,23 @@ private extension ConverterViewController {
           self.tableView.reloadRows(at: indexPaths, with: .none)
         }
         self.tableView.endUpdates()
-        self.editState = self.editState.toggle().toggle()
+        self.refreshEditState()
       case .loading:
         self.showActivityIndicator()
       case .allDataRemoved:
         self.editState = .viewing
       }
     }
+  }
+}
+
+//MARK: - handle edit state
+extension ConverterViewController {
+  func refreshEditState() {
+    addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
+    editButton.isEnabled = (editState == .editing) || cellsDataCache.count > 0
+    editButton.setTitle(editState.buttonTitle, for: .normal)
+    tableView.setEditing(editState == .editing, animated: true)
   }
 }
 
