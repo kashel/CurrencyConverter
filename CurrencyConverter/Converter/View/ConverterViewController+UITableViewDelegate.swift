@@ -9,12 +9,11 @@ extension ConverterViewController: UITableViewDelegate {
     return editState == .editing
   }
   
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-      viewModel.viewDidDeleteCurrencyPairAt(index: indexPath.row)
-      if editingStyle == .delete {
-          cellsDataCache.remove(at: indexPath.row)
-          tableView.deleteRows(at: [indexPath], with: .fade)
-          refreshEditState()
-      }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    setRefreshDeleteButtonState(enabled: (tableView.indexPathsForSelectedRows?.count ?? 0) > 0)
+  }
+  
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    setRefreshDeleteButtonState(enabled: (tableView.indexPathsForSelectedRows?.count ?? 0) > 0)
   }
 }

@@ -75,9 +75,10 @@ class ConverterViewModel {
     startLoading()
   }
   
-  func viewDidDeleteCurrencyPairAt(index: Int) {
-    currencyPairService.delete(currencyPair: currentlySelectedPairs[index])
-    currentlySelectedPairs.remove(at: index)
+  func viewDidDeleteCurrencyPairAt(indexes: [Int]) {
+    let currencyPairsToDelete = indexes.map{ currentlySelectedPairs[$0] }
+    currencyPairService.delete(currencyPairs: Set(currencyPairsToDelete))
+    currentlySelectedPairs = currencyPairService.savedCurrencyPairs
     if currencyPairService.savedCurrencyPairs.count == 0 {
       actions?(.allDataRemoved)
     }

@@ -10,7 +10,7 @@ protocol CurrencyPairServiceFactory {
 protocol CurrencyPairServiceProtocol {
   var savedCurrencyPairs: [CurrencyPair] { get }
   func insert(currencyPair: CurrencyPair)
-  func delete(currencyPair: CurrencyPair)
+  func delete(currencyPairs: Set<CurrencyPair>)
 }
 
 class CurrencyPairService: CurrencyPairServiceProtocol {
@@ -40,8 +40,8 @@ class CurrencyPairService: CurrencyPairServiceProtocol {
     save(currencyPairs: mutableCurrencyCollection)
   }
   
-  func delete(currencyPair: CurrencyPair) {
-    let newCurrencyPairsCollection = savedCurrencyPairs.filter{ $0 != currencyPair }
+  func delete(currencyPairs currencyPairsToDelete: Set<CurrencyPair>) {
+    let newCurrencyPairsCollection = savedCurrencyPairs.filter{ !currencyPairsToDelete.contains($0) }
     save(currencyPairs: newCurrencyPairsCollection)
   }
 }

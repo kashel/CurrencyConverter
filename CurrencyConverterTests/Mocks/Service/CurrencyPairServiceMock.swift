@@ -17,8 +17,8 @@ class CurrencyPairServiceMock: CurrencyPairServiceProtocol {
     insertCalledWithCurrencyPair = currencyPair
   }
   
-  var deleteCalledWithCurrencyPair: CurrencyPair?
-  func delete(currencyPair: CurrencyPair) {
-    deleteCalledWithCurrencyPair = currencyPair
+  var deleteCalledWithCurrencyPairs: Set<CurrencyPair>?
+  func delete(currencyPairs: Set<CurrencyPair>) {
+    deleteCalledWithCurrencyPairs = currencyPairs
   }
 }

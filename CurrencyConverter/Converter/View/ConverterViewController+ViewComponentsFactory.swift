@@ -17,6 +17,7 @@ extension ConverterViewController {
       let table = UITableView()
       table.separatorStyle = .none
       table.allowsSelection = false
+      table.allowsMultipleSelectionDuringEditing = true
       return table
     }()
     
@@ -46,6 +47,26 @@ extension ConverterViewController {
       button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
       button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
       return button
+    }()
+    
+    lazy var deleteButton: UIButton = {
+      let button = UIButton()
+      button.backgroundColor = .red
+      button.setTitleColor(.white, for: .normal)
+      button.setTitleColor(.gray, for: .highlighted)
+      button.setTitle(L10n.delete, for: .normal)
+      button.alpha = Constants.deleteButtonDisabledAlpha
+      return button
+    }()
+    
+    lazy var deleteButtonView: UIView = {
+      let view = UIStackView()
+      view.addSubview(deleteButton)
+      deleteButton.pinEdges(to: view, offsets: Constants.deleteButtonOffset)
+      deleteButton.heightAnchor.constraint(equalToConstant: Constants.deleteButtonHeight).isActive = true
+      deleteButton.layer.cornerRadius = Constants.deleteButtonCornerRadius
+      deleteButton.clipsToBounds = true
+      return view
     }()
     
     func makeMainView(with addCurrencyView: UIView) -> UIView {

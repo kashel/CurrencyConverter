@@ -13,6 +13,12 @@ class ConverterViewController: UIViewController {
   struct Constants {
     static let margin: CGFloat = 16
     static let cellReuseIdentifier = "exchangeRate"
+    static let deleteButtonOffset = UIEdgeInsets(top: 20, left: 20, bottom: -20, right: -20)
+    static let deleteButtonHeight: CGFloat = 50
+    static let deleteButtonCornerRadius: CGFloat = 10
+    static let deleteButtonDisabledAlpha: CGFloat = 0.3
+    static let deleteButtonEnabledAlpha: CGFloat = 1
+    static let animationsDuration = 0.2
   }
 
   var viewModel: ConverterViewModel
@@ -73,6 +79,7 @@ private extension ConverterViewController {
     editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     bindViewModel()
     viewModel.startLoading()
+    viewComponentsFactory.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
   }
   
   func bindViewModel() {
@@ -112,13 +119,28 @@ private extension ConverterViewController {
   }
 }
 
-//MARK: - handle edit state
+//MARK: - handle buttons state
 extension ConverterViewController {
   func refreshEditState() {
     addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
     editButton.isEnabled = (editState == .editing) || cellsDataCache.count > 0
     editButton.setTitle(editState.buttonTitle, for: .normal)
     tableView.setEditing(editState == .editing, animated: true)
+    if editState == .editing {
+      viewComponentsFactory.verticalStackView.addArrangedSubview(viewComponentsFactory.deleteButtonView)
+      setRefreshDeleteButtonState(enabled: false)
+    } else {
+      viewComponentsFactory.deleteButtonView.removeFromSuperview()
+      viewComponentsFactory.verticalStackView.removeArrangedSubview(viewComponentsFactory.deleteButtonView)
+    }
+  }
+  
+  func setRefreshDeleteButtonState(enabled: Bool) {
+    let button = viewComponentsFactory.deleteButton
+    UIView.animate(withDuration: Constants.animationsDuration) {
+      button.isEnabled = enabled
+      button.alpha = enabled ? Constants.deleteButtonEnabledAlpha : Constants.deleteButtonDisabledAlpha
+    }
   }
 }
 
@@ -131,6 +153,21 @@ private extension ConverterViewController {
   @objc func editButtonTapped() {
     editState = editState.toggle()
     viewModel.viewDidChangeDataProcessingCapability(canProcessData: editState != .editing)
+  }
+  
+  @objc func deleteButtonTapped() {
+    guard let indexPathsForSelectedRows = tableView.indexPathsForSelectedRows else {
+      return
+    }
+    let indexes = indexPathsForSelectedRows.map{ $0.row }.sorted{ $1 < $0 }
+    viewModel.viewDidDeleteCurrencyPairAt(indexes: indexes)
+    indexes.forEach {
+      cellsDataCache.remove(at: $0)
+    }
+    tableView.deleteRows(at: indexPathsForSelectedRows, with: .fade)
+    viewModel.viewDidChangeDataProcessingCapability(canProcessData: true)
+    editState = editState.toggle()
+    refreshEditState()
   }
 }
 
