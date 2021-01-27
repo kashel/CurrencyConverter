@@ -38,7 +38,7 @@ class ConverterViewModel {
     }
   }
   
-  func startLoading() {
+  func startLoading(after interval: DispatchTimeInterval = .seconds(0)) {
     if previouslySelectedPairs.count == 0 {
       notifyInitialDataLoading?()
       notifyInitialDataLoading = nil
@@ -53,7 +53,7 @@ class ConverterViewModel {
           DispatchQueue.main.sync {
             self.notifyExchangeRatesChange(with: exchangeRates)
           }
-          self.startLoading()
+          self.startLoading(after: .seconds(1))
         case .failure(let error):
           self.logLoadingError(error)
           if case .network(let networkError) = error {
@@ -62,26 +62,25 @@ class ConverterViewModel {
               return
             }
           }
-          self.startLoading()
+          self.startLoading(after: .seconds(1))
         }
       }
     }
     pendingDispatchWork = newDispatchWork
-    loadingQueue.asyncAfter(deadline: .now() + .seconds(1), execute: newDispatchWork)
+    loadingQueue.asyncAfter(deadline: .now() + interval, execute: newDispatchWork)
   }
   
   func addCurrencyPair() {
+    cancelLoading()
     coordinator?.addCurrencyPair()
   }
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
     loadingQueue.async { [weak self] in
       self?.cancelLoading()
-    }
-    DispatchQueue.main.async {
-      self.currentlySelectedPairs.insert(currencyPair, at: 0)
-    }
-    loadingQueue.async { [weak self] in
+      DispatchQueue.main.sync {
+        self?.currentlySelectedPairs.insert(currencyPair, at: 0)
+      }
       self?.startLoading()
     }
   }
