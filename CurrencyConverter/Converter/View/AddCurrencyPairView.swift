@@ -25,7 +25,7 @@ class AddCurrencyPairView: UIView {
   lazy var addCurrencyPairButton: UIButton = {
     let button = UIButton()
     button.setTitle("Add currency pair", for: .normal)
-    button.titleLabel?.font = fontProvider.title
+    button.titleLabel?.font = fontProvider.button
     button.setTitleColor(colorProvider.link, for: .normal)
     button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
     button.setTitleColor(colorProvider.inactiveLink, for: .disabled)

@@ -13,6 +13,8 @@ extension ConverterViewController {
     }
     
     private let colorProvider = ColorProvider()
+    private let fontProvider = FontProvider()
+    
     lazy var tableView: UITableView = {
       let table = UITableView()
       table.separatorStyle = .none
@@ -42,6 +44,7 @@ extension ConverterViewController {
     
     lazy var editButton: UIButton = {
       let button = UIButton()
+      button.titleLabel?.font = fontProvider.button
       button.setTitleColor(colorProvider.link, for: .normal)
       button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
       button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
@@ -51,6 +54,7 @@ extension ConverterViewController {
     lazy var deleteButton: UIButton = {
       let button = UIButton()
       button.backgroundColor = .red
+      button.titleLabel?.font = fontProvider.button
       button.setTitleColor(.white, for: .normal)
       button.setTitleColor(.gray, for: .highlighted)
       button.setTitle(L10n.delete, for: .normal)
