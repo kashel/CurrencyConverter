@@ -26,7 +26,7 @@ class CurrencyPairServiceTests: XCTestCase {
   }
   
   func test_deleteCall_triggerEncodedDataSave() {
-    sut.delete(currencyPair: .mock)
+    sut.delete(currencyPairs: [.mock])
     guard let _ = userDefaultsMock.setValueCalledWithValue as? JSONEncoder.Output else {
       XCTFail("na data has been send for persistency")
       return

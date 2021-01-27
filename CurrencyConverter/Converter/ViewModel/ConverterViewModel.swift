@@ -112,10 +112,12 @@ private extension ConverterViewModel {
   func logLoadingError(_ error: ExchangeRateServiceError) {
     switch error {
     case .network(let networkError):
-      os_log("Failed fetching the data from remote", log: OSLog.data, type: .error, networkError.localizedDescription)
+      os_log("Failed fetching exchange rates from remote", log: OSLog.data, type: .error, networkError.localizedDescription)
     case .parsing:
       os_log("Unable to parse exchage rates network response, check the contract", log: OSLog.data, type: .error)
       assertionFailure("ExchangeRatesDTO parsing failed, check the network contract")
+    case .emptyResponse:
+      os_log("Empty exchange rates response", log: OSLog.data, type: .error)
     }
   }
   

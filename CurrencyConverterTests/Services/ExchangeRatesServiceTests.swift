@@ -19,30 +19,19 @@ class ExchangeRatesServiceTests: XCTestCase {
   
   func test_emptyNetoworkResponse_producesNetworkError() {
     fetchDecodableMock.mockResult = .failure(.emptyResponse)
-    var exchangeRateNetworkError: NetworkError?
+    var emptyResponseErrorReturned = false
     _ = sut.exchangeRates(currencyPairs: []) { (result) in
-      switch result {
-      case .failure(let error):
-        switch error {
-        case .network(let networkError):
-          exchangeRateNetworkError = networkError
-        default:
-          print("continue")
-        }
-      case .success:
-        print("continue")
+      if case .failure(let error) = result, case .emptyResponse = error {
+        emptyResponseErrorReturned = true
       }
     }
-    guard case .emptyResponse = exchangeRateNetworkError else {
-      XCTFail("expected error response with .emptyResponse network error")
-      return
-    }
+    XCTAssertTrue(emptyResponseErrorReturned)
   }
   
   func test_errorNetowrkResponse_producesNetworkError() {
     let networkError = MockError(code: 999)
     fetchDecodableMock.mockResult = .failure(.networkError(networkError))
-    var exchangeRateNetworkError: NetworkError?
+    var exchangeRateNetworkError: Error?
     _ = sut.exchangeRates(currencyPairs: []) { (result) in
       switch result {
       case .failure(let error):
@@ -56,7 +45,7 @@ class ExchangeRatesServiceTests: XCTestCase {
         print("continue")
       }
     }
-    guard case .networkError(let underlayingError) = exchangeRateNetworkError, let mockError = underlayingError as? MockError, mockError.code == 999 else {
+    guard let mockError = exchangeRateNetworkError as? MockError, mockError.code == 999 else {
       XCTFail("expected error response with .emptyResponse network error")
       return
     }
