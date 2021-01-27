@@ -50,10 +50,10 @@ class ConverterViewModel {
         guard let self = self else { return }
         switch result {
         case .success(let exchangeRates):
-          DispatchQueue.main.sync {
+          DispatchQueue.main.async {
             self.notifyExchangeRatesChange(with: exchangeRates)
+            self.startLoading(after: .seconds(1))
           }
-          self.startLoading(after: .seconds(1))
         case .failure(let error):
           self.logLoadingError(error)
           if case .network(let networkError) = error {
@@ -62,7 +62,9 @@ class ConverterViewModel {
               return
             }
           }
-          self.startLoading(after: .seconds(1))
+          DispatchQueue.main.async {
+            self.startLoading(after: .seconds(1))
+          }
         }
       }
     }
@@ -71,18 +73,18 @@ class ConverterViewModel {
   }
   
   func addCurrencyPair() {
-    cancelLoading()
+    pauseLoading()
     coordinator?.addCurrencyPair()
   }
   
   func currencyPairAdded(_ currencyPair: CurrencyPair) {
-    loadingQueue.async { [weak self] in
-      self?.cancelLoading()
-      DispatchQueue.main.sync {
-        self?.currentlySelectedPairs.insert(currencyPair, at: 0)
-      }
-      self?.startLoading()
-    }
+    pauseLoading()
+    currentlySelectedPairs.insert(currencyPair, at: 0)
+    resumeLoading()
+  }
+  
+  func addingCurrencyPairCanceled() {
+    resumeLoading()
   }
   
   func viewDidDeleteCurrencyPairAt(indexes: [Int]) {
@@ -92,20 +94,18 @@ class ConverterViewModel {
   }
   
   func viewDidChangeDataProcessingCapability(canProcessData: Bool) {
-    loadingQueue.async { [weak self] in
-      if canProcessData == false {
-        self?.cancelLoading()
-      } else {
-        self?.startLoading()
-      }
-    }
+    canProcessData ? resumeLoading() : pauseLoading()
   }
 }
 
 private extension ConverterViewModel {
-  func cancelLoading() {
+  func pauseLoading() {
     cancelExchangeRangeFetching?()
     pendingDispatchWork?.cancel()
+  }
+  
+  func resumeLoading() {
+    startLoading()
   }
   
   func logLoadingError(_ error: ExchangeRateServiceError) {
