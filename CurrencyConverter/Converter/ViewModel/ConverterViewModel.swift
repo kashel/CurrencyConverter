@@ -10,7 +10,6 @@ class ConverterViewModel {
     case loading
     case initialDataLoaded(rates: [ExchangeRateModel])
     case dataLoaded(allRates: [ExchangeRateModel], isNewRateAdded: Bool)
-    case allDataRemoved
   }
   weak var coordinator: ConverterCoordinator?
   private let loadingQueue = DispatchQueue.init(label: "ConverterViewModel.loading")
@@ -91,9 +90,6 @@ class ConverterViewModel {
     let currencyPairsToDelete = indexes.map{ currentlySelectedPairs[$0] }
     currencyPairService.delete(currencyPairs: Set(currencyPairsToDelete))
     currentlySelectedPairs = currencyPairService.savedCurrencyPairs
-    if currentlySelectedPairs.count == 0 {
-      actions?(.allDataRemoved)
-    }
   }
   
   func viewDidChangeDataProcessingCapability(canProcessData: Bool) {

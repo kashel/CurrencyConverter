@@ -26,7 +26,7 @@ class ConverterViewController: UIViewController {
   
   var editState: EditState = .viewing {
     didSet {
-      refreshEditState()
+        refreshEditState()
     }
   }
   private let cellModelMapper: ExchangeRateCellModelMapper
@@ -111,8 +111,6 @@ private extension ConverterViewController {
         self.tableView.endUpdates()
       case .loading:
         self.showActivityIndicator()
-      case .allDataRemoved:
-        self.editState = .viewing
       }
     }
   }
@@ -164,9 +162,9 @@ private extension ConverterViewController {
       cellsDataCache.remove(at: $0)
     }
     tableView.deleteRows(at: indexPathsForSelectedRows, with: .fade)
-    viewModel.viewDidChangeDataProcessingCapability(canProcessData: true)
     editState = editState.toggle()
     refreshEditState()
+    viewModel.viewDidChangeDataProcessingCapability(canProcessData: true)
   }
 }
 
