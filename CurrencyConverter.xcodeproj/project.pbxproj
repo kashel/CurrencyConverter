@@ -25,6 +25,9 @@
 		9733FD3925BF5B1900EF937C /* CurrencyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9730C63625BE08B6005D2ECC /* CurrencyMock.swift */; };
 		9733FD3D25BF5B4F00EF937C /* CurrencyPairServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733FD2225BEFD1D00EF937C /* CurrencyPairServiceMock.swift */; };
 		9733FD4225BF5C2100EF937C /* ProcessInfo+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733FD4125BF5C2100EF937C /* ProcessInfo+Payload.swift */; };
+		9733FD5F25C2130300EF937C /* AccessabilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733FD5E25C2130300EF937C /* AccessabilityIdentifiers.swift */; };
+		9733FD6325C2215700EF937C /* ProcessInfo+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733FD4125BF5C2100EF937C /* ProcessInfo+Payload.swift */; };
+		9733FD6725C2220800EF937C /* AccessabilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733FD5E25C2130300EF937C /* AccessabilityIdentifiers.swift */; };
 		9745B5AE25B636F50050DAFC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97F08F5825B60BFD00380F41 /* Roboto-Regular.ttf */; };
 		9745B5B325B8C4970050DAFC /* ExchangeRatesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9745B5B225B8C4970050DAFC /* ExchangeRatesDTO.swift */; };
 		9745B5BE25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9745B5BD25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift */; };
@@ -118,6 +121,7 @@
 		9733FD2725BF553C00EF937C /* CurrencyConverterLaunchArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterLaunchArgument.swift; sourceTree = "<group>"; };
 		9733FD3025BF594100EF937C /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		9733FD4125BF5C2100EF937C /* ProcessInfo+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProcessInfo+Payload.swift"; sourceTree = "<group>"; };
+		9733FD5E25C2130300EF937C /* AccessabilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessabilityIdentifiers.swift; sourceTree = "<group>"; };
 		9745B5B225B8C4970050DAFC /* ExchangeRatesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesDTO.swift; sourceTree = "<group>"; };
 		9745B5B725BA2C330050DAFC /* ExchangeRatesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesServiceMock.swift; sourceTree = "<group>"; };
 		9745B5BD25BA2C6F0050DAFC /* FetchDecodableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDecodableNetworkService.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				9753B5BD25B241D000F0CB8A /* AppCoordinator.swift */,
 				9753B5C225B2426B00F0CB8A /* Coordinator.swift */,
 				9733FD3025BF594100EF937C /* DependencyContainer.swift */,
+				9733FD5E25C2130300EF937C /* AccessabilityIdentifiers.swift */,
 			);
 			path = CurrencyConverter;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				978D6BC825BD9EC800B87CAF /* ConverterViewController+ViewComponentsFactory.swift in Sources */,
 				9745B5C825BAB8220050DAFC /* OSLog+Category.swift in Sources */,
 				978D6BD825BDB8F200B87CAF /* CurrencySelectionViewController+UITableViewDataSource.swift in Sources */,
+				9733FD5F25C2130300EF937C /* AccessabilityIdentifiers.swift in Sources */,
 				9753B5D025B3204800F0CB8A /* CurrencySelectionViewController.swift in Sources */,
 				9753B5AD25B2399A00F0CB8A /* DashboardCoordinator.swift in Sources */,
 				9733FD3925BF5B1900EF937C /* CurrencyMock.swift in Sources */,
@@ -731,8 +737,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9733FD6325C2215700EF937C /* ProcessInfo+Payload.swift in Sources */,
 				9719413D25B22A790030341D /* CurrencyConverterUITests.swift in Sources */,
 				9733FD2C25BF55A900EF937C /* CurrencyConverterLaunchArgument.swift in Sources */,
+				9733FD6725C2220800EF937C /* AccessabilityIdentifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,7 +901,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2JS29M37VG;
 				INFOPLIST_FILE = CurrencyConverter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -912,7 +920,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2JS29M37VG;
 				INFOPLIST_FILE = CurrencyConverter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

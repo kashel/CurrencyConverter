@@ -14,6 +14,7 @@ extension DashboardViewConroller {
       newButton.titleLabel?.font = fontProvider.title
       newButton.setTitleColor(colorProvider.link, for: .normal)
       newButton.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
+      newButton.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairButton
       return newButton
     }()
     
@@ -25,17 +26,14 @@ extension DashboardViewConroller {
       return stack
     }()
     
-    private lazy var icon: UIImageView = {
-      let image = #imageLiteral(resourceName: "Plus")
-      let imageView = UIImageView(image: image)
-      imageView.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
-      imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
-      return imageView
-    }()
-    
     lazy var plusButton: UIButton = {
       let button = UIButton()
+      button.translatesAutoresizingMaskIntoConstraints = false
       button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
+      button.imageView?.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+      button.imageView?.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+      button.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairIconButton
+      button.accessibilityLabel = L10n.addCurrencyPair
       return button
     }()
     
@@ -45,6 +43,7 @@ extension DashboardViewConroller {
       label.font = fontProvider.subtitle
       label.textColor = colorProvider.description
       label.numberOfLines = 0
+      label.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.chooseCurrencyPairDescription
       return label
     }()
     

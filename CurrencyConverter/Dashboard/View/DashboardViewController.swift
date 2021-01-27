@@ -16,6 +16,7 @@ class DashboardViewConroller: UIViewController {
   private lazy var ctaButton: UIButton = {
     let button = viewComponentsFactory.button
     button.setTitle(viewModel.ctaButtonTitle, for: .normal)
+    button.accessibilityLabel = viewModel.ctaButtonTitle
     return button
   }()
   

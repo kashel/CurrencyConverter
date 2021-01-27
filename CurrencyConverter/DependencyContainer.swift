@@ -25,7 +25,13 @@ extension DependencyContainer: CurrencyPairServiceFactory {
   }
 }
 
-final class MockDependencyContainer {}
+final class MockDependencyContainer {
+  private let launchScreen: LaunchScreen
+  
+  init(launchScreen: LaunchScreen) {
+    self.launchScreen = launchScreen
+  }
+}
 
 extension MockDependencyContainer: CurrencyServiceFactory {
   var currencyService: CurrencyServiceProtocol {
@@ -44,7 +50,7 @@ extension MockDependencyContainer: ExchangeRatesServiceFactory {
 extension MockDependencyContainer: CurrencyPairServiceFactory {
   var currencyPairService: CurrencyPairServiceProtocol {
     let mockService = CurrencyPairServiceMock()
-    mockService.currencyPairs = [CurrencyPair(send: .polishZloty, receive: .usDolar)]
+    mockService.currencyPairs = launchScreen == .dashboard ? [] : [CurrencyPair(send: .polishZloty, receive: .usDolar)]
     return mockService
   }
 }
