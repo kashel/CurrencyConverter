@@ -6,8 +6,8 @@ import Foundation
 
 struct L10n {
   static let addCurrencyPair = L10n.tr("addCurrencyPair")
-  static let edit = L10n.tr("edit")
-  static let done = L10n.tr("done")
+  static let edit = L10n.tr("Edit")
+  static let cancel = L10n.tr("Cancel")
   static let delete = L10n.tr("delete")
   static let sendCurrency = L10n.tr("sendCurrency")
   static let receiveCurrency = L10n.tr("receiveCurrency")

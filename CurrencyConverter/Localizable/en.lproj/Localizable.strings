@@ -5,7 +5,7 @@
 
 "addCurrencyPair" = "Add currency pair";
 "edit" = "Edit";
-"done" = "Done";
+"cancel" = "Cancel";
 "delete" = "Delete";
 "sendCurrency" = "Send currency";
 "receiveCurrency" = "Receive currency";

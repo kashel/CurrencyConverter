@@ -127,6 +127,7 @@ extension ConverterViewController {
       viewComponentsFactory.verticalStackView.addArrangedSubview(viewComponentsFactory.deleteButtonView)
       setRefreshDeleteButtonState(enabled: false)
     } else {
+      setRefreshDeleteButtonState(enabled: false)
       viewComponentsFactory.deleteButtonView.removeFromSuperview()
       viewComponentsFactory.verticalStackView.removeArrangedSubview(viewComponentsFactory.deleteButtonView)
     }
