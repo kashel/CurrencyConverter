@@ -85,7 +85,7 @@ extension ConverterViewController {
     private func addDefaultMargins(to contentView: UIView) -> UIView {
       let wrapper = UIView()
       wrapper.addSubview(contentView)
-      contentView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: 0, right: -Constants.margin))
+      contentView.pinEdges(to: wrapper, offsets: UIEdgeInsets(top: Constants.margin, left: Constants.margin, bottom: -Constants.margin, right: -Constants.margin))
       return wrapper
     }
   }
