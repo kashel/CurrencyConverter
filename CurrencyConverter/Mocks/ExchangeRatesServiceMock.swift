@@ -2,8 +2,6 @@
 //  Created by Ireneusz Sołek
 //  
 
-@testable import CurrencyConverter
-
 class ExchangeRatesServiceMock: ExchangeRatesServiceProtocol {
   
   var exchangeRateCancelationClosure: () -> Void = {}

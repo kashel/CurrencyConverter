@@ -2,8 +2,6 @@
 //  Created by Ireneusz Sołek
 //  
 
-@testable import CurrencyConverter
-
 class CurrencyPairServiceMock: CurrencyPairServiceProtocol {
   let exchangeRatesServiceMock: ExchangeRatesServiceMock?
   var savedCurrencyPairsCalled = false
