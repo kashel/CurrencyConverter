@@ -42,6 +42,7 @@ class AddCurrencyPairView: UIView {
   
   private func setupView() {
     addCurrencyPairButton.translatesAutoresizingMaskIntoConstraints = false
+    addCurrencyPairButton.imageView?.translatesAutoresizingMaskIntoConstraints = false
     addCurrencyPairButton.imageView?.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
     addCurrencyPairButton.imageView?.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
     addCurrencyPairButton.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
