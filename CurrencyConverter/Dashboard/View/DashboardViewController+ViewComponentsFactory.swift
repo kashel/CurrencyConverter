@@ -28,10 +28,9 @@ extension DashboardViewConroller {
     
     lazy var plusButton: UIButton = {
       let button = UIButton()
-      button.translatesAutoresizingMaskIntoConstraints = false
       button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
-      button.imageView?.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
-      button.imageView?.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+      button.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
+      button.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
       button.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairIconButton
       button.accessibilityLabel = L10n.addCurrencyPair
       return button
