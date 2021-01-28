@@ -15,7 +15,7 @@ class CurrencyServiceTests: XCTestCase {
   }
   
   func test_supportedCurrencyCodes_are3CharactersLength() {
-    if let _ = sut.availableCurrencies.map{ $0.code.count }.filter({ $0 != 3 }).first {
+    if let _ = sut.availableCurrencies.map { $0.code.count }.filter({ $0 != 3 }).first {
       XCTFail("only 3 characters long currency codes are supported, check supportedCurrencyCodes array")
     }
   }

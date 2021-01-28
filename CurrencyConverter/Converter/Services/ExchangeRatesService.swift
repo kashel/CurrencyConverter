@@ -63,11 +63,10 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
 
 private extension ExchangeRateService {
   func constructURL(with currencyPairs: [CurrencyPair]) -> URL {
-    let queryItems = currencyPairs.map{ URLQueryItem(name: "pairs", value: $0.send.code+$0.receive.code) }
+    let queryItems = currencyPairs.map { URLQueryItem(name: "pairs", value: $0.send.code+$0.receive.code) }
     var urlComps = URLComponents(string: baseURL)!
     urlComps.queryItems = queryItems
     let result = urlComps.url!
-    print(result)
     return result
   }
 }

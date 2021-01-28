@@ -41,7 +41,7 @@ class CurrencyPairService: CurrencyPairServiceProtocol {
   }
   
   func delete(currencyPairs currencyPairsToDelete: Set<CurrencyPair>) {
-    let newCurrencyPairsCollection = savedCurrencyPairs.filter{ !currencyPairsToDelete.contains($0) }
+    let newCurrencyPairsCollection = savedCurrencyPairs.filter { !currencyPairsToDelete.contains($0) }
     save(currencyPairs: newCurrencyPairsCollection)
   }
 }

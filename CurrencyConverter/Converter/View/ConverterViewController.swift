@@ -90,7 +90,7 @@ private extension ConverterViewController {
       switch viewModelAction {
       case .initialDataLoaded(let exchangeRates):
         self.hideAcivityIndicator()
-        self.cellsDataCache = exchangeRates.map{ exchangeRate in
+        self.cellsDataCache = exchangeRates.map { exchangeRate in
           self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
         self.editState = .viewing
@@ -98,7 +98,7 @@ private extension ConverterViewController {
       case .dataLoaded(let allRates, let isNewRateAdded):
         self.hideAcivityIndicator()
         self.tableView.beginUpdates()
-        self.cellsDataCache = allRates.map{ exchangeRate in
+        self.cellsDataCache = allRates.map { exchangeRate in
           self.cellModelMapper.map(exchangeRate: exchangeRate)
         }
         if isNewRateAdded {
@@ -158,7 +158,7 @@ private extension ConverterViewController {
     guard let indexPathsForSelectedRows = tableView.indexPathsForSelectedRows else {
       return
     }
-    let indexes = indexPathsForSelectedRows.map{ $0.row }.sorted{ $1 < $0 }
+    let indexes = indexPathsForSelectedRows.map { $0.row }.sorted{ $1 < $0 }
     viewModel.viewDidDeleteCurrencyPairAt(indexes: indexes)
     indexes.forEach {
       cellsDataCache.remove(at: $0)
