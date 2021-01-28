@@ -122,6 +122,7 @@ extension ConverterViewController {
     addCurrencyView.state = (editState == .editing) ? .disabled : .enabled
     editButton.isEnabled = (editState == .editing) || cellsDataCache.count > 0
     editButton.setTitle(editState.buttonTitle, for: .normal)
+    editButton.accessibilityLabel = editState.buttonTitle
     tableView.setEditing(editState == .editing, animated: true)
     if editState == .editing {
       viewComponentsFactory.verticalStackView.addArrangedSubview(viewComponentsFactory.deleteButtonView)

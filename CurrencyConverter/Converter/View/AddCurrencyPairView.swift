@@ -24,12 +24,14 @@ class AddCurrencyPairView: UIView {
   
   lazy var addCurrencyPairButton: UIButton = {
     let button = UIButton()
-    button.setTitle("Add currency pair", for: .normal)
+    button.setTitle(L10n.addCurrencyPair, for: .normal)
     button.titleLabel?.font = fontProvider.button
     button.setTitleColor(colorProvider.link, for: .normal)
     button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
     button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
     button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
+    button.accessibilityIdentifier = AccessibilityIdentifier.Converter.addCurrencyPairButton
+    button.accessibilityLabel = L10n.addCurrencyPair
 
     return button
   }()
