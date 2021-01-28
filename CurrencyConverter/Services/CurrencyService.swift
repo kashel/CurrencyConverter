@@ -79,7 +79,7 @@ class CurrencyService: CurrencyServiceProtocol {
   lazy var supportedCurrenciesCount: Int = supportedCurrencyCodes.count
   
   var availableCurrencies: [Currency] {
-    supportedCurrencyCodes.compactMap{
+    supportedCurrencyCodes.compactMap {
       guard let countryCode = countryCode(for: $0) else {
         assertionFailure("Unable to map currency: \($0) to country code")
         return nil
