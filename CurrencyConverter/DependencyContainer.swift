@@ -53,7 +53,7 @@ extension MockDependencyContainer: ExchangeRatesServiceFactory {
 
 extension MockDependencyContainer: CurrencyPairServiceFactory {
   var currencyPairService: CurrencyPairServiceProtocol {
-    let mockService = CurrencyPairServiceMock(exchangeRatesServiceMock: exchangeRatesService as! ExchangeRatesServiceMock)
+    let mockService = CurrencyPairServiceMock(exchangeRatesServiceMock: mockExchangeRatesService)
     mockService.currencyPairs = launchScreen == .dashboard ? [] : [CurrencyPair(send: .polishZloty, receive: .usDolar)]
     return mockService
   }
