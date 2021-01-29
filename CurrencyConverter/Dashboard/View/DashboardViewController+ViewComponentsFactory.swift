@@ -14,7 +14,7 @@ extension DashboardViewConroller {
       newButton.titleLabel?.font = fontProvider.title
       newButton.setTitleColor(colorProvider.link, for: .normal)
       newButton.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
-      newButton.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairButton
+      newButton.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairButton.rawValue
       return newButton
     }()
     
@@ -31,7 +31,7 @@ extension DashboardViewConroller {
       button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
       button.widthAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
       button.heightAnchor.constraint(equalToConstant: Constants.iconSize).isActive = true
-      button.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairIconButton
+      button.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.addCurrencyPairIconButton.rawValue
       button.accessibilityLabel = L10n.addCurrencyPair
       return button
     }()
@@ -42,7 +42,7 @@ extension DashboardViewConroller {
       label.font = fontProvider.subtitle
       label.textColor = colorProvider.description
       label.numberOfLines = 0
-      label.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.chooseCurrencyPairDescription
+      label.accessibilityIdentifier = AccessibilityIdentifier.Dashboard.chooseCurrencyPairDescription.rawValue
       return label
     }()
     

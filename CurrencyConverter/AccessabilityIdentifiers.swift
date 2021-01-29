@@ -9,20 +9,22 @@ public enum TestAAA: String {
 }
 
 public struct AccessibilityIdentifier {
-  public struct Dashboard {
-    public static let addCurrencyPairIconButton = "dashboard.addCurrencyPairIconButton"
-    public static let addCurrencyPairButton = "dashboard.addCurrencyPairButton"
-    public static let chooseCurrencyPairDescription = "dashboard.chooseCurrencyPairDescription"
+  public enum Dashboard: String {
+    case addCurrencyPairIconButton = "dashboard.addCurrencyPairIconButton"
+    case addCurrencyPairButton = "dashboard.addCurrencyPairButton"
+    case chooseCurrencyPairDescription = "dashboard.chooseCurrencyPairDescription"
   }
-  public struct Converter {
-    public struct ExchangeRateCell {
-      public static let sourceCurrencyCode = "converter.exchangeRateCell.sourceCurrencyCode"
-      public static let exchangeRate = "converter.exchangeRateCell.exchangeRate"
-      public static let sourceCurrencyName = "converter.exchangeRateCell.sourceCurrencyName"
-      public static let receiveCurrencyNameAndCode = "converter.exchangeRateCell.receiveCurrencyNameAndCode"
+  public enum Converter {
+    public enum ExchangeRateCell: String {
+      case sourceCurrencyCode = "converter.exchangeRateCell.sourceCurrencyCode"
+      case exchangeRate = "converter.exchangeRateCell.exchangeRate"
+      case sourceCurrencyName = "converter.exchangeRateCell.sourceCurrencyName"
+      case receiveCurrencyNameAndCode = "converter.exchangeRateCell.receiveCurrencyNameAndCode"
     }
-    public static let addCurrencyPairButton = "converter.addCurrencyPairButton"
-    public static let editButton = "converter.editButton"
-    public static let deleteButton = "converter.delete"
+    public enum Button: String {
+      case addCurrencyPair = "converter.addCurrencyPairButton"
+      case edit = "converter.editButton"
+      case delete = "converter.delete"
+    }
   }
 }

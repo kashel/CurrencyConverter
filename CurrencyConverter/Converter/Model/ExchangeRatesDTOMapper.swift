@@ -14,7 +14,6 @@ struct ExchangeRatesDTOMapper: ExchangeRatesDTOMapperProtocol {
     let sendCurrencyCode = String(dto.currencySymbolsPair.prefix(3)).uppercased()
     let receiveCurrencyCode = String(dto.currencySymbolsPair.suffix(3)).uppercased()
     
-    
     guard let sendCurrency = currencyService.findAvailableCurrency(by: sendCurrencyCode), let receiveCurrency = currencyService.findAvailableCurrency(by: receiveCurrencyCode) else {
       assertionFailure("unsupported send or receive currency code has been received from the backend")
       return nil

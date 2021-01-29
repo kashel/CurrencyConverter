@@ -30,7 +30,7 @@ class AddCurrencyPairView: UIView {
     button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
     button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
     button.setImage(#imageLiteral(resourceName: "Plus"), for: .normal)
-    button.accessibilityIdentifier = AccessibilityIdentifier.Converter.addCurrencyPairButton
+    button.accessibilityIdentifier = AccessibilityIdentifier.Converter.Button.addCurrencyPair.rawValue
     button.accessibilityLabel = L10n.addCurrencyPair
 
     return button
@@ -49,7 +49,7 @@ class AddCurrencyPairView: UIView {
     addCurrencyPairButton.imageEdgeInsets.right = Constants.iconMarginRight
     addCurrencyPairButton.imageEdgeInsets.left = Constants.iconMarginLeft
     addCurrencyPairButton.imageView!.contentMode = .scaleAspectFit
-    self.addSubview(addCurrencyPairButton)
+    addSubview(addCurrencyPairButton)
     addCurrencyPairButton.pinEdges(to: self)
   }
 }

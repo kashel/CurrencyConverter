@@ -6,7 +6,7 @@ import UIKit
 
 extension CurrencySelectionViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    return viewModel.cellsData[indexPath.row].isSelectable ? indexPath : nil
+    viewModel.cellsData[indexPath.row].isSelectable ? indexPath : nil
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

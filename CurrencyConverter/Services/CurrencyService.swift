@@ -20,7 +20,7 @@ class CurrencyService: CurrencyServiceProtocol {
 
   public init() {}
   
-  private lazy var supportedCurrencyCodes: [String] = {
+  private lazy var supportedCurrencyCodes: [String] =
     [
       "GBP",
       "EUR",
@@ -55,11 +55,8 @@ class CurrencyService: CurrencyServiceProtocol {
       "THB",
       "ZAR"
     ]
-  }()
   
-  private lazy var supportedCurrencyCodesSet: Set<String> = {
-    Set(supportedCurrencyCodes)
-  }()
+  private lazy var supportedCurrencyCodesSet: Set<String> = Set(supportedCurrencyCodes)
   
   private lazy var supportedCurrenciesToRegionMap: [CurrencyCode: RegionCode] = {
     let localeIds = Locale.availableIdentifiers
@@ -78,7 +75,7 @@ class CurrencyService: CurrencyServiceProtocol {
   
   lazy var supportedCurrenciesCount: Int = supportedCurrencyCodes.count
   
-  var availableCurrencies: [Currency] {
+  lazy var availableCurrencies: [Currency] = {
     supportedCurrencyCodes.compactMap {
       guard let countryCode = countryCode(for: $0) else {
         assertionFailure("Unable to map currency: \($0) to country code")
@@ -86,17 +83,15 @@ class CurrencyService: CurrencyServiceProtocol {
       }
       return Currency(code: $0, countryCode: countryCode)
     }
-  }
+  }()
   
   func findAvailableCurrency(by currencyCode: String) -> Currency? {
-    return availableCurrencies.first(where: { $0.code == currencyCode })
+    availableCurrencies.first { $0.code == currencyCode }
   }
 }
 
 private extension CurrencyService {
   func countryCode(for currencyCode: CurrencyCode) -> RegionCode? {
-    return supportedCurrenciesToRegionMap.first { (key, _) -> Bool in
-      key == currencyCode
-    }?.value
+    supportedCurrenciesToRegionMap[currencyCode]
   }
 }

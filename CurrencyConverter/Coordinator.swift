@@ -7,6 +7,14 @@ import UIKit
 enum CoordinatorLifecycleEvent {
   case finished(Coordinator)
   case canceled(Coordinator)
+  
+  var coordinator: Coordinator {
+    switch self {
+    case .finished(let coordinator),
+         .canceled(let coordinator):
+      return coordinator
+    }
+  }
 }
 
 protocol Coordinator: AnyObject {
@@ -18,15 +26,12 @@ protocol Coordinator: AnyObject {
 extension Coordinator {
   func add(childCoordinator coordinator: Coordinator) {
     coordinator.lifecycle = { (event: CoordinatorLifecycleEvent) -> Void in
-      switch event {
-        case .finished(let childCoordinator), .canceled(let childCoordinator):
-          coordinator.remove(childCoordinator: childCoordinator)
-      }
+      coordinator.remove(childCoordinator: event.coordinator)
     }
     childCoordinators.append(coordinator)
   }
   
   func remove(childCoordinator coordinator: Coordinator) {
-    self.childCoordinators = self.childCoordinators.filter({ $0 !== coordinator })
+    childCoordinators = childCoordinators.filter { $0 !== coordinator }
   }
 }

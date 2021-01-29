@@ -10,6 +10,6 @@ protocol CurrencySelectionCellModelMapperProtocol {
 
 struct CurrencySelectionCellModelMapper: CurrencySelectionCellModelMapperProtocol {
   func map(_ currencySelection: CurrencySelection) -> CurrencySelectionCellModel {
-    return CurrencySelectionCellModel(currencyName: currencySelection.currency.name, currencyCode: currencySelection.currency.code, icon: currencySelection.currency.flag, isSelectable: currencySelection.isActive)
+    .init(currencyName: currencySelection.currency.name, currencyCode: currencySelection.currency.code, icon: currencySelection.currency.flag, isSelectable: currencySelection.isActive)
   }
 }

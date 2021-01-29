@@ -46,25 +46,13 @@ class ConverterViewModel {
     pendingDispatchWork?.cancel()
     let newDispatchWork = DispatchWorkItem { [weak self] in
       guard let self = self, self.currentlySelectedPairs.count > 0 else { return }
-      self.cancelExchangeRangeFetching = self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self](result) in
+      self.cancelExchangeRangeFetching = self.exchangeRateService.exchangeRates(currencyPairs: self.currentlySelectedPairs) { [weak self] (result) in
         guard let self = self else { return }
         switch result {
         case .success(let exchangeRates):
-          DispatchQueue.main.async {
-            self.notifyExchangeRatesChange(with: exchangeRates)
-            self.startLoading(after: .seconds(1))
-          }
+          self.onExchangeRateSuccess(exchangeRates: exchangeRates)
         case .failure(let error):
-          self.logLoadingError(error)
-          if case .network(let networkError) = error {
-            let nsError = networkError as NSError
-            if nsError.code == NSURLErrorCancelled {
-              return
-            }
-          }
-          DispatchQueue.main.async {
-            self.startLoading(after: .seconds(1))
-          }
+          self.onExchangeRateFailure(error: error)
         }
       }
     }
@@ -133,5 +121,27 @@ private extension ConverterViewModel {
     let newRateAdded = (currentlySelectedPairs.count - previouslySelectedPairs.count) == 1
     previouslySelectedPairs = currentlySelectedPairs
     self.actions?(.dataLoaded(allRates: exchangeRates, isNewRateAdded: newRateAdded))
+  }
+}
+
+private extension ConverterViewModel {
+  func onExchangeRateSuccess(exchangeRates: [ExchangeRateModel]) {
+    DispatchQueue.main.async {
+      self.notifyExchangeRatesChange(with: exchangeRates)
+      self.startLoading(after: .seconds(1))
+    }
+  }
+  
+  func onExchangeRateFailure(error: ExchangeRateServiceError) {
+    logLoadingError(error)
+    if case .network(let networkError) = error {
+      let nsError = networkError as NSError
+      if nsError.code == NSURLErrorCancelled {
+        return
+      }
+    }
+    DispatchQueue.main.async {
+      self.startLoading(after: .seconds(1))
+    }
   }
 }

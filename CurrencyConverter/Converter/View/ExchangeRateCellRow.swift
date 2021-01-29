@@ -6,8 +6,8 @@ import UIKit
 
 class ExchangeRateCellRow: UIView {
   struct AccessibilityIdentifiers {
-    let lhs: String
-    let rhs: String
+    let lhs: AccessibilityIdentifier.Converter.ExchangeRateCell
+    let rhs: AccessibilityIdentifier.Converter.ExchangeRateCell
   }
   let horizontalStack: UIStackView = {
     let stackView = UIStackView()
@@ -15,15 +15,8 @@ class ExchangeRateCellRow: UIView {
     return stackView
   }()
   
-  lazy var lhsLabel: UILabel = {
-    let label = UILabel()
-    return label
-  }()
-  
-  lazy var rhsLabel: UILabel = {
-    let label = UILabel()
-    return label
-  }()
+  var lhsLabel = UILabel()
+  var rhsLabel = UILabel()
   
   let lhsDecorator: LabelDecorator
   let rhsDecorator: LabelDecorator
@@ -32,8 +25,8 @@ class ExchangeRateCellRow: UIView {
     self.lhsDecorator = lhsDecorator
     self.rhsDecorator = rhsDecorator
     super.init(frame: .zero)
-    lhsLabel.accessibilityIdentifier = accessibilityIdentifiers.lhs
-    rhsLabel.accessibilityIdentifier = accessibilityIdentifiers.rhs
+    lhsLabel.accessibilityIdentifier = accessibilityIdentifiers.lhs.rawValue
+    rhsLabel.accessibilityIdentifier = accessibilityIdentifiers.rhs.rawValue
   }
   
   required init?(coder: NSCoder) {

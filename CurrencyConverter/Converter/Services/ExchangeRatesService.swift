@@ -34,36 +34,41 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
     return fetchDecodableNetworkService.get(url: constructURL(with: currencyPairs)) { (result: Result<ExchangeRatesDTO, NetworkError>) in
       switch result {
         case .success(let exchangeRatesDTO):
-          let models = exchangeRatesDTO.array.compactMap(exchangeRatesDTOMapper.map)
-          guard models.count == exchangeRatesDTO.array.count else {
-            completed(.failure(.parsing))
-            return
-          }
-          let grouppedExchangeRates = Dictionary(grouping: models, by: {
-            $0.sourceCurrency
-          })
-          let exchangeRatesWithOrder = currencyPairs.compactMap { currencyPair in
-            grouppedExchangeRates[currencyPair.send]?.first(where: { $0.receiveCurrency == currencyPair.receive })
-          }
-          completed(.success(exchangeRatesWithOrder))
+          exchangeRatesFetched(currencyPairs: currencyPairs, exchangeRatesDTO: exchangeRatesDTO, completed: completed)
       case .failure(let error):
-        switch error {
-        case .emptyResponse:
-          completed(.failure(.emptyResponse))
-        case .networkError(let networkError):
-          completed(.failure(.network(underlyingError: networkError)))
-        case .unableToDecodeJSON:
-          completed(.failure(.parsing))
-        }
-        print(error)
+        fetchingFailed(error: error, completed: completed)
       }
     }
   }
 }
 
 private extension ExchangeRateService {
+  func exchangeRatesFetched(currencyPairs: [CurrencyPair], exchangeRatesDTO: ExchangeRatesDTO, completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
+    let models = exchangeRatesDTO.array.compactMap(exchangeRatesDTOMapper.map)
+    if models.count != exchangeRatesDTO.array.count {
+      completed(.failure(.parsing))
+      return
+    }
+    let grouppedExchangeRates = Dictionary(grouping: models) { $0.sourceCurrency }
+    let exchangeRatesWithOrder = currencyPairs.compactMap { currencyPair in
+      grouppedExchangeRates[currencyPair.send]?.first(where: { $0.receiveCurrency == currencyPair.receive })
+    }
+    completed(.success(exchangeRatesWithOrder))
+  }
+  
+  func fetchingFailed(error: NetworkError, completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
+    switch error {
+    case .emptyResponse:
+      completed(.failure(.emptyResponse))
+    case .networkError(let networkError):
+      completed(.failure(.network(underlyingError: networkError)))
+    case .unableToDecodeJSON:
+      completed(.failure(.parsing))
+    }
+  }
+  
   func constructURL(with currencyPairs: [CurrencyPair]) -> URL {
-    let queryItems = currencyPairs.map { URLQueryItem(name: "pairs", value: $0.send.code+$0.receive.code) }
+    let queryItems = currencyPairs.map { URLQueryItem(name: "pairs", value: $0.send.code + $0.receive.code) }
     var urlComps = URLComponents(string: baseURL)!
     urlComps.queryItems = queryItems
     let result = urlComps.url!

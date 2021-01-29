@@ -6,7 +6,7 @@ import UIKit
 
 extension ConverterViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    return editState == .editing
+    editState == .editing
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

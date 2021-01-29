@@ -6,7 +6,7 @@ import UIKit
 
 extension ConverterViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return cellsDataCache.count
+    cellsDataCache.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

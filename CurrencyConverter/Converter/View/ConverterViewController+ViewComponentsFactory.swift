@@ -48,7 +48,7 @@ extension ConverterViewController {
       button.setTitleColor(colorProvider.link, for: .normal)
       button.setTitleColor(colorProvider.inactiveLink, for: .highlighted)
       button.setTitleColor(colorProvider.inactiveLink, for: .disabled)
-      button.accessibilityIdentifier = AccessibilityIdentifier.Converter.editButton
+      button.accessibilityIdentifier = AccessibilityIdentifier.Converter.Button.edit.rawValue
       return button
     }()
     
@@ -60,7 +60,7 @@ extension ConverterViewController {
       button.setTitleColor(.gray, for: .highlighted)
       button.setTitle(L10n.delete, for: .normal)
       button.alpha = Constants.deleteButtonDisabledAlpha
-      button.accessibilityIdentifier = AccessibilityIdentifier.Converter.deleteButton
+      button.accessibilityIdentifier = AccessibilityIdentifier.Converter.Button.delete.rawValue
       button.accessibilityLabel = L10n.delete
       return button
     }()

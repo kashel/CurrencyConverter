@@ -8,7 +8,7 @@ final class DependencyContainer {}
 
 extension DependencyContainer: CurrencyServiceFactory {
   var currencyService: CurrencyServiceProtocol {
-    return CurrencyService()
+    CurrencyService()
   }
 }
 
@@ -21,6 +21,6 @@ extension DependencyContainer: ExchangeRatesServiceFactory {
 
 extension DependencyContainer: CurrencyPairServiceFactory {
   var currencyPairService: CurrencyPairServiceProtocol {
-    return CurrencyPairService()
+    CurrencyPairService()
   }
 }

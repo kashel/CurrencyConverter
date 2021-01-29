@@ -64,15 +64,19 @@ struct CurrencySelectionViewModel {
     let model: [CurrencySelection]
     switch ctaAction {
     case .goToReceiveCurrencySelection:
-      let disabledCurrencies = Set(currencyService.availableCurrencies.filter { sendCurrency in
-        currencyPairService.savedCurrencyPairs.filter { $0.send == sendCurrency }.count == currencyService.supportedCurrenciesCount - 1
+      let disabledCurrencies = Set(currencyService.availableCurrencies.filter {
+        savedCurrencyPairs(sendCurrency: $0).count == currencyService.supportedCurrenciesCount - 1
       })
       model = currencyService.availableCurrencies.map { CurrencySelection(isActive: !disabledCurrencies.contains($0), currency: $0)}
     case .currencyPairSelected(let sendCurrency):
-      var disabledCurrencies = Set(currencyPairService.savedCurrencyPairs.filter { $0.send == sendCurrency }.map { $0.receive })
+      var disabledCurrencies = Set(savedCurrencyPairs(sendCurrency: sendCurrency).map { $0.receive })
       disabledCurrencies.insert(sendCurrency)
       model = currencyService.availableCurrencies.map { CurrencySelection(isActive: !disabledCurrencies.contains($0), currency: $0)}
     }
     return model
+  }
+  
+  private func savedCurrencyPairs(sendCurrency: Currency) -> [CurrencyPair] {
+    currencyPairService.savedCurrencyPairs.filter { $0.send == sendCurrency }
   }
 }

@@ -5,7 +5,6 @@
 import UIKit
 
 class ExchangeRateCell: UITableViewCell {
-  typealias Style = StandardLabelDecorator.Style
   struct Constants {
     static let margin: CGFloat = 16
     static let rowsSpacing: CGFloat = 6
@@ -14,18 +13,16 @@ class ExchangeRateCell: UITableViewCell {
   let colorProvider = ColorProvider()
   let fontProvider = FontProvider()
   
-  lazy var titleDecorator = StandardLabelDecorator(style: Style(font: fontProvider.cellTitle, color: colorProvider.label))
-  lazy var descriptionDecorator = StandardLabelDecorator(style: Style(font: fontProvider.cellDescription, color: colorProvider.description))
-  lazy var significantPartDecorator = SignificantPartLabelDecorator(style: SignificantPartLabelDecorator.Style(significantPartFont: fontProvider.cellTitle,
-                                                                                                               minorPartFont: fontProvider.cellTitleMinor,
-                                                                                                               color: colorProvider.label),
+  lazy var titleDecorator = StandardLabelDecorator(style: .init(font: fontProvider.cellTitle, color: colorProvider.label))
+  lazy var descriptionDecorator = StandardLabelDecorator(style: .init(font: fontProvider.cellDescription, color: colorProvider.description))
+  lazy var significantPartDecorator = SignificantPartLabelDecorator(style: .init(significantPartFont: fontProvider.cellTitle,
+                                                                                 minorPartFont: fontProvider.cellTitleMinor,
+                                                                                 color: colorProvider.label),
                                                                     minorPartLength: 2)
-  lazy var titleRowAccessibilityIdentifiers = ExchangeRateCellRow.AccessibilityIdentifiers(lhs: AccessibilityIdentifier.Converter.ExchangeRateCell.sourceCurrencyCode,
-                                                                                           rhs: AccessibilityIdentifier.Converter.ExchangeRateCell.exchangeRate)
-  lazy var descriptionRowAccessibilityIdentifiers = ExchangeRateCellRow.AccessibilityIdentifiers(lhs: AccessibilityIdentifier.Converter.ExchangeRateCell.sourceCurrencyName,
-                                                                                                 rhs: AccessibilityIdentifier.Converter.ExchangeRateCell.receiveCurrencyNameAndCode)
-  lazy var titleRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: titleDecorator, rhsDecorator: significantPartDecorator, accessibilityIdentifiers: titleRowAccessibilityIdentifiers)
-  lazy var descriptionRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: descriptionDecorator, rhsDecorator: descriptionDecorator, accessibilityIdentifiers: descriptionRowAccessibilityIdentifiers)
+  lazy var titleRowAccessibilityIds = ExchangeRateCellRow.AccessibilityIdentifiers(lhs: .sourceCurrencyCode, rhs: .exchangeRate)
+  lazy var descriptionRowAccessibilityIds = ExchangeRateCellRow.AccessibilityIdentifiers(lhs: .sourceCurrencyName, rhs: .receiveCurrencyNameAndCode)
+  lazy var titleRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: titleDecorator, rhsDecorator: significantPartDecorator, accessibilityIdentifiers: titleRowAccessibilityIds)
+  lazy var descriptionRow: ExchangeRateCellRow = ExchangeRateCellRow(lhsDecorator: descriptionDecorator, rhsDecorator: descriptionDecorator, accessibilityIdentifiers: descriptionRowAccessibilityIds)
   let verticalStack: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .vertical

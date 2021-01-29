@@ -11,10 +11,10 @@ struct Currency: Codable, Equatable, Hashable {
 
 extension Currency {
   var name: String {
-    return Locale.current.localizedString(forCurrencyCode: code) ?? ""
+    Locale.current.localizedString(forCurrencyCode: code) ?? ""
   }
   
   var flag: UIImage {
-    return UIImage(named: countryCode) ?? UIImage()
+    UIImage(named: countryCode) ?? UIImage()
   }
 }

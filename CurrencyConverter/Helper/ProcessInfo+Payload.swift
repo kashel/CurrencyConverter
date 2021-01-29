@@ -11,13 +11,10 @@ public enum LaunchScreen {
 
 extension ProcessInfo {
   var isUITestRun: Bool {
-    return self.arguments.contains(CurrencyConverterLaunchArgument.automatedTestRun.rawValue)
+    arguments.contains(CurrencyConverterLaunchArgument.automatedTestRun.rawValue)
   }
   
   var testRunLaunchScreen: LaunchScreen {
-    if self.arguments.contains(CurrencyConverterLaunchArgument.dashboardStartScreen.rawValue) {
-      return .dashboard
-    }
-    return .converter
+    arguments.contains(CurrencyConverterLaunchArgument.dashboardStartScreen.rawValue) ? .dashboard : .converter
   }
 }
