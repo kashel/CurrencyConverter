@@ -31,25 +31,7 @@ final class AppCoordinator : Coordinator {
     case .converter:
       startConverter()
     case .dashboard:
-      let dashboardCoordinator = DashboardCoordinator(dependencies: dependencies)
-      add(childCoordinator: dashboardCoordinator)
-      let dashboardViewController = dashboardCoordinator.start()
-      dashboardCoordinator.lifecycle = {[weak self, weak dashboardCoordinator] childCoordinatorEvent in
-        switch childCoordinatorEvent {
-        case .canceled:
-          assertionFailure("Dashboard coordinator can not be canceled")
-        case .finished(let childCoordinator) where childCoordinator is DashboardCoordinator:
-          dashboardViewController.view.removeFromSuperview()
-          dashboardViewController.removeFromParent()
-          if let unownedDashboardCoordinator = dashboardCoordinator {
-            self?.remove(childCoordinator: unownedDashboardCoordinator)            
-          }
-          self?.startConverter()
-        case .finished:
-          assertionFailure("childCoordinator has to be DashboardCoordinator")
-        }
-      }
-      startChildViewController(dashboardViewController)
+      startDashboardCoordinator()
     }
     self.window?.rootViewController = rootViewController
     self.window?.makeKeyAndVisible()
@@ -62,6 +44,29 @@ final class AppCoordinator : Coordinator {
     add(childCoordinator: converterCoordinator)
     startChildViewController(converterViewController)
   }
+  
+  private func startDashboardCoordinator() {
+    let dashboardCoordinator = DashboardCoordinator(dependencies: dependencies)
+    add(childCoordinator: dashboardCoordinator)
+    let dashboardViewController = dashboardCoordinator.start()
+    dashboardCoordinator.lifecycle = {[weak self, weak dashboardCoordinator] childCoordinatorEvent in
+      switch childCoordinatorEvent {
+      case .canceled:
+        assertionFailure("Dashboard coordinator can not be canceled")
+      case .finished(let childCoordinator) where childCoordinator is DashboardCoordinator:
+        dashboardViewController.view.removeFromSuperview()
+        dashboardViewController.removeFromParent()
+        if let unownedDashboardCoordinator = dashboardCoordinator {
+          self?.remove(childCoordinator: unownedDashboardCoordinator)
+        }
+        self?.startConverter()
+      case .finished:
+        assertionFailure("childCoordinator has to be DashboardCoordinator")
+      }
+    }
+    startChildViewController(dashboardViewController)
+  }
+  
   private func startChildViewController(_ viewController: UIViewController) {
     rootViewController.addChild(viewController)
     rootViewController.view.addSubview(viewController.view)

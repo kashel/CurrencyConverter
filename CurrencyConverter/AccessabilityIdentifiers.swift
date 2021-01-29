@@ -4,10 +4,6 @@
 
 import Foundation
 
-public enum TestAAA: String {
-  case aaa
-}
-
 public struct AccessibilityIdentifier {
   public enum Dashboard: String {
     case addCurrencyPairIconButton = "dashboard.addCurrencyPairIconButton"

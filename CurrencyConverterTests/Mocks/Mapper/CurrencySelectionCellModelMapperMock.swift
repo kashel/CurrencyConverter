@@ -8,7 +8,7 @@ import Foundation
 class CurrencySelectionCellModelMapperMock: CurrencySelectionCellModelMapperProtocol {
   
   var currencySelectionCellModel: CurrencySelectionCellModel?
-  func map(_: CurrencySelection) -> CurrencySelectionCellModel {
+  func map(_: CurrencySelectionModel) -> CurrencySelectionCellModel {
     return currencySelectionCellModel!
   }
 }

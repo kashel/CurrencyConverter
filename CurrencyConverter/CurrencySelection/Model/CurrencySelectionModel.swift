@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct CurrencySelection {
+struct CurrencySelectionModel {
   let isActive: Bool
   let currency: Currency
 }
