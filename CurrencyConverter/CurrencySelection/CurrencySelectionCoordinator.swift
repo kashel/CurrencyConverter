@@ -4,7 +4,13 @@
 
 import UIKit
 
-class CurrencySelectionCoordinator: Coordinator {
+protocol CurrencySelectionCoordinatorProtocol: class {
+  func selectReceiveCurrency(previouslySelected: Currency)
+  func currencyPairSelected(_ currencyPair: CurrencyPair)
+  func selectionCanceled()
+}
+
+class CurrencySelectionCoordinator: Coordinator, CurrencySelectionCoordinatorProtocol {
   typealias Dependencies = CurrencySelectionViewModel.Dependencies
   let rootViewController: UINavigationController
   var childCoordinators: [Coordinator] = []

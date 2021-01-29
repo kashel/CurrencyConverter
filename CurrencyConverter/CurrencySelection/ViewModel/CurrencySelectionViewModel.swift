@@ -32,11 +32,11 @@ struct CurrencySelectionViewModel {
   private let currencySelectionCellModelMapper: CurrencySelectionCellModelMapperProtocol
   private let currencyPairService: CurrencyPairServiceProtocol
   private let currencyService: CurrencyServiceProtocol
-  private weak var coordinator: CurrencySelectionCoordinator?
+  private weak var coordinator: CurrencySelectionCoordinatorProtocol?
   
   init(ctaAction: CTAAction,
        currencySelectionCellModelMapper: CurrencySelectionCellModelMapperProtocol,
-       coordinator: CurrencySelectionCoordinator,
+       coordinator: CurrencySelectionCoordinatorProtocol,
        dependencies: Dependencies) {
     self.ctaAction = ctaAction
     self.currencySelectionCellModelMapper = currencySelectionCellModelMapper
