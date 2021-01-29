@@ -125,15 +125,15 @@ extension ConverterViewController {
     tableView.setEditing(editState == .editing, animated: true)
     if editState == .editing {
       viewComponentsFactory.verticalStackView.addArrangedSubview(viewComponentsFactory.deleteButtonView)
-      setRefreshDeleteButtonState(enabled: false)
+      refreshDeleteButtonState(enabled: false)
     } else {
-      setRefreshDeleteButtonState(enabled: false)
+      refreshDeleteButtonState(enabled: false)
       viewComponentsFactory.deleteButtonView.removeFromSuperview()
       viewComponentsFactory.verticalStackView.removeArrangedSubview(viewComponentsFactory.deleteButtonView)
     }
   }
   
-  func setRefreshDeleteButtonState(enabled: Bool) {
+  func refreshDeleteButtonState(enabled: Bool) {
     let button = viewComponentsFactory.deleteButton
     UIView.animate(withDuration: Constants.animationsDuration) {
       button.isEnabled = enabled
