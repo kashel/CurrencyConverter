@@ -45,6 +45,21 @@ struct CurrencySelectionViewModel {
     self.coordinator = coordinator
   }
   
+  func continueAction(selectedCurrency: Currency) {
+    switch ctaAction {
+    case .goToReceiveCurrencySelection:
+      coordinator?.selectReceiveCurrency(previouslySelected: selectedCurrency)
+    case .currencyPairSelected(let sendCurrency):
+      let currencyPairSelected = CurrencyPair(send: sendCurrency, receive: selectedCurrency)
+      currencyPairService.insert(currencyPair: currencyPairSelected)
+      coordinator?.currencyPairSelected(currencyPairSelected)
+    }
+  }
+  
+  func cancelAction() {
+    coordinator?.selectionCanceled()
+  }
+  
   private func produceCellData(for ctaAction: CTAAction) -> [CurrencySelection] {
     let model: [CurrencySelection]
     switch ctaAction {
@@ -59,20 +74,5 @@ struct CurrencySelectionViewModel {
       model = currencyService.availableCurrencies.map { CurrencySelection(isActive: !disabledCurrencies.contains($0), currency: $0)}
     }
     return model
-  }
-  
-  func continueAction(selectedCurrency: Currency) {
-    switch ctaAction {
-    case .goToReceiveCurrencySelection:
-      coordinator?.selectReceiveCurrency(previouslySelected: selectedCurrency)
-    case .currencyPairSelected(let sendCurrency):
-      let currencyPairSelected = CurrencyPair(send: sendCurrency, receive: selectedCurrency)
-      currencyPairService.insert(currencyPair: currencyPairSelected)
-      coordinator?.currencyPairSelected(currencyPairSelected)
-    }
-  }
-  
-  func cancelAction() {
-    coordinator?.selectionCanceled()
   }
 }
