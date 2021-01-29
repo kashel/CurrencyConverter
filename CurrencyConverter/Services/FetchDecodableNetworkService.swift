@@ -16,12 +16,15 @@ public protocol FetchDecodableNetworkServiceProtocol {
 }
 
 public final class FetchDecodableNetworkService: FetchDecodableNetworkServiceProtocol {
-  public init() {}
   private var ongoingTask: URLSessionTask!
+  let urlSession: URLSession
+  public init(urlSession: URLSession = .shared) {
+    self.urlSession = urlSession
+  }
   
   public func get<T: Decodable>(url: URL, result: @escaping (Result<T, NetworkError>) -> ()) -> FetchDecodableNetworkServiceProtocol.CancelClosure {
-    let session = URLSession.shared
-    ongoingTask = session.dataTask(with: url) { (data, _, error) in
+    
+    ongoingTask = urlSession.dataTask(with: url) { (data, _, error) in
       if let error = error {
         result(.failure(.networkError(error)))
         return
