@@ -34,16 +34,16 @@ struct ExchangeRateService: ExchangeRatesServiceProtocol {
     return fetchDecodableNetworkService.get(url: constructURL(with: currencyPairs)) { (result: Result<ExchangeRatesDTO, NetworkError>) in
       switch result {
         case .success(let exchangeRatesDTO):
-          exchangeRatesFetched(currencyPairs: currencyPairs, exchangeRatesDTO: exchangeRatesDTO, completed: completed)
+          onExchangeRatesFetched(currencyPairs: currencyPairs, exchangeRatesDTO: exchangeRatesDTO, completed: completed)
       case .failure(let error):
-        fetchingFailed(error: error, completed: completed)
+        onFetchingFailed(error: error, completed: completed)
       }
     }
   }
 }
 
 private extension ExchangeRateService {
-  func exchangeRatesFetched(currencyPairs: [CurrencyPair], exchangeRatesDTO: ExchangeRatesDTO, completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
+  func onExchangeRatesFetched(currencyPairs: [CurrencyPair], exchangeRatesDTO: ExchangeRatesDTO, completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
     let models = exchangeRatesDTO.array.compactMap(exchangeRatesDTOMapper.map)
     if models.count != exchangeRatesDTO.array.count {
       completed(.failure(.parsing))
@@ -56,7 +56,7 @@ private extension ExchangeRateService {
     completed(.success(exchangeRatesWithOrder))
   }
   
-  func fetchingFailed(error: NetworkError, completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
+  func onFetchingFailed(error: NetworkError, completed: @escaping ExchangeRatesServiceProtocol.LoadingCompleted) {
     switch error {
     case .emptyResponse:
       completed(.failure(.emptyResponse))

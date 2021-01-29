@@ -15,6 +15,8 @@ class CurrencySelectionCell: UITableViewCell {
   struct Constants {
     static let iconSize: CGFloat = 24
     static let margin: CGFloat = 16
+    static let enabledAlpha: CGFloat = 1.0
+    static let disabledAlpha: CGFloat = 0.5
   }
   let fontProvider = FontProvider()
   let colorProvider = ColorProvider()
@@ -70,12 +72,12 @@ class CurrencySelectionCell: UITableViewCell {
 
 private extension CurrencySelectionCell {
   func enable() {
-    setItemsAlpha(newAlpha: 1.0)
+    setItemsAlpha(newAlpha: Constants.enabledAlpha)
     selectionStyle = .default
   }
   
   func disable() {
-    setItemsAlpha(newAlpha: 0.5)
+    setItemsAlpha(newAlpha: Constants.disabledAlpha)
     selectionStyle = .none
   }
   
