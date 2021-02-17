@@ -1,42 +1,137 @@
 //
-//  CurrencyConverterUITests.swift
-//  CurrencyConverterUITests
-//
-//  Created by Ireneusz Sołek on 15/01/2021.
+//  Created by Ireneusz Sołek
 //
 
 import XCTest
 
 class CurrencyConverterUITests: XCTestCase {
-
+    private let app = XCUIApplication()
+  
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app.launchArguments.append(CurrencyConverterLaunchArgument.automatedTestRun.rawValue)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+  
+  func test_dashboard_hasAllRequiredUIElements() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.dashboardStartScreen.rawValue)
+    app.launch()
+    let iconButton = app.buttons[AccessibilityIdentifier.Dashboard.addCurrencyPairIconButton.rawValue]
+    let addCurrencyPairButton = app.buttons[AccessibilityIdentifier.Dashboard.addCurrencyPairButton.rawValue]
+    let chooseCurrencyPairDescription = app.staticTexts[AccessibilityIdentifier.Dashboard.chooseCurrencyPairDescription.rawValue]
+    
+    XCTAssertTrue(iconButton.exists, "add currency pair icon button does not exists")
+    XCTAssertTrue(addCurrencyPairButton.exists, "add currency pair button does not exists")
+    XCTAssertTrue(chooseCurrencyPairDescription.exists, "Choose currency pair description label does not exists")
+  }
+  
+  func test_converter_hasRequiredHeader() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let addCurrencyPairButton = app.buttons[AccessibilityIdentifier.Converter.Button.addCurrencyPair.rawValue]
+    let editButton = app.buttons[AccessibilityIdentifier.Converter.Button.edit.rawValue]
+    
+    XCTAssertTrue(addCurrencyPairButton.exists, "add currency pair button does not exists")
+    XCTAssertTrue(editButton.exists, "edit button does not exists")
+  }
+  
+  func test_converter_containsExchangeRateCellWithCorrectContent() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let cell = app.tables.cells.element(boundBy: 0)
+    let sourceCurrencyCodeLabel = cell.staticTexts[AccessibilityIdentifier.Converter.ExchangeRateCell.sourceCurrencyCode.rawValue]
+    let exchangeRateLabel = cell.staticTexts[AccessibilityIdentifier.Converter.ExchangeRateCell.exchangeRate.rawValue]
+    let sourceCurrencyName = cell.staticTexts[AccessibilityIdentifier.Converter.ExchangeRateCell.sourceCurrencyName.rawValue]
+    let receiveCurrencyNameAndCode = cell.staticTexts[AccessibilityIdentifier.Converter.ExchangeRateCell.receiveCurrencyNameAndCode.rawValue]
+    
+    XCTAssertTrue(sourceCurrencyCodeLabel.exists, "source curency code label does not exists")
+    XCTAssertEqual(sourceCurrencyCodeLabel.label, "1 PLN")
+    XCTAssertTrue(exchangeRateLabel.exists, "exchange rate label does not exists")
+    XCTAssertEqual(exchangeRateLabel.label, "4.1234")
+    XCTAssertTrue(sourceCurrencyName.exists, "source currency name label does not exists")
+    XCTAssertEqual(sourceCurrencyName.label, "Polish Zloty")
+    XCTAssertTrue(receiveCurrencyNameAndCode.exists, "receive currency name and code label does not exists")
+    XCTAssertEqual(receiveCurrencyNameAndCode.label, "US Dollar · USD")
+  }
+  
+  func test_editButtonTap_triggerViewStateChange() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let deleteButton = app.buttons[AccessibilityIdentifier.Converter.Button.delete.rawValue]
+    
+    XCTAssertFalse(deleteButton.exists)
+    tapOnEditButton()
+    XCTAssertTrue(deleteButton.exists)
+  }
+  
+  private func tapOnEditButton() {
+    app.buttons[AccessibilityIdentifier.Converter.Button.edit.rawValue].tap()
+  }
+  
+  func test_editingState_containsRequiredUIElements() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let deleteButton = app.buttons[AccessibilityIdentifier.Converter.Button.delete.rawValue]
+    let editButton = app.buttons[AccessibilityIdentifier.Converter.Button.edit.rawValue]
+    let addCurrencyPairButton = app.buttons[AccessibilityIdentifier.Converter.Button.addCurrencyPair.rawValue]
+    
+    tapOnEditButton()
+    XCTAssertFalse(deleteButton.isEnabled)
+    XCTAssertEqual(editButton.label, "Cancel")
+    XCTAssertFalse(addCurrencyPairButton.isEnabled)
+  }
+  
+  func test_selectingExchangeRateCell_activateDeleteButton() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let deleteButton = app.buttons[AccessibilityIdentifier.Converter.Button.delete.rawValue]
+    let cell = app.tables.cells.element(boundBy: 0)
+    
+    tapOnEditButton()
+    cell.tap()
+    XCTAssertTrue(deleteButton.isEnabled)
+  }
+  
+  func test_deleteButtonTap_removesRowFromTableView() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let deleteButton = app.buttons[AccessibilityIdentifier.Converter.Button.delete.rawValue]
+    XCTAssertEqual(app.tables.cells.count, 1)
+    let cell = app.tables.cells.element(boundBy: 0)
+    tapOnEditButton()
+    cell.tap()
+    deleteButton.tap()
+    XCTAssertEqual(app.tables.cells.count, 0)
+  }
+  
+  func test_addCurrencyPairButtonTap_presetsCurrencySelectionScreen() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let addCurrencyPairButton = app.buttons[AccessibilityIdentifier.Converter.Button.addCurrencyPair.rawValue]
+    XCTAssertEqual(app.tables.count, 1)
+    addCurrencyPairButton.tap()
+    XCTAssertEqual(app.tables.count, 2)
+    
+    let navigationBar = app.navigationBars.element(boundBy: 0)
+    let sendCurrencyLabel = navigationBar.staticTexts["Send currency"]
+    XCTAssertTrue(sendCurrencyLabel.exists)
+  }
+  
+  func test_addingNewCurrencyPair_addsNewExchangeRateRow() {
+    app.launchArguments.append(CurrencyConverterLaunchArgument.converterStartScreen.rawValue)
+    app.launch()
+    let exchangeRateTable = app.tables.element(boundBy: 0)
+    XCTAssertEqual(exchangeRateTable.cells.count, 1)
+    let addCurrencyPairButton = app.buttons[AccessibilityIdentifier.Converter.Button.addCurrencyPair.rawValue]
+    addCurrencyPairButton.tap()
+    let selectCurrencyTable = app.tables.element(boundBy: 1)
+    let sendCurrencyCell = selectCurrencyTable.cells.element(boundBy: 0)
+    print("selectCurrencyTable.cells.count", selectCurrencyTable.cells.count)
+    sendCurrencyCell.tap()
+    let receiveCurrencyTable = app.tables.element(boundBy: 1)
+    print("receiveCurrencyTable.cells.count", receiveCurrencyTable.cells.count)
+    let receiveCurrencyCell = receiveCurrencyTable.cells.element(boundBy: 2)
+    receiveCurrencyCell.tap()
+  
+    XCTAssertEqual(exchangeRateTable.cells.count, 2)
+  }
 }
